@@ -2,20 +2,16 @@
 
 
 {% block content %}
-
+<p class="chapeau">
+    project,
+    december 2010
+</p>
 
 <h1>Mediamatic ikPod</h1>
 
 <p class="summary">
     An interactive device for doing so and so.
 </p>
-
-<div class="project-info">
-    <h3>Project information</h3>
-    Client: Joods Historisch Museum
-    in samenwerking met Mediamatic Lab
-    
-</div>
 
 <div class="body">
 
@@ -37,4 +33,37 @@
         Proin tincidunt, libero in euismod lacinia, velit quam suscipit diam, in consequat ante est vitae velit. Duis facilisis auctor mauris, nec suscipit nunc auctor at. Phasellus tellus velit, lacinia eget rutrum fringilla, tincidunt in ante. Duis eu sem ipsum, aliquam mollis metus. Morbi sollicitudin libero sit amet nibh volutpat ac accumsan ligula venenatis. In hac habitasse platea dictumst. Sed dapibus rutrum nunc, vitae facilisis nisl fringilla sed. Nullam aliquam facilisis viverra. Aliquam et metus diam, et gravida enim. Mauris sapien nisi, tristique ac fringilla et, venenatis quis nisl. Nunc pulvinar scelerisque consectetur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
     </p>
 </div>
+
+<div class="grid_9 alpha omega">
+
+    <div class="project-info grid_3 alpha">
+        <h4>In opdracht voor</h4>
+        <a href="#">Joods Historisch Museum</a>, <a href="#">Mediamatic Lab</a>
+    </div>
+
+    <div class="project-info grid_3">
+        <h4>Meer informatie</h4>
+        <a href="#">github</a>, <a href="#">API documentatie</a>
+    </div>
+
+    <div class="project-info grid_3 omega">
+        <h4>Gerealiseerd op</h4>
+        12 december 2009
+    </div>
+</div>
+
+<div class="grid_9 alpha omega">
+    <div class="project-info grid_3 alpha">
+        <h4>Licentie</h4>
+        <a href="#">MIT</a>
+    </div>
+    
+    <div class="project-info grid_6 omega">
+        <h4>Trefwoorden</h4>
+        <a href="#">alpha</a>, <a href="#">alpha</a>, <a href="#">alpha</a>, <a href="#">alpha</a>, <a href="#">alpha</a>
+    </div>
+</div>
+
+
+
 {% endblock %}

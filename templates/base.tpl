@@ -14,7 +14,7 @@
     <body class="{% block page_class %}page{% endblock %}">
         <div class="container_12">
 			{% block content_area %}
-            <div class="grid_9 alpha">
+            <div class="grid_9 alpha block-content">
                 {% block content %}
                 {% endblock %}
             </div>

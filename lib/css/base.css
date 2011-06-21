@@ -31,8 +31,23 @@ h1,
 }
 
 
+a {
+    text-decoration: none;
+    color: #900;
+}
 
-#header h1 span {
+div.block-content {
+    position: relative;
+}
+
+p.chapeau {
+    position: absolute;
+    top: -24px;
+    color: #999;
+}
+
+
+h1 span {
     color: #f00;
 }
 
@@ -106,11 +121,25 @@ p.image-caption {
 }
 
 div.body a {
-    text-decoration: none;
     background: white;
-    color: #900;
     padding: 0 3px;
 }
 div.body a:hover {
     text-decoration: underline;
+}
+
+/* project info */
+
+div.project-info h4 {
+    border-bottom: 1px solid #999;
+    margin-bottom: 0;
+}
+
+
+/* set page */
+
+h2.year {
+    font-size: 48px;
+    color: #999;
+    margin-bottom: 0;
 }
