@@ -1,0 +1,31 @@
+% Zotonic site configuration for newsite.
+[
+    % This site is enabled or not.
+    {enabled, true},
+
+    % Atomic hostname, MUST be equal to the directory name of this site.
+    {host, newsite},
+
+    % Hostname on which this site runs
+    {hostname, "newsite:8000"},
+
+    % Aliases which should redirect to the primary hostname
+    %{hostalias, "www.example.com"},
+    %{hostalias, "example.com"},
+
+    % PostgreSQL database connection
+    {dbhost, "localhost"},
+    {dbport, 5432},
+    {dbuser, "zotonic"},
+    {dbpassword, "zotonic"},
+    {dbdatabase, "zotonic"},
+    {dbschema, "newsite"},
+
+    % Password for the 'admin' user.
+    {admin_password, "hello"},
+
+    % What skeleton site this site is based on; for installing the initial data.
+    {skeleton, empty},
+
+    {title, "Magical Man"}
+].

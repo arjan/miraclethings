@@ -1,0 +1,116 @@
+body {
+    font: 14px/1.4 Georgia, serif;
+    background: #999;
+    background: #f0f0f0;
+}
+
+
+h1,h2,h3,h4,h5,h6 { 
+    font-weight: normal;
+}
+
+
+body.page {
+    margin-top: 50px;
+}
+
+h1,
+#content-area h2
+{
+    font-size: 48px;
+    text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+#content-area {
+    background: white;
+    padding: 10px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+
+
+#header h1 span {
+    color: #f00;
+}
+
+h3,
+p.summary {
+    font-size: 20px;
+}
+
+.listitem {
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.listitem h3 {
+    margin: 0; padding: 0;
+}
+
+.listitem h3 a {
+    text-decoration: none;
+    border-radius: 4px;
+    display: block;
+    height: 146px;
+    background: white;
+    position: relative;
+    color: black;
+}
+
+.listitem h3 a:hover {
+    background: red;
+    color: white;
+}
+
+.listitem h3 a span {
+    font-size: 20px;
+    position: absolute;
+    margin: 0; padding: 10px;
+    bottom: 0;
+}
+
+.listitem h3 a abbr {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    margin: 0; padding: 10px;
+    top: 0;
+    color: #666;
+}
+
+
+/* footer */
+div.footer {
+    padding: 20px 0;
+    color: #666;
+}
+
+
+/* body styling */
+
+div.body-media {
+    display: block;
+    float: none;
+    padding: 20px;
+    padding: 10px;
+    background: white;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+p.image-caption {
+    margin-bottom: 0;
+}
+
+div.body a {
+    text-decoration: none;
+    background: white;
+    color: #900;
+    padding: 0 3px;
+}
+div.body a:hover {
+    text-decoration: underline;
+}
