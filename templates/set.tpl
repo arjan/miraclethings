@@ -30,6 +30,4 @@
     {% include "inc/listitem.tpl" omega %}
 </div>
 
-
-
 {% endblock %}

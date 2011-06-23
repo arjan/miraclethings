@@ -29,3 +29,85 @@
 %% support functions go here
 %%====================================================================
 
+-export([
+         datamodel/0,
+         observe_media_viewer/2
+        ]).
+
+
+datamodel() ->
+    #datamodel{
+           categories=
+           [
+            {gallery,
+             collection,
+             [{title, <<"Gallery">>}]
+            }
+           ],
+
+           resources=
+           [
+            {page_home,
+             text,
+             [{title, <<"Home">>},
+              {page_path, <<"/">>}
+             ]
+            },
+
+            {page_about,
+             text,
+             [{short_title, <<"Who am I?">>},
+              {title, <<"About me">>},
+              {page_path, <<"/about">>}
+             ]
+            },
+
+            {page_projects,
+             collection,
+             [{title, <<"Projects">>},
+              {page_path, <<"/projects">>}
+             ]
+            },
+
+            {page_blog,
+             'query',
+             [{title, <<"Stuff we write">>},
+              {page_path, <<"/blog">>}
+             ]
+            },
+
+            {page_contact,
+             text,
+             [{title, <<"Contact me">>},
+              {short_title, <<"Get in touch">>},
+              {page_path, <<"/contact">>}
+             ]
+            },
+
+            {main_menu,
+             menu,
+             [{title, <<"Main menu">>},
+              {menu,
+               [
+                {page_projects, []},
+                {page_blog, []},
+                {page_about, []},
+                {page_contact, []}
+               ]
+              }]
+            }
+           ]
+          }.
+
+
+%% @doc Return the media viewer for the embedded video (that is, when it is an embedded media).
+%% @spec media_viewer(Notification, Context) -> undefined | {ok, Html}
+observe_media_viewer({media_viewer, Id, _Props, _Filename, Options}, Context) ->
+    case m_rsc:is_a(Id, gallery, Context) of
+        true ->
+            % todo: handle possible extra js in the contexts
+            Html = z_template:render("_gallery.tpl", [{id,Id}|Options], Context),
+            {ok, Html};
+        false ->
+            undefined
+    end.

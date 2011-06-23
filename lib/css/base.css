@@ -1,5 +1,9 @@
+html {
+    height: 100%;
+}
+
 body {
-    font: 14px/1.4 Georgia, serif;
+    font: 14px/1.5 Georgia, serif;
     background: #999;
     background: #f0f0f0;
 }
@@ -11,7 +15,7 @@ h1,h2,h3,h4,h5,h6 {
 
 
 body.page {
-    margin-top: 50px;
+    padding-top: 50px;
 }
 
 h1,
@@ -47,8 +51,17 @@ p.chapeau {
 }
 
 
-h1 span {
+h1 span,
+.sidebar h2 span {
     color: #f00;
+}
+
+.sidebar h2 a {
+    color: black;
+}
+
+.sidebar h2 {
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 h3,
@@ -56,66 +69,25 @@ p.summary {
     font-size: 20px;
 }
 
-.listitem {
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
-
-.listitem h3 {
-    margin: 0; padding: 0;
-}
-
-.listitem h3 a {
-    text-decoration: none;
-    border-radius: 4px;
-    display: block;
-    height: 146px;
-    background: white;
-    position: relative;
-    color: black;
-}
-
-.listitem h3 a:hover {
-    background: red;
-    color: white;
-}
-
-.listitem h3 a span {
-    font-size: 20px;
-    position: absolute;
-    margin: 0; padding: 10px;
-    bottom: 0;
-}
-
-.listitem h3 a abbr {
-    position: absolute;
-    top: 0;
-    font-size: 14px;
-    margin: 0; padding: 10px;
-    top: 0;
-    color: #666;
-}
-
-
-/* footer */
-div.footer {
-    padding: 20px 0;
-    color: #666;
-}
-
 
 /* body styling */
 
-div.body-media {
+div.body-media-block {
     display: block;
-    float: none;
+    clear: both;
+    margin-bottom: 20px;
+    position: relative;
+}
+div.body-media-block .image {
     padding: 20px;
     padding: 10px;
+    float: left;
     background: white;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    box-shadow:inset 1px 1px 3px rgba(0, 0, 0, 0.3);
+    line-height: 1;
     border-radius: 4px;
 }
+
 p.image-caption {
     margin-bottom: 0;
 }
@@ -127,6 +99,69 @@ div.body a {
 div.body a:hover {
     text-decoration: underline;
 }
+
+
+/* footer */
+div.footer {
+    padding: 20px 0;
+    color: #666;
+}
+
+
+/* listitem */
+
+.listitem {
+    background-color: white;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.listitem img {
+    padding: 10px;
+}
+
+.listitem h3 {
+    margin: 0; padding: 0;
+}
+
+.listitem h3 a {
+    text-decoration: none;
+    border-radius: 4px;
+    display: block;
+    height: 146px;
+    position: relative;
+    color: black;
+    text-shadow: 2px 1px 0 rgba(255, 255, 255, 0.7);
+    padding: 0;
+}
+
+.listitem h3 a:hover {
+    text-shadow: none;
+}
+
+.listitem h3 a span {
+    font-size: 20px;
+    position: absolute;
+    margin: 0; padding: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.7);
+}
+
+.listitem h3 a abbr {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    margin: 0; padding: 10px;
+    top: 0;
+    color: #666;
+}
+
 
 /* project info */
 
@@ -142,4 +177,125 @@ h2.year {
     font-size: 48px;
     color: #999;
     margin-bottom: 0;
+}
+
+
+
+/* menu */
+
+/*** ESSENTIAL STYLES ***/
+.sf-menu, .sf-menu * {
+	margin:			0;
+	padding:		0;
+	list-style:		none;
+}
+.sf-menu {
+	line-height:	1.0;
+}
+.sf-menu ul {
+	position:		absolute;
+	top:			-999em;
+	width:			14em; /* left offset of submenus need to match (see below) */
+}
+.sf-menu ul li {
+	width:			100%;
+}
+.sf-menu li:hover {
+	visibility:		inherit; /* fixes IE7 'sticky bug' */
+}
+.sf-menu li {
+	position:		relative;
+}
+.sf-menu a {
+	display:		block;
+	position:		relative;
+}
+.sf-menu li:hover ul,
+.sf-menu li.sfHover ul {
+	left:			0;
+	top:			1.9em; /* match top ul list item height */
+	z-index:		99;
+}
+ul.sf-menu li:hover li ul,
+ul.sf-menu li.sfHover li ul {
+	top:			-999em;
+}
+ul.sf-menu li li:hover ul,
+ul.sf-menu li li.sfHover ul {
+	left:			14em; /* match ul width */
+	top:			0;
+}
+ul.sf-menu li li:hover li ul,
+ul.sf-menu li li.sfHover li ul {
+	top:			-999em;
+}
+ul.sf-menu li li li:hover ul,
+ul.sf-menu li li li.sfHover ul {
+	left:			14em; /* match ul width */
+	top:			0;
+}
+
+/*** SKIN ***/
+.sf-menu {
+
+
+}
+.sf-menu a {
+    border: 0;
+    background: white;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+	text-decoration:none;
+}
+.sf-menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/
+	color:			#000;
+}
+.sf-menu li {
+
+}
+.sf-menu li li {
+	background:		#eee;
+}
+.sf-menu li li li {
+	background:		#eee;
+}
+.sf-menu li:hover, .sf-menu li.sfHover,
+.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
+    border-radius: 4px;
+    color: white;
+    background: #f00;
+}
+
+.sf-menu a.current {
+    color: black;
+    box-shadow:inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+/*** adding sf-vertical in addition to sf-menu creates a vertical menu ***/
+#navigation, #navigation li {
+	width:	220px;
+}
+/* this lacks ul at the start of the selector, so the styles from the main CSS file override it where needed */
+#navigation li:hover ul,
+#navigation li.sfHover ul {
+	left:	220px; /* match ul width */
+	top:	0;
+}
+
+#navigation {
+    margin-bottom: 40px;
+}
+
+
+
+div.inlineLightbox-container {
+    background: white;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+div.inlineLightbox-curtain {
+    background-color: #000;
 }

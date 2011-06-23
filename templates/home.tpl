@@ -2,24 +2,25 @@
 
 {% block content %}
 
-<h1>MiracleThings <span>&#x272D;</span></h1>
+<h1>MiracleThings <span>&#x2B51;</span></h1>
 
 <p class="summary">
     We develop interactive things which communicate through innovative, human-understandable interfaces.
 </p>
 
-<!-- 3 blocks -->
-<div class="container_12">
-    {% include "inc/listitem.tpl" alpha %}
-    {% include "inc/listitem.tpl" %}
-    {% include "inc/listitem.tpl" omega %}
-</div>
+<div class="blocks">
+    <!-- 3 blocks -->
+    <div class="container_12">
+        {% catinclude "inc/listitem.tpl" 'page_projects' alpha %}
+        {% catinclude "inc/listitem.tpl" 'page_about' %}
+        {% catinclude "inc/listitem.tpl" 'page_contact' omega %}
+    </div>
 
-<!-- 3 blocks -->
-<div class="container_12">
-    {% include "inc/listitem.tpl" alpha %}
-    {% include "inc/listitem.tpl" %}
-    {% include "inc/listitem.tpl" omega %}
+    <!-- 3 blocks -->
+    <div class="container_12">
+        {% catinclude "inc/listitem.tpl" 'page_blog' alpha %}
+        {% catinclude "inc/listitem.tpl" 327 omega lbParent=".blocks" %}
+    </div>
 </div>
 
 {% endblock %}

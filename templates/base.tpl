@@ -19,18 +19,13 @@
                 {% endblock %}
             </div>
 
-            <div class="grid_3 omega">
+            <div class="grid_3 omega sidebar">
                 {% block sidebar %}
-                <div id="sidenav">
-                    <h2>MiracleThings <span>&#x272D;</span></h2>
-                    <ul id="navigation">
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Projects</a></li>
-                    </ul>
-                </div>
+
+                <h2><a href="/">MiracleThings <span>&#x2B51;</span></a></h2>
+                {% menu id=id %}
+
+                {% include "_edit_button.tpl" %}
                 {% endblock %}
             </div>
 
@@ -46,6 +41,7 @@
         "js/apps/zotonic-1.0.js" 
         "js/apps/z.widgetmanager.js" 
         "js/z.superfish.js" 
+        "js/z.inlineLightbox.js"
         %}
         {% block _js_include_extra %}{% endblock %}
 
@@ -57,5 +53,6 @@
         {% script %}
 
         {% all include "_html_body.tpl" %}
+
     </body>
 </html>
