@@ -42,6 +42,34 @@ datamodel() ->
             {gallery,
              collection,
              [{title, <<"Gallery">>}]
+            },
+            {project,
+             text,
+             [{title, <<"Project">>}]
+            },
+            {institution,
+             undefined,
+             [{title, <<"Institution">>}]
+            },
+            {license,
+             text,
+             [{title, {trans, [{en, <<"License">>}, {nl, <<"Licentie">>}]}}]
+            }
+           ],
+
+           predicates=
+           [
+            {has_license,
+             [{title, {trans, [{en, <<"Open source license">>}, {nl, <<"Opensource licentie">>}]}}],
+             [{project, license}]
+            },
+            {has_client,
+             [{title, {trans, [{en, <<"Commisioned by">>}, {nl, <<"In opdracht van">>}]}}],
+             [{project, institution}]
+            },
+            {has_link,
+             [{title, {trans, [{en, <<"External links">>}, {nl, <<"Meer informatie">>}]}}],
+             [{text, website}]
             }
            ],
 

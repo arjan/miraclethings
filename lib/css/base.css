@@ -35,7 +35,7 @@ h1,
 }
 
 
-a {
+a, a:visited {
     text-decoration: none;
     color: #900;
 }
