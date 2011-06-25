@@ -23,10 +23,3 @@
     {% include "inc/info-meta-edges.tpl" predicate='has_license' alpha omega %}
 
 {% endblock %}
-
-
-{% block content_meta %}
-<div class="clearfix">
-    {% include "inc/info-meta-edges.tpl" predicate='subject' grid=9 alpha omega %}
-</div>
-{% endblock %}

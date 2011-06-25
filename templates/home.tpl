@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>MiracleThings <span>&#x2B51;</span></h1>
+<h1>{{ m.config.site.title.value }} <span>&#x2B51;</span></h1>
 
 <p class="summary">
     We develop interactive things which communicate through innovative, human-understandable interfaces.

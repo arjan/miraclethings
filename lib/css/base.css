@@ -13,6 +13,9 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: normal;
 }
 
+ul {
+    margin: 0;
+}
 
 body.page {
     padding-top: 50px;
@@ -38,7 +41,14 @@ h1,
 
 a, a:visited {
     text-decoration: none;
-    color: #900;
+    color: #b00;
+}
+a:hover {
+    background: white;
+}
+
+.listitem a:hover {
+    background: inherit;
 }
 
 div.block-content {
@@ -47,7 +57,7 @@ div.block-content {
 
 p.chapeau {
     position: absolute;
-    top: -24px;
+    top: -30px;
     color: #999;
 }
 ul li p {
@@ -56,7 +66,7 @@ ul li p {
 
 h1 span,
 .sidebar h2 span {
-    color: #f00;
+    color: #b00;
 }
 
 .sidebar h2 a {
@@ -97,14 +107,6 @@ a.image span.caption {
     text-decoration: none;
     margin-top: 10px;
     margin-bottom: -10px;
-}
-
-div.body a {
-    background: white;
-    padding: 0 3px;
-}
-div.body a:hover {
-    text-decoration: underline;
 }
 
 div.body div.body-media-block a:hover {
@@ -152,7 +154,7 @@ div.footer {
 
 .listitem h3 a:hover {
     text-shadow: none;
-    color: #f00;
+    color: #b00;
 }
 
 .listitem h3 a span {
@@ -288,7 +290,7 @@ ul.sf-menu li li li.sfHover ul {
 .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
     border-radius: 4px;
     color: white;
-    background: #f00;
+    background: #b00;
 }
 
 .sf-menu a.current {
@@ -322,4 +324,32 @@ div.inlineLightbox-container {
 
 div.inlineLightbox-curtain {
     background-color: #000;
+}
+
+/* blog */
+.blogentry h2 {
+    margin: 0;
+    line-height: 1.3;
+}
+
+.blogentry h2 a {
+
+}
+.blogentry h2 a:hover {
+    background: white;
+}
+
+.blogentry p {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.blogentry p.meta {
+    color: #999;
+    margin-top: 0;
+    font-size: 13px;
+}
+
+.blogentry {
+    margin-bottom: 10px;
 }

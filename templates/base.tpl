@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{% block title %}{% endblock %} &mdash; {{ m.config.site.title.value }}</title>
+        <title>{% block title %}{% endblock %} &mdash; {{ m.config.site.title.value }} &#x2B51;</title>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
         <meta name="author" content="Arjan Scherpenisse <arjan@scherpenisse.net> &copy; 2011" />
 
         {% all include "_html_head.tpl" %}
         {% lib "css/960.css" "css/normalize.css" "css/base.css" %}
         {% block html_head_extra %}{% endblock %}
+        <link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 
     </head>
 
@@ -22,7 +23,7 @@
             <div class="grid_3 omega sidebar">
                 {% block sidebar %}
 
-                <h2><a href="/">Miracle Things <span>&#x2B51;</span></a></h2>
+                <h2><a href="/">{{ m.config.site.title.value }} <span>&#x2B51;</span></a></h2>
                 {% menu id=id %}
 
                 {% include "_edit_button.tpl" %}
@@ -52,7 +53,7 @@
         {% stream %}
         {% script %}
 
+        
         {% all include "_html_body.tpl" %}
-
     </body>
 </html>

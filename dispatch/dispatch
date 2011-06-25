@@ -2,6 +2,7 @@
 
 [
     {page,      ["page"],	resource_template,  	[ {template, "page.tpl"} ]},
-    {set,      ["set"],	resource_template,  	[ {template, "set.tpl"} ]}
+    {article,    ["blog", id, slug],	resource_page,  	[ {template, {cat, "page.tpl"}} ]},
+    {project,    ["project", id, slug],	resource_page,  	[ {template, {cat, "page.tpl"}} ]}
 ].
 

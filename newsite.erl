@@ -54,6 +54,10 @@ datamodel() ->
             {license,
              text,
              [{title, {trans, [{en, <<"License">>}, {nl, <<"Licentie">>}]}}]
+            },
+            {software,
+             text,
+             [{title, <<"Software">>}]
             }
            ],
 
@@ -61,7 +65,8 @@ datamodel() ->
            [
             {has_license,
              [{title, {trans, [{en, <<"Open source license">>}, {nl, <<"Opensource licentie">>}]}}],
-             [{project, license}]
+             [{project, license},
+              {software, license}]
             },
             {has_client,
              [{title, {trans, [{en, <<"Commisioned by">>}, {nl, <<"In opdracht van">>}]}}],
@@ -91,16 +96,24 @@ datamodel() ->
             },
 
             {page_projects,
-             collection,
+             text,
              [{title, <<"Projects">>},
               {page_path, <<"/projects">>}
              ]
             },
 
             {page_blog,
-             'query',
+             text,
              [{title, <<"Stuff we write">>},
               {page_path, <<"/blog">>}
+             ]
+            },
+
+            {page_favorites,
+             collection,
+             [{title, <<"Favorite technologies">>},
+              {title, <<"Technologies">>},
+              {page_path, <<"/tech">>}
              ]
             },
 
@@ -119,6 +132,7 @@ datamodel() ->
                [
                 {page_projects, []},
                 {page_blog, []},
+                {page_favorites, []},
                 {page_about, []},
                 {page_contact, []}
                ]
