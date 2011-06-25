@@ -7,31 +7,26 @@
 </p>
 {% endblock %}
 
-{% block content_meta %}
-<div class="grid_9 alpha omega">
-
-    {% if m.rsc[id].o.has_client %}
-
-    {% include "inc/info-meta-edges.tpl" predicate='has_client' alpha %}
-    {% include "inc/info-meta-edges.tpl" predicate='has_link' %}
-
-    {% else %}
-
-    {% include "inc/info-meta-edges.tpl" predicate='has_link' alpha grid=6 %}
-
-    {% endif %}
-
-    <div class="project-info grid_3 omega">
+{% block sidebar %}
+{% inherit %}
+<h2>{{ m.rsc[id].title }}</h2>
+    <div class="project-info grid_3 alpha omega">
         <h4>{_ Realized in _}</h4>
-        {{ m.rsc[id].publication_start|date:"F Y" }}
+        <div>
+            {{ m.rsc[id].publication_start|date:"F Y" }}
+        </div>
     </div>
-</div>
 
-<div class="grid_9 alpha omega">
+    {% include "inc/info-meta-edges.tpl" predicate='has_client' alpha omega %}
+    {% include "inc/info-meta-edges.tpl" predicate='has_link' alpha omega %}
 
-    {% include "inc/info-meta-edges.tpl" predicate='subject' grid=6 alpha %}
-    {% include "inc/info-meta-edges.tpl" predicate='has_license' omega %}
+    {% include "inc/info-meta-edges.tpl" predicate='has_license' alpha omega %}
 
-</div>
 {% endblock %}
 
+
+{% block content_meta %}
+<div class="clearfix">
+    {% include "inc/info-meta-edges.tpl" predicate='subject' grid=9 alpha omega %}
+</div>
+{% endblock %}

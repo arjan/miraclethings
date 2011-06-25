@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    font: 14px/1.5 Georgia, serif;
+    font: 15px/1.5 Georgia, serif;
     background: #999;
     background: #f0f0f0;
 }
@@ -24,6 +24,7 @@ h1,
     font-size: 48px;
     text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.7);
     margin: 0;
+    line-height: 1.2;
 }
 
 #content-area {
@@ -49,7 +50,9 @@ p.chapeau {
     top: -24px;
     color: #999;
 }
-
+ul li p {
+     margin: 0;
+}
 
 h1 span,
 .sidebar h2 span {
@@ -79,17 +82,21 @@ div.body-media-block {
     position: relative;
 }
 div.body-media-block .image {
-    padding: 20px;
     padding: 10px;
     float: left;
     background: white;
     box-shadow:inset 1px 1px 3px rgba(0, 0, 0, 0.3);
-    line-height: 1;
     border-radius: 4px;
+    line-height: 1;
 }
 
-p.image-caption {
-    margin-bottom: 0;
+a.image span.caption {
+    line-height: 1;
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-bottom: -10px;
 }
 
 div.body a {
@@ -98,6 +105,10 @@ div.body a {
 }
 div.body a:hover {
     text-decoration: underline;
+}
+
+div.body div.body-media-block a:hover {
+    text-decoration: none;
 }
 
 
@@ -111,7 +122,7 @@ div.footer {
 /* listitem */
 
 .listitem {
-    background-color: white;
+    background-color: #fff;
     background-position: 0 0;
     background-repeat: no-repeat;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
@@ -141,6 +152,7 @@ div.footer {
 
 .listitem h3 a:hover {
     text-shadow: none;
+    color: #f00;
 }
 
 .listitem h3 a span {
@@ -150,7 +162,9 @@ div.footer {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(255,255,255,0.7);
+    background: #fff;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
 }
 
 .listitem h3 a abbr {
@@ -163,11 +177,21 @@ div.footer {
 }
 
 
+.gallery .gallery-group-last .listitem {
+    margin-bottom: 0;
+}
+
+
 /* project info */
 
 div.project-info h4 {
-    border-bottom: 1px solid #999;
+    margin: 0; padding: 0;
+    border-bottom: 1px dotted #999;
     margin-bottom: 0;
+}
+
+div.project-info div {
+    margin-bottom: 10px;
 }
 
 

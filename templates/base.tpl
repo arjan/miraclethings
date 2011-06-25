@@ -22,7 +22,7 @@
             <div class="grid_3 omega sidebar">
                 {% block sidebar %}
 
-                <h2><a href="/">MiracleThings <span>&#x2B51;</span></a></h2>
+                <h2><a href="/">Miracle Things <span>&#x2B51;</span></a></h2>
                 {% menu id=id %}
 
                 {% include "_edit_button.tpl" %}
