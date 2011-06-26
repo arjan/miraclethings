@@ -75,6 +75,10 @@ datamodel() ->
             {has_link,
              [{title, {trans, [{en, <<"External links">>}, {nl, <<"Meer informatie">>}]}}],
              [{text, website}]
+            },
+            {has_collaborator,
+             [{title, {trans, [{en, <<"In collaboration with">>}, {nl, <<"In samenwerking met">>}]}}],
+             [{project, website},{project, institution}, {project, person}]
             }
            ],
 

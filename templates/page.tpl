@@ -56,3 +56,9 @@
 {% endwith %}
 
 {% endblock %}
+
+{% block sidebar %}
+    {% inherit %}
+    {% include "inc/info-meta-edges.tpl" predicate='has_link' alpha omega %}
+    {% include "inc/info-meta-edges.tpl" predicate='has_license' alpha omega %}
+{% endblock %}

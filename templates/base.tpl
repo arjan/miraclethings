@@ -6,7 +6,7 @@
         <meta name="author" content="Arjan Scherpenisse <arjan@scherpenisse.net> &copy; 2011" />
 
         {% all include "_html_head.tpl" %}
-        {% lib "css/960.css" "css/normalize.css" "css/base.css" %}
+        {% lib "css/960.css" "css/normalize.css" "css/base.css" "css/menu.css" %}
         {% block html_head_extra %}{% endblock %}
         <link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 
@@ -21,13 +21,15 @@
             </div>
 
             <div class="grid_3 omega sidebar">
-                {% block sidebar %}
-
+                {% block sidebar_menu %}
                 <h2><a href="/">{{ m.config.site.title.value }} <span>&#x2B51;</span></a></h2>
-                {% menu id=id %}
+                {% menu id=id|highlightmenu %}
+                {% endblock %}
+
+                {% block sidebar %}
+                {% endblock %}
 
                 {% include "_edit_button.tpl" %}
-                {% endblock %}
             </div>
 
             {% endblock %}{# content_area #}
@@ -43,6 +45,7 @@
         "js/apps/z.widgetmanager.js" 
         "js/z.superfish.js" 
         "js/z.inlineLightbox.js"
+        "js/z.imageSwap.js"
         %}
         {% block _js_include_extra %}{% endblock %}
 

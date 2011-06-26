@@ -25,5 +25,5 @@
 
 {% endblock %}
 
-{% block sidebar %}
+{% block sidebar_menu %}
 {% endblock %}

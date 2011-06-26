@@ -64,17 +64,8 @@ ul li p {
      margin: 0;
 }
 
-h1 span,
-.sidebar h2 span {
+h1 span {
     color: #b00;
-}
-
-.sidebar h2 a {
-    color: black;
-}
-
-.sidebar h2 {
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 h3,
@@ -192,8 +183,13 @@ div.project-info h4 {
     margin-bottom: 0;
 }
 
-div.project-info div {
+div.project-info ul {
     margin-bottom: 10px;
+    padding: 0;
+}
+
+div.project-info ul li {
+    list-style-type: none;
 }
 
 
@@ -207,115 +203,27 @@ h2.year {
 
 
 
-/* menu */
-
-/*** ESSENTIAL STYLES ***/
-.sf-menu, .sf-menu * {
-	margin:			0;
-	padding:		0;
-	list-style:		none;
-}
-.sf-menu {
-	line-height:	1.0;
-}
-.sf-menu ul {
-	position:		absolute;
-	top:			-999em;
-	width:			14em; /* left offset of submenus need to match (see below) */
-}
-.sf-menu ul li {
-	width:			100%;
-}
-.sf-menu li:hover {
-	visibility:		inherit; /* fixes IE7 'sticky bug' */
-}
-.sf-menu li {
-	position:		relative;
-}
-.sf-menu a {
-	display:		block;
-	position:		relative;
-}
-.sf-menu li:hover ul,
-.sf-menu li.sfHover ul {
-	left:			0;
-	top:			1.9em; /* match top ul list item height */
-	z-index:		99;
-}
-ul.sf-menu li:hover li ul,
-ul.sf-menu li.sfHover li ul {
-	top:			-999em;
-}
-ul.sf-menu li li:hover ul,
-ul.sf-menu li li.sfHover ul {
-	left:			14em; /* match ul width */
-	top:			0;
-}
-ul.sf-menu li li:hover li ul,
-ul.sf-menu li li.sfHover li ul {
-	top:			-999em;
-}
-ul.sf-menu li li li:hover ul,
-ul.sf-menu li li li.sfHover ul {
-	left:			14em; /* match ul width */
-	top:			0;
+/* sidebar */
+.sidebar h2 span {
+    color: #b00;
 }
 
-/*** SKIN ***/
-.sf-menu {
-
-
-}
-.sf-menu a {
-    border: 0;
-    background: white;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    padding: 10px;
-	text-decoration:none;
-}
-.sf-menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/
-	color:			#000;
-}
-.sf-menu li {
-
-}
-.sf-menu li li {
-	background:		#eee;
-}
-.sf-menu li li li {
-	background:		#eee;
-}
-.sf-menu li:hover, .sf-menu li.sfHover,
-.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
-    border-radius: 4px;
-    color: white;
-    background: #b00;
-}
-
-.sf-menu a.current {
+.sidebar h2 a {
     color: black;
-    box-shadow:inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar h2 {
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.sidebar ul {
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
 }
 
 
-/*** adding sf-vertical in addition to sf-menu creates a vertical menu ***/
-#navigation, #navigation li {
-	width:	220px;
-}
-/* this lacks ul at the start of the selector, so the styles from the main CSS file override it where needed */
-#navigation li:hover ul,
-#navigation li.sfHover ul {
-	left:	220px; /* match ul width */
-	top:	0;
-}
-
-#navigation {
-    margin-bottom: 40px;
-}
-
-
-
+/* inline lightbox */
 div.inlineLightbox-container {
     background: white;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
@@ -325,6 +233,7 @@ div.inlineLightbox-container {
 div.inlineLightbox-curtain {
     background-color: #000;
 }
+
 
 /* blog */
 .blogentry h2 {
