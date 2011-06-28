@@ -9,7 +9,7 @@
 
 {% with m.rsc[id].o.relation as r %}
 {% if r %}
-<h2>{_ See also _}</h2>
+<h2>{% if r|length < 2 %}{_ Related project _}{% else %}{_ Related projects _}{% endif %}</h2>
 {% for id in r %}
 {% catinclude "inc/listitem.tpl" id alpha omega %}
 {% endfor %}

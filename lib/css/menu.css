@@ -79,17 +79,19 @@ ul.sf-menu li li li.sfHover ul {
 .sf-menu li li li {
 	background:		#eee;
 }
-.sf-menu li:hover, .sf-menu li.sfHover,
-.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
-    border-radius: 4px;
-    color: white;
-    background: #b00;
-}
 
 .sf-menu a.current {
     color: black;
-    box-shadow:inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow:inset 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
+
+.sf-menu li:hover, .sf-menu li.sfHover,
+.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
+    border-radius: 4px;
+    background: #b00;
+    color: white;
+}
+
 
 
 /*** adding sf-vertical in addition to sf-menu creates a vertical menu ***/

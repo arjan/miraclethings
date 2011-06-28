@@ -1,6 +1,5 @@
 {% extends "page.tpl" %}
 
-
 {% block pagetitle %}
 <h1>
     {% if q.month or q.year %}
@@ -14,7 +13,6 @@
     {% endif %}
 </h1>
 {% endblock %}
-
 
 
 {% block content_body %}

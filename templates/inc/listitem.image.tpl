@@ -2,7 +2,7 @@
     <h3>
         {% if link %}
         <a href="{{ m.rsc[link].page_url }}" class="do_imageSwap" data-imageswap="src: '{% image_url m.rsc[id].depiction width=200 height=126 crop %}'">
-            {% image id width=200 height=126 crop title=m.rsc[id].title %}
+            {% image id width=200 height=126 crop title=m.rsc[id].title grey %}
         {% else %}
         <a href="{% image_url id upscale width=680 %}" class="do_inlineLightbox" data-inlineLightbox="parent: '{{ lbParent|default:".body-media-block"}}'" id="image{{ id }}">
             {% image id width=200 height=126 crop title=m.rsc[id].title grey %}
