@@ -27,6 +27,7 @@ h1,
     font-size: 48px;
     text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.7);
     margin: 0;
+    margin-bottom: 20px;
     line-height: 1.2;
 }
 
@@ -71,6 +72,7 @@ h1 span {
 h3,
 p.summary {
     font-size: 20px;
+    margin-top: 0px;
 }
 
 
@@ -82,6 +84,7 @@ div.body-media-block {
     margin-bottom: 20px;
     position: relative;
 }
+div.body-media-block .location,
 div.body-media-block .image {
     padding: 10px;
     float: left;
@@ -107,7 +110,12 @@ div.body div.body-media-block a:hover {
 
 /* footer */
 div.footer {
-    padding: 20px 0;
+    border-top: 1px dotted #999;
+    margin-top: 20px;
+    padding: 10px 0;
+    color: #666;
+}
+div.footer a {
     color: #666;
 }
 
@@ -198,7 +206,7 @@ div.project-info ul li {
 h2.year {
     font-size: 48px;
     color: #999;
-    margin-bottom: 0;
+    margin: 0;
 }
 
 
@@ -261,4 +269,24 @@ div.inlineLightbox-curtain {
 
 .blogentry {
     margin-bottom: 10px;
+}
+
+ul.pager { margin: 0; padding: 0; }
+ul.pager li {
+    list-style: none;
+    float: left;
+    padding-right: 10px;
+}
+
+
+/* map */
+
+#map_canvas.map-size-small {
+    height: 200px;
+    width: 200px;
+}
+
+#map_canvas.map-size-middle {
+    height: 330px;
+    width: 440px;
 }

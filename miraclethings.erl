@@ -1,7 +1,7 @@
 %% @author Arjan Scherpenisse
 %% @copyright 2011 Arjan Scherpenisse
 %% Generated on 2011-06-18
-%% @doc This site was based on the 'empty' skeleton.
+%% @doc The MiracleThings website.
 
 %% Licensed under the Apache License, Version 2.0 (the "License");
 %% you may not use this file except in compliance with the License.
@@ -15,11 +15,11 @@
 %% See the License for the specific language governing permissions and
 %% limitations under the License.
 
--module(newsite).
+-module(miraclethings).
 -author("Arjan Scherpenisse").
 
--mod_title("newsite zotonic site").
--mod_description("An empty Zotonic site, to base your site on.").
+-mod_title("MiracleThings website").
+-mod_description("MiracleThings makes your miracles come true.").
 -mod_prio(10).
 
 -include_lib("zotonic.hrl").
@@ -149,11 +149,11 @@ datamodel() ->
 %% @doc Return the media viewer for the embedded video (that is, when it is an embedded media).
 %% @spec media_viewer(Notification, Context) -> undefined | {ok, Html}
 observe_media_viewer({media_viewer, Id, _Props, _Filename, Options}, Context) ->
-    case m_rsc:is_a(Id, gallery, Context) of
-        true ->
-            % todo: handle possible extra js in the contexts
-            Html = z_template:render("_gallery.tpl", [{id,Id}|Options], Context),
-            {ok, Html};
-        false ->
+    case hd(lists:reverse(m_rsc:is_a(Id, Context))) of
+        gallery ->
+            {ok, z_template:render("_gallery.tpl", [{id,Id}|Options], Context)};
+        location ->
+            {ok, z_template:render("_location_media.tpl", [{id,Id}|Options], Context)};
+        _ ->
             undefined
     end.

@@ -14,9 +14,13 @@
 </h1>
 {% endblock %}
 
+{% block summary %}
+{# No summary on blog page. #}
+{% endblock %}
 
 {% block content_body %}
-{% for id in m.search[{query publication_year=q.year publication_month=q.month sort="-publication_start" cat='article'}] %}
+{% with m.search.paged[{query publication_year=q.year publication_month=q.month sort="-publication_start" cat='article' page=q.page pagelen=8}] as result %}
+{% for id in result %}
 <div class="grid_9 alpha omega blogentry">
 
     {# blog with image #}
@@ -31,6 +35,10 @@
 
 </div>
 {% endfor %}
+<div class="grid_9 alpha omega pager">
+    {% pager result=result dispatch=zotonic_dispatch id=id year=q.year month=q.month %}
+</div>
+{% endwith %}
 {% endblock %}
 
 

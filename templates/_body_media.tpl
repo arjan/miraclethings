@@ -13,7 +13,7 @@
     </a>
     {% else %}
 		<div class="{{ m.rsc[id].category.name }}">
-            {% media id width=size.width height=size.height crop=crop class=align link=link alt=m.rsc[id].title %}
+            {% media id width=size.width height=size.height crop=crop class=align link=link alt=m.rsc[id].title sizename=sizename %}
             {% if m.rsc[id].summary %}<span class="caption">{{ m.rsc[id].summary }}</p>{% endif %}
 		</div>
     {% endif %}

@@ -1,6 +1,6 @@
 {% extends "base.tpl" %}
 
-{% block title %}{{ m.rsc[id].title }}{% endblock %}
+{% block title %}{{ m.rsc[id].title }} &mdash; {% endblock %}
 
 {% block content %}
 
@@ -11,9 +11,11 @@
 <h1>{{ m.rsc[id].title }}</h1>
 {% endblock %}
 
+{% block summary %}
 <p class="summary">
     {{ m.rsc[id].summary }}
 </p>
+{% endblock %}
 
 {% block topimage %}
 {# Media #}
@@ -60,5 +62,6 @@
 {% block sidebar %}
     {% inherit %}
     {% include "inc/info-meta-edges.tpl" predicate='has_link' alpha omega %}
+    {% include "inc/info-meta-edges.tpl" predicate='hasdocument' alpha omega %}
     {% include "inc/info-meta-edges.tpl" predicate='has_license' alpha omega %}
 {% endblock %}
