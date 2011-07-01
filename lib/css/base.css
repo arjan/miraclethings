@@ -29,7 +29,32 @@ h1,
     margin: 0;
     margin-bottom: 20px;
     line-height: 1.2;
+    position: relative;
 }
+
+h1 span.star-big {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-image: url(/lib/images/star-big.png);
+    margin-left: 12px;
+    bottom: 12px;
+}
+
+
+.sidebar h2 {
+    position: relative;
+}
+
+.sidebar h2 span.star-small {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    background-image: url(/lib/images/star-small.png);
+    margin-left: 6px;
+    bottom: 9px;
+}
+
 
 #content-area {
     background: white;

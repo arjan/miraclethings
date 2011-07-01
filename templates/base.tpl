@@ -24,7 +24,7 @@
 
             <div class="grid_3 omega sidebar">
                 {% block sidebar_menu %}
-                <h2><a href="/">{{ m.config.site.title.value }} <span>&#x2B51;</span></a></h2>
+                <h2><a href="/">{{ m.config.site.title.value }} <span class="star-small"></span></a></h2>
                 {% menu id=id|highlightmenu %}
                 {% endblock %}
 
