@@ -1,8 +1,7 @@
 %% Put your dispatch rules here.
 
 [
-    {page,      ["page"],	resource_template,  	[ {template, "page.tpl"} ]},
-    {article,    ["blog", id, slug],	resource_page,  	[ {template, {cat, "page.tpl"}} ]},
-    {project,    ["project", id, slug],	resource_page,  	[ {template, {cat, "page.tpl"}} ]}
+ {home,      [],						resource_page,  	[ {template, {cat, "page.tpl"}}, {id, page_home} ]},
+ {article,    ["blog", id, slug],		resource_page,  	[ {template, {cat, "page.tpl"}} ]},
+ {project,    ["project", id, slug],	resource_page,  	[ {template, {cat, "page.tpl"}} ]}
 ].
-
