@@ -9,7 +9,7 @@
     {{ m.rsc[id].summary }}
 </p>
 
-<div class="blocks">
+<div class="home-blocks">
     <!-- 3 blocks -->
     {% catinclude "inc/listitem.tpl" 'page_projects' alpha %}
     {% catinclude "inc/listitem.tpl" 'page_blog' %}

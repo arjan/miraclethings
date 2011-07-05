@@ -313,3 +313,8 @@ ul.pager li {
     height: 330px;
     width: 440px;
 }
+
+/* home */
+div.home-blocks {
+    margin-top: 20px;
+}
