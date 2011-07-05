@@ -2,6 +2,8 @@
 
 {% block content_body %}
 
+{% cache 7200 vary=id %}
+
 {% for group in m.search[{query hasobject=[id, 'subject']}]|chunk:3 %}
 <div class="grid_9 alpha omega">
 
@@ -11,5 +13,7 @@
 
 </div>
 {% endfor %}
+
+{% endcache %}
 
 {% endblock %}

@@ -2,6 +2,8 @@
 
 {% block content_body %}
 
+{% cache 7200 %}
+
 {% for r in m.search[{archive_year cat='project'}] %}
 <div class="grid_9 alpha omega">
     <h2 class="year">{{ r.year }}</h2>
@@ -17,5 +19,7 @@
 </div>
 {% endfor %}
 {% endfor %}
+
+{% endcache %}
 
 {% endblock %}

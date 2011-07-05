@@ -19,6 +19,8 @@
 {% endblock %}
 
 {% block content_body %}
+
+{% cache 7200 vary=q.page vary=q.year vary=q.month %}
 {% with m.search.paged[{query publication_year=q.year publication_month=q.month sort="-publication_start" cat='article' page=q.page pagelen=8}] as result %}
 {% for id in result %}
 <div class="grid_9 alpha omega blogentry">
@@ -39,6 +41,8 @@
     {% pager result=result dispatch=zotonic_dispatch id=id year=q.year month=q.month %}
 </div>
 {% endwith %}
+{% endcache %}
+
 {% endblock %}
 
 
