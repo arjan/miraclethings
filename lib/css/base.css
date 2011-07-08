@@ -103,6 +103,18 @@ p.summary {
 
 /* body styling */
 
+pre {
+    padding: 10px;
+    font-size: 13px;
+    padding-top: 12px;
+    background: white;
+    box-shadow:inset 1px 1px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    line-height: 1;
+    box-shadow:inset 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+
 div.body-media-block {
     display: block;
     clear: both;
