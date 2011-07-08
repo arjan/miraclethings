@@ -31,6 +31,17 @@
                 {% block sidebar %}
                 {% endblock %}
 
+                {% block sidebar_end %}
+                {% with m.rsc[id].o.relation as r %}
+                {% if r %}
+                <h2>{% if r|length == 1 %}{_ See also _}{% else %}{_ Related pages _}{% endif %}</h2>
+                {% for id in r %}
+                {% catinclude "inc/listitem.tpl" id alpha omega %}
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {% endblock %}
+
                 {% include "_edit_button.tpl" %}
             </div>
 
