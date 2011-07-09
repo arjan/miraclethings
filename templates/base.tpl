@@ -7,7 +7,7 @@
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
         <meta name="author" content="Arjan Scherpenisse <arjan@scherpenisse.net> &copy; 2011" />
 
-        <meta property="og:title" content="{% block title %}{% endblock %}"/>
+        <meta property="og:title" content="{% block title %}{{ m.site.title }}{% endblock %}"/>
         {% with m.rsc[id].media|first as first_media %}{% if first_media %}
         <meta property="og:image" content="http://{{ m.site.hostname }}{% image_url first_media width=500 %}"/>
         {% endif %}{% endwith %}
