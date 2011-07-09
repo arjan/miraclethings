@@ -59,9 +59,13 @@
         {% lib
         "js/apps/zotonic-1.0.js"
         "js/apps/z.widgetmanager.js"
-        "js/z.superfish.js"
         "js/z.inlineLightbox.js"
         "js/z.imageSwap.js"
+
+        "js/modules/livevalidation-1.3.js"
+        "js/modules/z.inputoverlay.js"
+        "js/modules/jquery.loadmask.js"
+
         %}
         {% block _js_include_extra %}{% endblock %}
 

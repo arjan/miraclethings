@@ -330,3 +330,57 @@ ul.pager li {
 div.home-blocks {
     margin-top: 40px;
 }
+
+/* comments */
+.comments-list {
+    padding: 0; margin: 0;
+}
+
+.comments-list li {
+    list-style-type: none;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #999;
+}
+
+.comments-list li p.comment-meta {
+
+    color: #999;
+}
+
+#comments-form label {
+    display: block;
+}
+
+#comments-form input,
+#comments-form button,
+#comments-form textarea {
+    border: 1px solid #999;
+}
+
+#comments-form button {
+    font-family: Georgia;
+    border-radius: 4px;
+    padding: 2px 6px;
+}
+
+
+#comments-form input { 
+    width: 220px;
+}
+
+#comments-form textarea {
+    width: 460px;
+}
+
+#comments-form .form-item {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+#comments-form .z_validation_message {
+    position: absolute; 
+    right: 0; top: 0;
+    color: red;
+    font-weight: bold;
+}

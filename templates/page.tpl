@@ -57,6 +57,9 @@
 {% endif %}
 {% endwith %}
 
+{% block comment_area %}
+{% endblock %}
+
 {% endblock %}
 
 {% block sidebar %}
