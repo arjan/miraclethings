@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>sparked.internet.zeroconf</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="sparked-module.html">Package&nbsp;sparked</a> ::
+        <a href="sparked.internet-module.html">Package&nbsp;internet</a> ::
+        Module&nbsp;zeroconf
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="sparked.internet.zeroconf-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="sparked.internet.zeroconf-module.html">Module sparked.internet.zeroconf</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2010 Arjan Scherpenisse</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># See LICENSE for details.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">A mixin object for Service instances that announce the service over Zeroconf.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">avahi</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">dbus</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt class="py-name">python</tt> <tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Method sparked.gui.StatusWindow.log()=sparked.gui.StatusWindow-class.html#log"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-0', 'log', 'link-0');">log</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name" targets="Package sparked=sparked-module.html"><a title="sparked" class="py-name" href="#" onclick="return doclink('link-1', 'sparked', 'link-1');">sparked</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Module sparked.events=sparked.events-module.html,Variable sparked.hardware.hal.HardwareMonitor.events=sparked.hardware.hal.HardwareMonitor-class.html#events,Variable sparked.monitors.MonitorContainer.events=sparked.monitors.MonitorContainer-class.html#events"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-2', 'events', 'link-2');">events</a></tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"> </tt>
+<a name="_ZeroconfService"></a><div id="_ZeroconfService-def"><a name="L15"></a><tt class="py-lineno"> 15</tt> <a class="py-toggle" href="#" id="_ZeroconfService-toggle" onclick="return toggle('_ZeroconfService');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.internet.zeroconf._ZeroconfService-class.html">_ZeroconfService</a> <tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_ZeroconfService-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="_ZeroconfService-expanded"><a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">    A globally defined object which interfaces with avahi.</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"> </tt>
+<a name="_ZeroconfService.__init__"></a><div id="_ZeroconfService.__init__-def"><a name="L20"></a><tt class="py-lineno"> 20</tt> <a class="py-toggle" href="#" id="_ZeroconfService.__init__-toggle" onclick="return toggle('_ZeroconfService.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.internet.zeroconf._ZeroconfService-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_ZeroconfService.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_ZeroconfService.__init__-expanded"><a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">published</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">server</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">subscribed</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"> </tt>
+<a name="_ZeroconfService.publishService"></a><div id="_ZeroconfService.publishService-def"><a name="L27"></a><tt class="py-lineno"> 27</tt> <a class="py-toggle" href="#" id="_ZeroconfService.publishService-toggle" onclick="return toggle('_ZeroconfService.publishService');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.internet.zeroconf._ZeroconfService-class.html#publishService">publishService</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">stype</tt><tt class="py-op">,</tt> <tt class="py-param">port</tt><tt class="py-op">,</tt> <tt class="py-param">domain</tt><tt class="py-op">=</tt><tt class="py-string">""</tt><tt class="py-op">,</tt> <tt class="py-param">host</tt><tt class="py-op">=</tt><tt class="py-string">""</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_ZeroconfService.publishService-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_ZeroconfService.publishService-expanded"><a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">        Publish a named service on the local zeroconf network.</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">name</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">published</tt><tt class="py-op">:</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt><tt class="py-op">:</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt> <tt class="py-op">=</tt> <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">SystemBus</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-name">server</tt> <tt class="py-op">=</tt> <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">Interface</tt><tt class="py-op">(</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">                         <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt><tt class="py-op">.</tt><tt class="py-name">get_object</tt><tt class="py-op">(</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">                                 <tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">DBUS_NAME</tt><tt class="py-op">,</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">                                 <tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">DBUS_PATH_SERVER</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">                        <tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">DBUS_INTERFACE_SERVER</tt><tt class="py-op">)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">g</tt> <tt class="py-op">=</tt> <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">Interface</tt><tt class="py-op">(</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt><tt class="py-op">.</tt><tt class="py-name">get_object</tt><tt class="py-op">(</tt><tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">DBUS_NAME</tt><tt class="py-op">,</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">                                   <tt class="py-name">server</tt><tt class="py-op">.</tt><tt class="py-name">EntryGroupNew</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">                    <tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">DBUS_INTERFACE_ENTRY_GROUP</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-name">g</tt><tt class="py-op">.</tt><tt class="py-name">AddService</tt><tt class="py-op">(</tt><tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">IF_UNSPEC</tt><tt class="py-op">,</tt> <tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">PROTO_UNSPEC</tt><tt class="py-op">,</tt><tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">UInt32</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">                     <tt class="py-name">name</tt><tt class="py-op">,</tt> <tt class="py-name">stype</tt><tt class="py-op">,</tt> <tt class="py-name">domain</tt><tt class="py-op">,</tt> <tt class="py-name">host</tt><tt class="py-op">,</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">                     <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">UInt16</tt><tt class="py-op">(</tt><tt class="py-name">port</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-name">g</tt><tt class="py-op">.</tt><tt class="py-name">Commit</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">published</tt><tt class="py-op">[</tt><tt class="py-name">name</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">g</tt> </tt>
+</div><a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="_ZeroconfService.unpublishService"></a><div id="_ZeroconfService.unpublishService-def"><a name="L56"></a><tt class="py-lineno"> 56</tt> <a class="py-toggle" href="#" id="_ZeroconfService.unpublishService-toggle" onclick="return toggle('_ZeroconfService.unpublishService');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.internet.zeroconf._ZeroconfService-class.html#unpublishService">unpublishService</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_ZeroconfService.unpublishService-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_ZeroconfService.unpublishService-expanded"><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">        Revoke a previously published service.</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">published</tt><tt class="py-op">[</tt><tt class="py-name">name</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">Reset</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-keyword">del</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">published</tt><tt class="py-op">[</tt><tt class="py-name">name</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="_ZeroconfService.unpublishAllServices"></a><div id="_ZeroconfService.unpublishAllServices-def"><a name="L64"></a><tt class="py-lineno"> 64</tt> <a class="py-toggle" href="#" id="_ZeroconfService.unpublishAllServices-toggle" onclick="return toggle('_ZeroconfService.unpublishAllServices');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.internet.zeroconf._ZeroconfService-class.html#unpublishAllServices">unpublishAllServices</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_ZeroconfService.unpublishAllServices-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_ZeroconfService.unpublishAllServices-expanded"><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">        Revoke all published services.</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">k</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">published</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Variable sparked.graphics.stage.Stage.keys=sparked.graphics.stage.Stage-class.html#keys"><a title="sparked.graphics.stage.Stage.keys" class="py-name" href="#" onclick="return doclink('link-3', 'keys', 'link-3');">keys</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method sparked.internet.zeroconf._ZeroconfService.unpublishService()=sparked.internet.zeroconf._ZeroconfService-class.html#unpublishService"><a title="sparked.internet.zeroconf._ZeroconfService.unpublishService" class="py-name" href="#" onclick="return doclink('link-4', 'unpublishService', 'link-4');">unpublishService</a></tt><tt class="py-op">(</tt><tt class="py-name">k</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"> </tt>
+<a name="_ZeroconfService.subscribeTo"></a><div id="_ZeroconfService.subscribeTo-def"><a name="L73"></a><tt class="py-lineno"> 73</tt> <a class="py-toggle" href="#" id="_ZeroconfService.subscribeTo-toggle" onclick="return toggle('_ZeroconfService.subscribeTo');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.internet.zeroconf._ZeroconfService-class.html#subscribeTo">subscribeTo</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">serviceType</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_ZeroconfService.subscribeTo-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_ZeroconfService.subscribeTo-expanded"><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">        Subscribe to a specific service.</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">serviceType</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">subscribed</tt><tt class="py-op">:</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt><tt class="py-op">:</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt> <tt class="py-op">=</tt> <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">SystemBus</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">server</tt><tt class="py-op">:</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">server</tt> <tt class="py-op">=</tt> <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">Interface</tt><tt class="py-op">(</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt><tt class="py-op">.</tt><tt class="py-name">get_object</tt><tt class="py-op">(</tt><tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">DBUS_NAME</tt><tt class="py-op">,</tt> <tt class="py-string">'/'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">'org.freedesktop.Avahi.Server'</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-name">sbrowser</tt> <tt class="py-op">=</tt> <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">Interface</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt><tt class="py-op">.</tt><tt class="py-name">get_object</tt><tt class="py-op">(</tt><tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">DBUS_NAME</tt><tt class="py-op">,</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">                                                      <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">server</tt><tt class="py-op">.</tt><tt class="py-name">ServiceBrowserNew</tt><tt class="py-op">(</tt><tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">IF_UNSPEC</tt><tt class="py-op">,</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">                                                                                    <tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">PROTO_UNSPEC</tt><tt class="py-op">,</tt> <tt class="py-name">serviceType</tt><tt class="py-op">,</tt> <tt class="py-string">'local'</tt><tt class="py-op">,</tt> <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">UInt32</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                                                                    <tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">DBUS_INTERFACE_SERVICE_BROWSER</tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-name">sbrowser</tt><tt class="py-op">.</tt><tt class="py-name">connect_to_signal</tt><tt class="py-op">(</tt><tt class="py-string">"ItemNew"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method sparked.internet.zeroconf._ZeroconfService._itemNew()=sparked.internet.zeroconf._ZeroconfService-class.html#_itemNew"><a title="sparked.internet.zeroconf._ZeroconfService._itemNew" class="py-name" href="#" onclick="return doclink('link-5', '_itemNew', 'link-5');">_itemNew</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-name">sbrowser</tt><tt class="py-op">.</tt><tt class="py-name">connect_to_signal</tt><tt class="py-op">(</tt><tt class="py-string">"ItemRemove"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method sparked.internet.zeroconf._ZeroconfService._itemRemove()=sparked.internet.zeroconf._ZeroconfService-class.html#_itemRemove"><a title="sparked.internet.zeroconf._ZeroconfService._itemRemove" class="py-name" href="#" onclick="return doclink('link-6', '_itemRemove', 'link-6');">_itemRemove</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">subscribed</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">serviceType</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">    <tt class="py-comment"># Avahi handler functions</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"> </tt>
+<a name="_ZeroconfService._itemNew"></a><div id="_ZeroconfService._itemNew-def"><a name="L96"></a><tt class="py-lineno"> 96</tt> <a class="py-toggle" href="#" id="_ZeroconfService._itemNew-toggle" onclick="return toggle('_ZeroconfService._itemNew');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.internet.zeroconf._ZeroconfService-class.html#_itemNew">_itemNew</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">iface</tt><tt class="py-op">,</tt> <tt class="py-param">protocol</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">stype</tt><tt class="py-op">,</tt> <tt class="py-param">domain</tt><tt class="py-op">,</tt> <tt class="py-param">flags</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_ZeroconfService._itemNew-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_ZeroconfService._itemNew-expanded"><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-keyword">def</tt> <tt class="py-def-name">resolveError</tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-param">a</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">            <tt id="link-7" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-7', 'log', 'link-0');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">msg</tt><tt class="py-op">(</tt><tt class="py-string">"RESOLVE ERROR:"</tt><tt class="py-op">)</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">            <tt id="link-8" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-8', 'log', 'link-0');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">err</tt><tt class="py-op">(</tt><tt class="py-name">a</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-keyword">def</tt> <tt class="py-def-name">resolveSuccess</tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-param">args</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">            <tt class="py-name">name</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">            <tt class="py-name">hostname</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt><tt class="py-op">[</tt><tt class="py-number">5</tt><tt class="py-op">]</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">            <tt class="py-name">address</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt><tt class="py-op">[</tt><tt class="py-number">7</tt><tt class="py-op">]</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">            <tt class="py-name">port</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt><tt class="py-op">[</tt><tt class="py-number">8</tt><tt class="py-op">]</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">            <tt id="link-9" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-9', 'log', 'link-0');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">msg</tt><tt class="py-op">(</tt><tt class="py-string">"** New service: %s (%s@%s)"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">name</tt><tt class="py-op">,</tt> <tt class="py-name">hostname</tt><tt class="py-op">,</tt> <tt class="py-name">port</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">            <tt id="link-10" class="py-name" targets="Variable sparked.internet.zeroconf.zeroconfEvents=sparked.internet.zeroconf-module.html#zeroconfEvents"><a title="sparked.internet.zeroconf.zeroconfEvents" class="py-name" href="#" onclick="return doclink('link-10', 'zeroconfEvents', 'link-10');">zeroconfEvents</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method sparked.events.EventDispatcher.dispatch()=sparked.events.EventDispatcher-class.html#dispatch"><a title="sparked.events.EventDispatcher.dispatch" class="py-name" href="#" onclick="return doclink('link-11', 'dispatch', 'link-11');">dispatch</a></tt><tt class="py-op">(</tt><tt class="py-string">"service-found"</tt><tt class="py-op">,</tt> <tt class="py-name">name</tt><tt class="py-op">,</tt> <tt class="py-name">hostname</tt><tt class="py-op">=</tt><tt class="py-name">hostname</tt><tt class="py-op">,</tt> <tt class="py-name">address</tt><tt class="py-op">=</tt><tt class="py-name">address</tt><tt class="py-op">,</tt> <tt class="py-name">port</tt><tt class="py-op">=</tt><tt class="py-name">port</tt><tt class="py-op">,</tt> <tt class="py-name">type</tt><tt class="py-op">=</tt><tt class="py-name">stype</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">server</tt><tt class="py-op">.</tt><tt class="py-name">ResolveService</tt><tt class="py-op">(</tt><tt class="py-name">iface</tt><tt class="py-op">,</tt> <tt class="py-name">protocol</tt><tt class="py-op">,</tt> <tt class="py-name">name</tt><tt class="py-op">,</tt> <tt class="py-name">stype</tt><tt class="py-op">,</tt>  </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">                                   <tt class="py-name">domain</tt><tt class="py-op">,</tt> <tt class="py-name">avahi</tt><tt class="py-op">.</tt><tt class="py-name">PROTO_UNSPEC</tt><tt class="py-op">,</tt> <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">UInt32</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">,</tt>  </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">                                   <tt class="py-name">reply_handler</tt><tt class="py-op">=</tt><tt class="py-name">resolveSuccess</tt><tt class="py-op">,</tt> <tt class="py-name">error_handler</tt><tt class="py-op">=</tt><tt class="py-name">resolveError</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"> </tt>
+<a name="_ZeroconfService._itemRemove"></a><div id="_ZeroconfService._itemRemove-def"><a name="L116"></a><tt class="py-lineno">116</tt> <a class="py-toggle" href="#" id="_ZeroconfService._itemRemove-toggle" onclick="return toggle('_ZeroconfService._itemRemove');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.internet.zeroconf._ZeroconfService-class.html#_itemRemove">_itemRemove</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">iface</tt><tt class="py-op">,</tt> <tt class="py-param">protocol</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">stype</tt><tt class="py-op">,</tt> <tt class="py-param">domain</tt><tt class="py-op">,</tt> <tt class="py-param">flags</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_ZeroconfService._itemRemove-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_ZeroconfService._itemRemove-expanded"><a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt id="link-12" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-12', 'log', 'link-0');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">msg</tt><tt class="py-op">(</tt><tt class="py-string">"** Service lost: %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">name</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt id="link-13" class="py-name"><a title="sparked.internet.zeroconf.zeroconfEvents" class="py-name" href="#" onclick="return doclink('link-13', 'zeroconfEvents', 'link-10');">zeroconfEvents</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="sparked.events.EventDispatcher.dispatch" class="py-name" href="#" onclick="return doclink('link-14', 'dispatch', 'link-11');">dispatch</a></tt><tt class="py-op">(</tt><tt class="py-string">"service-lost"</tt><tt class="py-op">,</tt> <tt class="py-name">name</tt><tt class="py-op">,</tt> <tt class="py-name">type</tt><tt class="py-op">=</tt><tt class="py-name">stype</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"><tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">    <tt id="link-15" class="py-name" targets="Variable sparked.internet.zeroconf.zeroconfService=sparked.internet.zeroconf-module.html#zeroconfService"><a title="sparked.internet.zeroconf.zeroconfService" class="py-name" href="#" onclick="return doclink('link-15', 'zeroconfService', 'link-15');">zeroconfService</a></tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt class="py-keyword">except</tt> <tt class="py-name">NameError</tt><tt class="py-op">:</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">    <tt id="link-16" class="py-name"><a title="sparked.internet.zeroconf.zeroconfService" class="py-name" href="#" onclick="return doclink('link-16', 'zeroconfService', 'link-15');">zeroconfService</a></tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name" targets="Class sparked.internet.zeroconf._ZeroconfService=sparked.internet.zeroconf._ZeroconfService-class.html"><a title="sparked.internet.zeroconf._ZeroconfService" class="py-name" href="#" onclick="return doclink('link-17', '_ZeroconfService', 'link-17');">_ZeroconfService</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">    <tt id="link-18" class="py-name"><a title="sparked.internet.zeroconf.zeroconfEvents" class="py-name" href="#" onclick="return doclink('link-18', 'zeroconfEvents', 'link-10');">zeroconfEvents</a></tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-19', 'events', 'link-2');">events</a></tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Class sparked.events.EventDispatcher=sparked.events.EventDispatcher-class.html"><a title="sparked.events.EventDispatcher" class="py-name" href="#" onclick="return doclink('link-20', 'EventDispatcher', 'link-20');">EventDispatcher</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"><tt class="py-name">__all__</tt>  <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">'zeroconfService'</tt><tt class="py-op">,</tt> <tt class="py-string">'zeroconfEvents'</tt><tt class="py-op">]</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Sep 30 15:21:52 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

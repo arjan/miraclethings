@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>sparked.hardware.hal</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="sparked-module.html">Package&nbsp;sparked</a> ::
+        <a href="sparked.hardware-module.html">Package&nbsp;hardware</a> ::
+        Module&nbsp;hal
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="sparked.hardware.hal-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="sparked.hardware.hal-module.html">Module sparked.hardware.hal</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2010 Arjan Scherpenisse</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># See LICENSE for details.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">Hardware monitoring classes based on linux' HAL system.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">dbus</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">glob</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Module sparked.application=sparked.application-module.html"><a title="sparked.application" class="py-name" href="#" onclick="return doclink('link-0', 'application', 'link-0');">application</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">service</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package sparked.internet=sparked.internet-module.html"><a title="sparked.internet" class="py-name" href="#" onclick="return doclink('link-1', 'internet', 'link-1');">internet</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">reactor</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable sparked.hardware.hal.DBUS_INTERFACE=sparked.hardware.hal-module.html#DBUS_INTERFACE"><a title="sparked.hardware.hal.DBUS_INTERFACE" class="py-name" href="#" onclick="return doclink('link-2', 'DBUS_INTERFACE', 'link-2');">DBUS_INTERFACE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"org.freedesktop.DBus"</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable sparked.hardware.hal.HAL_INTERFACE=sparked.hardware.hal-module.html#HAL_INTERFACE"><a title="sparked.hardware.hal.HAL_INTERFACE" class="py-name" href="#" onclick="return doclink('link-3', 'HAL_INTERFACE', 'link-3');">HAL_INTERFACE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'org.freedesktop.Hal'</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt id="link-4" class="py-name" targets="Variable sparked.hardware.hal.HAL_DEVICE_INTERFACE=sparked.hardware.hal-module.html#HAL_DEVICE_INTERFACE"><a title="sparked.hardware.hal.HAL_DEVICE_INTERFACE" class="py-name" href="#" onclick="return doclink('link-4', 'HAL_DEVICE_INTERFACE', 'link-4');">HAL_DEVICE_INTERFACE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'org.freedesktop.Hal.Device'</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Variable sparked.hardware.hal.HAL_MANAGER_INTERFACE=sparked.hardware.hal-module.html#HAL_MANAGER_INTERFACE"><a title="sparked.hardware.hal.HAL_MANAGER_INTERFACE" class="py-name" href="#" onclick="return doclink('link-5', 'HAL_MANAGER_INTERFACE', 'link-5');">HAL_MANAGER_INTERFACE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'org.freedesktop.Hal.Manager'</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt id="link-6" class="py-name" targets="Variable sparked.hardware.hal.HAL_MANAGER_UDI=sparked.hardware.hal-module.html#HAL_MANAGER_UDI"><a title="sparked.hardware.hal.HAL_MANAGER_UDI" class="py-name" href="#" onclick="return doclink('link-6', 'HAL_MANAGER_UDI', 'link-6');">HAL_MANAGER_UDI</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'/org/freedesktop/Hal/Manager'</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># The following properties get automatically read upon device insertion.</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># See http://people.freedesktop.org/~dkukawka/hal-spec-git/hal-spec.html</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt id="link-7" class="py-name" targets="Variable sparked.hardware.hal.HAL_SUBSYSTEM_PROPERTIES=sparked.hardware.hal-module.html#HAL_SUBSYSTEM_PROPERTIES"><a title="sparked.hardware.hal.HAL_SUBSYSTEM_PROPERTIES" class="py-name" href="#" onclick="return doclink('link-7', 'HAL_SUBSYSTEM_PROPERTIES', 'link-7');">HAL_SUBSYSTEM_PROPERTIES</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">    <tt class="py-string">'serial'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'originating_device'</tt><tt class="py-op">,</tt> <tt class="py-string">'device'</tt><tt class="py-op">,</tt> <tt class="py-string">'port'</tt><tt class="py-op">,</tt> <tt class="py-string">'type'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">    <tt class="py-string">'video4linux'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'device'</tt><tt class="py-op">,</tt> <tt class="py-string">'version'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">    <tt class="py-string">'input'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'device'</tt><tt class="py-op">]</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">    <tt class="py-op">}</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="HardwareMonitor"></a><div id="HardwareMonitor-def"><a name="L32"></a><tt class="py-lineno"> 32</tt> <a class="py-toggle" href="#" id="HardwareMonitor-toggle" onclick="return toggle('HardwareMonitor');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.hardware.hal.HardwareMonitor-class.html">HardwareMonitor</a> <tt class="py-op">(</tt><tt class="py-base-class">service</tt><tt class="py-op">.</tt><tt class="py-base-class">Service</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HardwareMonitor-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="HardwareMonitor-expanded"><a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">    A generic hardware monitor class based on HAL. Listens for device add/remove filtered on a specific subsystem.</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar subsystem: The HAL subsystem type to monitor. E.g. serial, video4linux, ...</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar deviceInfo: dict which will be filled with device information. Key is the HAL UDI (Unique Device Identifier).</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar uniquePath: If set, point to a directory where the symlinks to the unique devices will be made, e.g. /dev/serial/by-id/</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar events: If set, point to a L{sparked.events.EventDispatcher} to dispatch &lt;subsystem&gt;-{added,removed} events to.</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">    <tt id="link-8" class="py-name" targets="Variable sparked.hardware.hal.HardwareMonitor.subsystem=sparked.hardware.hal.HardwareMonitor-class.html#subsystem,Variable sparked.hardware.serial.SerialPortMonitor.subsystem=sparked.hardware.serial.SerialPortMonitor-class.html#subsystem,Variable sparked.hardware.video.V4LDeviceMonitor.subsystem=sparked.hardware.video.V4LDeviceMonitor-class.html#subsystem"><a title="sparked.hardware.hal.HardwareMonitor.subsystem
+sparked.hardware.serial.SerialPortMonitor.subsystem
+sparked.hardware.video.V4LDeviceMonitor.subsystem" class="py-name" href="#" onclick="return doclink('link-8', 'subsystem', 'link-8');">subsystem</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">    <tt id="link-9" class="py-name" targets="Variable sparked.hardware.hal.HardwareMonitor.deviceInfo=sparked.hardware.hal.HardwareMonitor-class.html#deviceInfo"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-9', 'deviceInfo', 'link-9');">deviceInfo</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">    <tt id="link-10" class="py-name" targets="Variable sparked.hardware.hal.HardwareMonitor.uniquePath=sparked.hardware.hal.HardwareMonitor-class.html#uniquePath,Variable sparked.hardware.video.V4LDeviceMonitor.uniquePath=sparked.hardware.video.V4LDeviceMonitor-class.html#uniquePath"><a title="sparked.hardware.hal.HardwareMonitor.uniquePath
+sparked.hardware.video.V4LDeviceMonitor.uniquePath" class="py-name" href="#" onclick="return doclink('link-10', 'uniquePath', 'link-10');">uniquePath</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">    <tt id="link-11" class="py-name" targets="Module sparked.events=sparked.events-module.html,Variable sparked.hardware.hal.HardwareMonitor.events=sparked.hardware.hal.HardwareMonitor-class.html#events,Variable sparked.monitors.MonitorContainer.events=sparked.monitors.MonitorContainer-class.html#events"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-11', 'events', 'link-11');">events</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="HardwareMonitor.startService"></a><div id="HardwareMonitor.startService-def"><a name="L48"></a><tt class="py-lineno"> 48</tt> <a class="py-toggle" href="#" id="HardwareMonitor.startService-toggle" onclick="return toggle('HardwareMonitor.startService');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.hardware.hal.HardwareMonitor-class.html#startService">startService</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HardwareMonitor.startService-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HardwareMonitor.startService-expanded"><a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-12', 'deviceInfo', 'link-9');">deviceInfo</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt> <tt class="py-op">=</tt> <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">SystemBus</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt><tt class="py-op">.</tt><tt class="py-name">add_signal_receiver</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method sparked.hardware.hal.HardwareMonitor._halDeviceAdded()=sparked.hardware.hal.HardwareMonitor-class.html#_halDeviceAdded"><a title="sparked.hardware.hal.HardwareMonitor._halDeviceAdded" class="py-name" href="#" onclick="return doclink('link-13', '_halDeviceAdded', 'link-13');">_halDeviceAdded</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">                                <tt class="py-name">dbus_interface</tt><tt class="py-op">=</tt><tt id="link-14" class="py-name"><a title="sparked.hardware.hal.HAL_MANAGER_INTERFACE" class="py-name" href="#" onclick="return doclink('link-14', 'HAL_MANAGER_INTERFACE', 'link-5');">HAL_MANAGER_INTERFACE</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">                                <tt class="py-name">signal_name</tt><tt class="py-op">=</tt><tt class="py-string">'DeviceAdded'</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt><tt class="py-op">.</tt><tt class="py-name">add_signal_receiver</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method sparked.hardware.hal.HardwareMonitor._halDeviceRemoved()=sparked.hardware.hal.HardwareMonitor-class.html#_halDeviceRemoved"><a title="sparked.hardware.hal.HardwareMonitor._halDeviceRemoved" class="py-name" href="#" onclick="return doclink('link-15', '_halDeviceRemoved', 'link-15');">_halDeviceRemoved</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">                                <tt class="py-name">dbus_interface</tt><tt class="py-op">=</tt><tt id="link-16" class="py-name"><a title="sparked.hardware.hal.HAL_MANAGER_INTERFACE" class="py-name" href="#" onclick="return doclink('link-16', 'HAL_MANAGER_INTERFACE', 'link-5');">HAL_MANAGER_INTERFACE</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">                                <tt class="py-name">signal_name</tt><tt class="py-op">=</tt><tt class="py-string">'DeviceRemoved'</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">manager</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method sparked.hardware.hal.HardwareMonitor._getHalInterface()=sparked.hardware.hal.HardwareMonitor-class.html#_getHalInterface"><a title="sparked.hardware.hal.HardwareMonitor._getHalInterface" class="py-name" href="#" onclick="return doclink('link-17', '_getHalInterface', 'link-17');">_getHalInterface</a></tt><tt class="py-op">(</tt><tt id="link-18" class="py-name"><a title="sparked.hardware.hal.HAL_MANAGER_UDI" class="py-name" href="#" onclick="return doclink('link-18', 'HAL_MANAGER_UDI', 'link-6');">HAL_MANAGER_UDI</a></tt><tt class="py-op">,</tt> <tt id="link-19" class="py-name"><a title="sparked.hardware.hal.HAL_MANAGER_INTERFACE" class="py-name" href="#" onclick="return doclink('link-19', 'HAL_MANAGER_INTERFACE', 'link-5');">HAL_MANAGER_INTERFACE</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">udi</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">manager</tt><tt class="py-op">.</tt><tt class="py-name">FindDeviceByCapability</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.subsystem
+sparked.hardware.serial.SerialPortMonitor.subsystem
+sparked.hardware.video.V4LDeviceMonitor.subsystem" class="py-name" href="#" onclick="return doclink('link-20', 'subsystem', 'link-8');">subsystem</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">            <tt class="py-name">reactor</tt><tt class="py-op">.</tt><tt class="py-name">callLater</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor._halDeviceAdded" class="py-name" href="#" onclick="return doclink('link-21', '_halDeviceAdded', 'link-13');">_halDeviceAdded</a></tt><tt class="py-op">,</tt> <tt class="py-name">udi</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="HardwareMonitor.stopService"></a><div id="HardwareMonitor.stopService-def"><a name="L64"></a><tt class="py-lineno"> 64</tt> <a class="py-toggle" href="#" id="HardwareMonitor.stopService-toggle" onclick="return toggle('HardwareMonitor.stopService');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.hardware.hal.HardwareMonitor-class.html#stopService">stopService</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HardwareMonitor.stopService-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HardwareMonitor.stopService-expanded"><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-name">udis</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-22', 'deviceInfo', 'link-9');">deviceInfo</a></tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Variable sparked.graphics.stage.Stage.keys=sparked.graphics.stage.Stage-class.html#keys"><a title="sparked.graphics.stage.Stage.keys" class="py-name" href="#" onclick="return doclink('link-23', 'keys', 'link-23');">keys</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">udi</tt> <tt class="py-keyword">in</tt> <tt class="py-name">udis</tt><tt class="py-op">:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor._halDeviceRemoved" class="py-name" href="#" onclick="return doclink('link-24', '_halDeviceRemoved', 'link-15');">_halDeviceRemoved</a></tt><tt class="py-op">(</tt><tt class="py-name">udi</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
+<a name="HardwareMonitor._getHalInterface"></a><div id="HardwareMonitor._getHalInterface-def"><a name="L70"></a><tt class="py-lineno"> 70</tt> <a class="py-toggle" href="#" id="HardwareMonitor._getHalInterface-toggle" onclick="return toggle('HardwareMonitor._getHalInterface');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.hardware.hal.HardwareMonitor-class.html#_getHalInterface">_getHalInterface</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">udi</tt><tt class="py-op">,</tt> <tt class="py-param">interface</tt><tt class="py-op">=</tt><tt id="link-25" class="py-name"><a title="sparked.hardware.hal.HAL_DEVICE_INTERFACE" class="py-name" href="#" onclick="return doclink('link-25', 'HAL_DEVICE_INTERFACE', 'link-4');">HAL_DEVICE_INTERFACE</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HardwareMonitor._getHalInterface-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HardwareMonitor._getHalInterface-expanded"><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">obj</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt><tt class="py-op">.</tt><tt class="py-name">get_object</tt><tt class="py-op">(</tt><tt id="link-26" class="py-name"><a title="sparked.hardware.hal.HAL_INTERFACE" class="py-name" href="#" onclick="return doclink('link-26', 'HAL_INTERFACE', 'link-3');">HAL_INTERFACE</a></tt><tt class="py-op">,</tt> <tt class="py-name">udi</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">Interface</tt><tt class="py-op">(</tt><tt class="py-name">obj</tt><tt class="py-op">,</tt> <tt class="py-name">interface</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="HardwareMonitor._halDeviceAdded"></a><div id="HardwareMonitor._halDeviceAdded-def"><a name="L75"></a><tt class="py-lineno"> 75</tt> <a class="py-toggle" href="#" id="HardwareMonitor._halDeviceAdded-toggle" onclick="return toggle('HardwareMonitor._halDeviceAdded');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.hardware.hal.HardwareMonitor-class.html#_halDeviceAdded">_halDeviceAdded</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">udi</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HardwareMonitor._halDeviceAdded-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HardwareMonitor._halDeviceAdded-expanded"><a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-name">udi</tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">udi</tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">manager</tt><tt class="py-op">.</tt><tt class="py-name">DeviceExists</tt><tt class="py-op">(</tt><tt class="py-name">udi</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">            <tt class="py-comment"># device has been removed</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-name">device</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor._getHalInterface" class="py-name" href="#" onclick="return doclink('link-27', '_getHalInterface', 'link-17');">_getHalInterface</a></tt><tt class="py-op">(</tt><tt class="py-name">udi</tt><tt class="py-op">)</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">device</tt><tt class="py-op">.</tt><tt class="py-name">QueryCapability</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.subsystem
+sparked.hardware.serial.SerialPortMonitor.subsystem
+sparked.hardware.video.V4LDeviceMonitor.subsystem" class="py-name" href="#" onclick="return doclink('link-28', 'subsystem', 'link-8');">subsystem</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">            <tt class="py-comment"># wrong device</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-29', 'deviceInfo', 'link-9');">deviceInfo</a></tt><tt class="py-op">[</tt><tt class="py-name">udi</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-string">"udi"</tt><tt class="py-op">:</tt> <tt class="py-name">udi</tt><tt class="py-op">}</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.subsystem
+sparked.hardware.serial.SerialPortMonitor.subsystem
+sparked.hardware.video.V4LDeviceMonitor.subsystem" class="py-name" href="#" onclick="return doclink('link-30', 'subsystem', 'link-8');">subsystem</a></tt> <tt class="py-keyword">in</tt> <tt id="link-31" class="py-name"><a title="sparked.hardware.hal.HAL_SUBSYSTEM_PROPERTIES" class="py-name" href="#" onclick="return doclink('link-31', 'HAL_SUBSYSTEM_PROPERTIES', 'link-7');">HAL_SUBSYSTEM_PROPERTIES</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">k</tt> <tt class="py-keyword">in</tt> <tt id="link-32" class="py-name"><a title="sparked.hardware.hal.HAL_SUBSYSTEM_PROPERTIES" class="py-name" href="#" onclick="return doclink('link-32', 'HAL_SUBSYSTEM_PROPERTIES', 'link-7');">HAL_SUBSYSTEM_PROPERTIES</a></tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.subsystem
+sparked.hardware.serial.SerialPortMonitor.subsystem
+sparked.hardware.video.V4LDeviceMonitor.subsystem" class="py-name" href="#" onclick="return doclink('link-33', 'subsystem', 'link-8');">subsystem</a></tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-34', 'deviceInfo', 'link-9');">deviceInfo</a></tt><tt class="py-op">[</tt><tt class="py-name">udi</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-name">k</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">device</tt><tt class="py-op">.</tt><tt class="py-name">GetProperty</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.subsystem
+sparked.hardware.serial.SerialPortMonitor.subsystem
+sparked.hardware.video.V4LDeviceMonitor.subsystem" class="py-name" href="#" onclick="return doclink('link-35', 'subsystem', 'link-8');">subsystem</a></tt><tt class="py-op">+</tt><tt class="py-string">'.'</tt><tt class="py-op">+</tt><tt class="py-name">k</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-string">"device"</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-36', 'deviceInfo', 'link-9');">deviceInfo</a></tt><tt class="py-op">[</tt><tt class="py-name">udi</tt><tt class="py-op">]</tt> <tt class="py-keyword">and</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.uniquePath
+sparked.hardware.video.V4LDeviceMonitor.uniquePath" class="py-name" href="#" onclick="return doclink('link-37', 'uniquePath', 'link-10');">uniquePath</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">            <tt class="py-name">by_id</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">p</tt> <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">glob</tt><tt class="py-op">.</tt><tt class="py-name">glob</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.uniquePath
+sparked.hardware.video.V4LDeviceMonitor.uniquePath" class="py-name" href="#" onclick="return doclink('link-38', 'uniquePath', 'link-10');">uniquePath</a></tt><tt class="py-op">,</tt> <tt class="py-string">"*"</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">                     <tt class="py-keyword">if</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">realpath</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-39', 'deviceInfo', 'link-9');">deviceInfo</a></tt><tt class="py-op">[</tt><tt class="py-name">udi</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-string">"device"</tt><tt class="py-op">]</tt><tt class="py-op">]</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">by_id</tt><tt class="py-op">:</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-40', 'deviceInfo', 'link-9');">deviceInfo</a></tt><tt class="py-op">[</tt><tt class="py-name">udi</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-string">"unique_path"</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">by_id</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-41', 'events', 'link-11');">events</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-42', 'events', 'link-11');">events</a></tt><tt class="py-op">.</tt><tt id="link-43" class="py-name" targets="Method sparked.events.EventDispatcher.dispatch()=sparked.events.EventDispatcher-class.html#dispatch"><a title="sparked.events.EventDispatcher.dispatch" class="py-name" href="#" onclick="return doclink('link-43', 'dispatch', 'link-43');">dispatch</a></tt><tt class="py-op">(</tt><tt class="py-string">"%s-added"</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.subsystem
+sparked.hardware.serial.SerialPortMonitor.subsystem
+sparked.hardware.video.V4LDeviceMonitor.subsystem" class="py-name" href="#" onclick="return doclink('link-44', 'subsystem', 'link-8');">subsystem</a></tt><tt class="py-op">,</tt> <tt class="py-name">info</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-45', 'deviceInfo', 'link-9');">deviceInfo</a></tt><tt class="py-op">[</tt><tt class="py-name">udi</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-46" class="py-name" targets="Method sparked.hardware.hal.HardwareMonitor.deviceAdded()=sparked.hardware.hal.HardwareMonitor-class.html#deviceAdded"><a title="sparked.hardware.hal.HardwareMonitor.deviceAdded" class="py-name" href="#" onclick="return doclink('link-46', 'deviceAdded', 'link-46');">deviceAdded</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-47" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-47', 'deviceInfo', 'link-9');">deviceInfo</a></tt><tt class="py-op">[</tt><tt class="py-name">udi</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">device</tt> </tt>
+</div><a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="HardwareMonitor._halDeviceRemoved"></a><div id="HardwareMonitor._halDeviceRemoved-def"><a name="L105"></a><tt class="py-lineno">105</tt> <a class="py-toggle" href="#" id="HardwareMonitor._halDeviceRemoved-toggle" onclick="return toggle('HardwareMonitor._halDeviceRemoved');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.hardware.hal.HardwareMonitor-class.html#_halDeviceRemoved">_halDeviceRemoved</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">udi</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HardwareMonitor._halDeviceRemoved-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HardwareMonitor._halDeviceRemoved-expanded"><a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt class="py-name">udi</tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">udi</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">udi</tt> <tt class="py-keyword">not</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-48', 'deviceInfo', 'link-9');">deviceInfo</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-49', 'events', 'link-11');">events</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-50', 'events', 'link-11');">events</a></tt><tt class="py-op">.</tt><tt id="link-51" class="py-name"><a title="sparked.events.EventDispatcher.dispatch" class="py-name" href="#" onclick="return doclink('link-51', 'dispatch', 'link-43');">dispatch</a></tt><tt class="py-op">(</tt><tt class="py-string">"%s-removed"</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.subsystem
+sparked.hardware.serial.SerialPortMonitor.subsystem
+sparked.hardware.video.V4LDeviceMonitor.subsystem" class="py-name" href="#" onclick="return doclink('link-52', 'subsystem', 'link-8');">subsystem</a></tt><tt class="py-op">,</tt> <tt class="py-name">info</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-53', 'deviceInfo', 'link-9');">deviceInfo</a></tt><tt class="py-op">[</tt><tt class="py-name">udi</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name" targets="Method sparked.hardware.hal.HardwareMonitor.deviceRemoved()=sparked.hardware.hal.HardwareMonitor-class.html#deviceRemoved"><a title="sparked.hardware.hal.HardwareMonitor.deviceRemoved" class="py-name" href="#" onclick="return doclink('link-54', 'deviceRemoved', 'link-54');">deviceRemoved</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-55', 'deviceInfo', 'link-9');">deviceInfo</a></tt><tt class="py-op">[</tt><tt class="py-name">udi</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-keyword">del</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="sparked.hardware.hal.HardwareMonitor.deviceInfo" class="py-name" href="#" onclick="return doclink('link-56', 'deviceInfo', 'link-9');">deviceInfo</a></tt><tt class="py-op">[</tt><tt class="py-name">udi</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"> </tt>
+<a name="HardwareMonitor.deviceAdded"></a><div id="HardwareMonitor.deviceAdded-def"><a name="L117"></a><tt class="py-lineno">117</tt> <a class="py-toggle" href="#" id="HardwareMonitor.deviceAdded-toggle" onclick="return toggle('HardwareMonitor.deviceAdded');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.hardware.hal.HardwareMonitor-class.html#deviceAdded">deviceAdded</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">info</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HardwareMonitor.deviceAdded-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HardwareMonitor.deviceAdded-expanded"><a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt class="py-docstring">        This method will be called when a device has been added. If</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt class="py-docstring">        you subclass this class, this method can be overruled to do</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"><tt class="py-docstring">        application-specific stuff.</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+</div><a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"> </tt>
+<a name="HardwareMonitor.deviceRemoved"></a><div id="HardwareMonitor.deviceRemoved-def"><a name="L125"></a><tt class="py-lineno">125</tt> <a class="py-toggle" href="#" id="HardwareMonitor.deviceRemoved-toggle" onclick="return toggle('HardwareMonitor.deviceRemoved');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.hardware.hal.HardwareMonitor-class.html#deviceRemoved">deviceRemoved</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">info</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HardwareMonitor.deviceRemoved-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HardwareMonitor.deviceRemoved-expanded"><a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"><tt class="py-docstring">        This method will be called when a device has been removed. If</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"><tt class="py-docstring">        you subclass this class, this method can be overruled to do</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"><tt class="py-docstring">        application-specific stuff.</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+</div></div><a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Sep 30 15:21:52 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

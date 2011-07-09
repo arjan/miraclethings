@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>sparked.monitors</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="sparked-module.html">Package&nbsp;sparked</a> ::
+        Module&nbsp;monitors
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="sparked.monitors-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="sparked.monitors-module.html">Module sparked.monitors</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2010 Arjan Scherpenisse</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># See LICENSE for details.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># -*- test-case-name: sparked.test.test_monitors -*-</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">Classes for monitoring the system's state.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Module sparked.application=sparked.application-module.html"><a title="sparked.application" class="py-name" href="#" onclick="return doclink('link-0', 'application', 'link-0');">application</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">service</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package sparked.internet=sparked.internet-module.html"><a title="sparked.internet" class="py-name" href="#" onclick="return doclink('link-1', 'internet', 'link-1');">internet</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">reactor</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt class="py-name">python</tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Method sparked.gui.StatusWindow.log()=sparked.gui.StatusWindow-class.html#log"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-2', 'log', 'link-2');">log</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-3" class="py-name" targets="Package sparked=sparked-module.html"><a title="sparked" class="py-name" href="#" onclick="return doclink('link-3', 'sparked', 'link-3');">sparked</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Package sparked.hardware=sparked.hardware-module.html"><a title="sparked.hardware" class="py-name" href="#" onclick="return doclink('link-4', 'hardware', 'link-4');">hardware</a></tt> <tt class="py-keyword">import</tt> <tt id="link-5" class="py-name" targets="Module sparked.hardware.power=sparked.hardware.power-module.html"><a title="sparked.hardware.power" class="py-name" href="#" onclick="return doclink('link-5', 'power', 'link-5');">power</a></tt><tt class="py-op">,</tt> <tt id="link-6" class="py-name" targets="Module sparked.hardware.network=sparked.hardware.network-module.html"><a title="sparked.hardware.network" class="py-name" href="#" onclick="return doclink('link-6', 'network', 'link-6');">network</a></tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-7" class="py-name"><a title="sparked" class="py-name" href="#" onclick="return doclink('link-7', 'sparked', 'link-3');">sparked</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name"><a title="sparked.internet" class="py-name" href="#" onclick="return doclink('link-8', 'internet', 'link-1');">internet</a></tt> <tt class="py-keyword">import</tt> <tt id="link-9" class="py-name" targets="Module sparked.internet.zeroconf=sparked.internet.zeroconf-module.html"><a title="sparked.internet.zeroconf" class="py-name" href="#" onclick="return doclink('link-9', 'zeroconf', 'link-9');">zeroconf</a></tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-10" class="py-name"><a title="sparked" class="py-name" href="#" onclick="return doclink('link-10', 'sparked', 'link-3');">sparked</a></tt> <tt class="py-keyword">import</tt> <tt id="link-11" class="py-name" targets="Module sparked.events=sparked.events-module.html,Variable sparked.hardware.hal.HardwareMonitor.events=sparked.hardware.hal.HardwareMonitor-class.html#events,Variable sparked.monitors.MonitorContainer.events=sparked.monitors.MonitorContainer-class.html#events"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-11', 'events', 'link-11');">events</a></tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"> </tt>
+<a name="MonitorContainer"></a><div id="MonitorContainer-def"><a name="L19"></a><tt class="py-lineno"> 19</tt> <a class="py-toggle" href="#" id="MonitorContainer-toggle" onclick="return toggle('MonitorContainer');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.monitors.MonitorContainer-class.html">MonitorContainer</a> <tt class="py-op">(</tt><tt class="py-base-class">service</tt><tt class="py-op">.</tt><tt class="py-base-class">MultiService</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MonitorContainer-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MonitorContainer-expanded"><a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">    A container for monitoring services.</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar monitors: A list of L{Monitor} objects.</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar events: An L{events.EventDispatcher} which triggers an "updated" event when one of the monitors state changes.</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">    <tt id="link-12" class="py-name" targets="Variable sparked.application.Application.monitors=sparked.application.Application-class.html#monitors,Module sparked.monitors=sparked.monitors-module.html,Variable sparked.monitors.MonitorContainer.monitors=sparked.monitors.MonitorContainer-class.html#monitors"><a title="sparked.application.Application.monitors
+sparked.monitors
+sparked.monitors.MonitorContainer.monitors" class="py-name" href="#" onclick="return doclink('link-12', 'monitors', 'link-12');">monitors</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">    <tt id="link-13" class="py-name"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-13', 'events', 'link-11');">events</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">    <tt id="link-14" class="py-name" targets="Variable sparked.monitors.MonitorContainer.verbose=sparked.monitors.MonitorContainer-class.html#verbose"><a title="sparked.monitors.MonitorContainer.verbose" class="py-name" href="#" onclick="return doclink('link-14', 'verbose', 'link-14');">verbose</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="MonitorContainer.__init__"></a><div id="MonitorContainer.__init__-def"><a name="L31"></a><tt class="py-lineno"> 31</tt> <a class="py-toggle" href="#" id="MonitorContainer.__init__-toggle" onclick="return toggle('MonitorContainer.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.MonitorContainer-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MonitorContainer.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MonitorContainer.__init__-expanded"><a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">        <tt class="py-name">service</tt><tt class="py-op">.</tt><tt class="py-name">MultiService</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method sparked.application.Application.__init__()=sparked.application.Application-class.html#__init__,Method sparked.application.StateMachine.__init__()=sparked.application.StateMachine-class.html#__init__,Method sparked.events.EventDispatcher.__init__()=sparked.events.EventDispatcher-class.html#__init__,Method sparked.graphics.stage.Stage.__init__()=sparked.graphics.stage.Stage-class.html#__init__,Method sparked.gui.MonitorWidget.__init__()=sparked.gui.MonitorWidget-class.html#__init__,Method sparked.gui.StatusWindow.__init__()=sparked.gui.StatusWindow-class.html#__init__,Method sparked.hardware.inputevent.InputEvent.__init__()=sparked.hardware.inputevent.InputEvent-class.html#__init__,Method sparked.hardware.inputevent.InputEventDevice.__init__()=sparked.hardware.inputevent.InputEventDevice-class.html#__init__,Method sparked.hardware.power.PowerService.__init__()=sparked.hardware.power.PowerService-class.html#__init__,Method sparked.hardware.serial.SerialPortMonitor.__init__()=sparked.hardware.serial.SerialPortMonitor-class.html#__init__,Method sparked.hardware.serial.SerialProbe.__init__()=sparked.hardware.serial.SerialProbe-class.html#__init__,Method sparked.hardware.serial.SerialProbeProtocol.__init__()=sparked.hardware.serial.SerialProbeProtocol-class.html#__init__,Method sparked.hardware.video.V4LDevice.__init__()=sparked.hardware.video.V4LDevice-class.html#__init__,Method sparked.hardware.video.V4LDeviceMonitor.__init__()=sparked.hardware.video.V4LDeviceMonitor-class.html#__init__,Method sparked.internet.zeroconf._ZeroconfService.__init__()=sparked.internet.zeroconf._ZeroconfService-class.html#__init__,Method sparked.launcher.QuitFlag.__init__()=sparked.launcher.QuitFlag-class.html#__init__,Method sparked.monitors.MonitorContainer.__init__()=sparked.monitors.MonitorContainer-class.html#__init__,Method sparked.monitors.NamedZeroconfMonitor.__init__()=sparked.monitors.NamedZeroconfMonitor-class.html#__init__"><a title="sparked.application.Application.__init__
+sparked.application.StateMachine.__init__
+sparked.events.EventDispatcher.__init__
+sparked.graphics.stage.Stage.__init__
+sparked.gui.MonitorWidget.__init__
+sparked.gui.StatusWindow.__init__
+sparked.hardware.inputevent.InputEvent.__init__
+sparked.hardware.inputevent.InputEventDevice.__init__
+sparked.hardware.power.PowerService.__init__
+sparked.hardware.serial.SerialPortMonitor.__init__
+sparked.hardware.serial.SerialProbe.__init__
+sparked.hardware.serial.SerialProbeProtocol.__init__
+sparked.hardware.video.V4LDevice.__init__
+sparked.hardware.video.V4LDeviceMonitor.__init__
+sparked.internet.zeroconf._ZeroconfService.__init__
+sparked.launcher.QuitFlag.__init__
+sparked.monitors.MonitorContainer.__init__
+sparked.monitors.NamedZeroconfMonitor.__init__" class="py-name" href="#" onclick="return doclink('link-15', '__init__', 'link-15');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-16', 'events', 'link-11');">events</a></tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-17', 'events', 'link-11');">events</a></tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Class sparked.events.EventDispatcher=sparked.events.EventDispatcher-class.html"><a title="sparked.events.EventDispatcher" class="py-name" href="#" onclick="return doclink('link-18', 'EventDispatcher', 'link-18');">EventDispatcher</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="sparked.application.Application.monitors
+sparked.monitors
+sparked.monitors.MonitorContainer.monitors" class="py-name" href="#" onclick="return doclink('link-19', 'monitors', 'link-12');">monitors</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"> </tt>
+<a name="MonitorContainer.startService"></a><div id="MonitorContainer.startService-def"><a name="L37"></a><tt class="py-lineno"> 37</tt> <a class="py-toggle" href="#" id="MonitorContainer.startService-toggle" onclick="return toggle('MonitorContainer.startService');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.MonitorContainer-class.html#startService">startService</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MonitorContainer.startService-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MonitorContainer.startService-expanded"><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-name">service</tt><tt class="py-op">.</tt><tt class="py-name">MultiService</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method sparked.hardware.hal.HardwareMonitor.startService()=sparked.hardware.hal.HardwareMonitor-class.html#startService,Method sparked.hardware.network.NetworkConnectionService.startService()=sparked.hardware.network.NetworkConnectionService-class.html#startService,Method sparked.hardware.network.NetworkWebConnectionService.startService()=sparked.hardware.network.NetworkWebConnectionService-class.html#startService,Method sparked.hardware.power.PowerService.startService()=sparked.hardware.power.PowerService-class.html#startService,Method sparked.monitors.MonitorContainer.startService()=sparked.monitors.MonitorContainer-class.html#startService"><a title="sparked.hardware.hal.HardwareMonitor.startService
+sparked.hardware.network.NetworkConnectionService.startService
+sparked.hardware.network.NetworkWebConnectionService.startService
+sparked.hardware.power.PowerService.startService
+sparked.monitors.MonitorContainer.startService" class="py-name" href="#" onclick="return doclink('link-20', 'startService', 'link-20');">startService</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-name">reactor</tt><tt class="py-op">.</tt><tt class="py-name">callLater</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method sparked.monitors.MonitorContainer.update()=sparked.monitors.MonitorContainer-class.html#update"><a title="sparked.monitors.MonitorContainer.update" class="py-name" href="#" onclick="return doclink('link-21', 'update', 'link-21');">update</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"> </tt>
+<a name="MonitorContainer.addMonitor"></a><div id="MonitorContainer.addMonitor-def"><a name="L42"></a><tt class="py-lineno"> 42</tt> <a class="py-toggle" href="#" id="MonitorContainer.addMonitor-toggle" onclick="return toggle('MonitorContainer.addMonitor');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.MonitorContainer-class.html#addMonitor">addMonitor</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">monitor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MonitorContainer.addMonitor-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MonitorContainer.addMonitor-expanded"><a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">        Add a monitor to the container, and notify that the monitor has changed.</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="sparked.application.Application.monitors
+sparked.monitors
+sparked.monitors.MonitorContainer.monitors" class="py-name" href="#" onclick="return doclink('link-22', 'monitors', 'link-12');">monitors</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">monitor</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-name">monitor</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method sparked.monitors.Monitor.added()=sparked.monitors.Monitor-class.html#added,Method sparked.monitors.NamedZeroconfMonitor.added()=sparked.monitors.NamedZeroconfMonitor-class.html#added,Method sparked.monitors.NetworkMonitor.added()=sparked.monitors.NetworkMonitor-class.html#added,Method sparked.monitors.NetworkWebMonitor.added()=sparked.monitors.NetworkWebMonitor-class.html#added,Method sparked.monitors.PowerMonitor.added()=sparked.monitors.PowerMonitor-class.html#added"><a title="sparked.monitors.Monitor.added
+sparked.monitors.NamedZeroconfMonitor.added
+sparked.monitors.NetworkMonitor.added
+sparked.monitors.NetworkWebMonitor.added
+sparked.monitors.PowerMonitor.added" class="py-name" href="#" onclick="return doclink('link-23', 'added', 'link-23');">added</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="sparked.monitors.MonitorContainer.update" class="py-name" href="#" onclick="return doclink('link-24', 'update', 'link-21');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="MonitorContainer.removeMonitor"></a><div id="MonitorContainer.removeMonitor-def"><a name="L51"></a><tt class="py-lineno"> 51</tt> <a class="py-toggle" href="#" id="MonitorContainer.removeMonitor-toggle" onclick="return toggle('MonitorContainer.removeMonitor');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.MonitorContainer-class.html#removeMonitor">removeMonitor</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">monitor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MonitorContainer.removeMonitor-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MonitorContainer.removeMonitor-expanded"><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring">        Remove a monitor from the container</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-name">i</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="sparked.application.Application.monitors
+sparked.monitors
+sparked.monitors.MonitorContainer.monitors" class="py-name" href="#" onclick="return doclink('link-25', 'monitors', 'link-12');">monitors</a></tt><tt class="py-op">.</tt><tt class="py-name">index</tt><tt class="py-op">(</tt><tt class="py-name">monitor</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="sparked.application.Application.monitors
+sparked.monitors
+sparked.monitors.MonitorContainer.monitors" class="py-name" href="#" onclick="return doclink('link-26', 'monitors', 'link-12');">monitors</a></tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Method sparked.monitors.Monitor.removed()=sparked.monitors.Monitor-class.html#removed,Method sparked.monitors.NetworkMonitor.removed()=sparked.monitors.NetworkMonitor-class.html#removed,Method sparked.monitors.NetworkWebMonitor.removed()=sparked.monitors.NetworkWebMonitor-class.html#removed,Method sparked.monitors.PowerMonitor.removed()=sparked.monitors.PowerMonitor-class.html#removed"><a title="sparked.monitors.Monitor.removed
+sparked.monitors.NetworkMonitor.removed
+sparked.monitors.NetworkWebMonitor.removed
+sparked.monitors.PowerMonitor.removed" class="py-name" href="#" onclick="return doclink('link-27', 'removed', 'link-27');">removed</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-keyword">del</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="sparked.application.Application.monitors
+sparked.monitors
+sparked.monitors.MonitorContainer.monitors" class="py-name" href="#" onclick="return doclink('link-28', 'monitors', 'link-12');">monitors</a></tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="sparked.monitors.MonitorContainer.update" class="py-name" href="#" onclick="return doclink('link-29', 'update', 'link-21');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"> </tt>
+<a name="MonitorContainer.update"></a><div id="MonitorContainer.update-def"><a name="L61"></a><tt class="py-lineno"> 61</tt> <a class="py-toggle" href="#" id="MonitorContainer.update-toggle" onclick="return toggle('MonitorContainer.update');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.MonitorContainer-class.html#update">update</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MonitorContainer.update-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MonitorContainer.update-expanded"><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">        Notify the container that monitor state has been changed or the monitors have been modified.</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-30', 'events', 'link-11');">events</a></tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Method sparked.events.EventDispatcher.dispatch()=sparked.events.EventDispatcher-class.html#dispatch"><a title="sparked.events.EventDispatcher.dispatch" class="py-name" href="#" onclick="return doclink('link-31', 'dispatch', 'link-31');">dispatch</a></tt><tt class="py-op">(</tt><tt class="py-string">"updated"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="sparked.monitors.MonitorContainer.verbose" class="py-name" href="#" onclick="return doclink('link-32', 'verbose', 'link-14');">verbose</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">            <tt id="link-33" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-33', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">msg</tt><tt class="py-op">(</tt><tt class="py-string">"= STATUS ====================="</tt><tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">m</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="sparked.application.Application.monitors
+sparked.monitors
+sparked.monitors.MonitorContainer.monitors" class="py-name" href="#" onclick="return doclink('link-34', 'monitors', 'link-12');">monitors</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">m</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name" targets="Variable sparked.monitors.Monitor.ok=sparked.monitors.Monitor-class.html#ok,Method sparked.monitors.MonitorContainer.ok()=sparked.monitors.MonitorContainer-class.html#ok"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-35', 'ok', 'link-35');">ok</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">                    <tt class="py-name">stat</tt> <tt class="py-op">=</tt> <tt class="py-string">"ok"</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">                    <tt class="py-name">stat</tt> <tt class="py-op">=</tt> <tt class="py-string">"FAIL"</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">                <tt id="link-36" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-36', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">msg</tt><tt class="py-op">(</tt><tt class="py-string">"%-26s%4s"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">m</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name" targets="Variable sparked.application.Application.title=sparked.application.Application-class.html#title,Variable sparked.monitors.NetworkMonitor.title=sparked.monitors.NetworkMonitor-class.html#title,Variable sparked.monitors.NetworkWebMonitor.title=sparked.monitors.NetworkWebMonitor-class.html#title,Variable sparked.monitors.PowerMonitor.title=sparked.monitors.PowerMonitor-class.html#title"><a title="sparked.application.Application.title
+sparked.monitors.NetworkMonitor.title
+sparked.monitors.NetworkWebMonitor.title
+sparked.monitors.PowerMonitor.title" class="py-name" href="#" onclick="return doclink('link-37', 'title', 'link-37');">title</a></tt><tt class="py-op">,</tt> <tt class="py-name">stat</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">            <tt id="link-38" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-38', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">msg</tt><tt class="py-op">(</tt><tt class="py-string">"=============================="</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"> </tt>
+<a name="MonitorContainer.ok"></a><div id="MonitorContainer.ok-def"><a name="L77"></a><tt class="py-lineno"> 77</tt> <a class="py-toggle" href="#" id="MonitorContainer.ok-toggle" onclick="return toggle('MonitorContainer.ok');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.MonitorContainer-class.html#ok">ok</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MonitorContainer.ok-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MonitorContainer.ok-expanded"><a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">m</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="sparked.application.Application.monitors
+sparked.monitors
+sparked.monitors.MonitorContainer.monitors" class="py-name" href="#" onclick="return doclink('link-39', 'monitors', 'link-12');">monitors</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">m</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-40', 'ok', 'link-35');">ok</a></tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+</div></div><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="Monitor"></a><div id="Monitor-def"><a name="L83"></a><tt class="py-lineno"> 83</tt> <a class="py-toggle" href="#" id="Monitor-toggle" onclick="return toggle('Monitor');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.monitors.Monitor-class.html">Monitor</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Monitor-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Monitor-expanded"><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">    A generic monitor</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar ok:  Boolean flag which tells if the monitor's state is 'ok' or not.</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">    <tt id="link-41" class="py-name"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-41', 'ok', 'link-35');">ok</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
+<a name="Monitor.added"></a><div id="Monitor.added-def"><a name="L92"></a><tt class="py-lineno"> 92</tt> <a class="py-toggle" href="#" id="Monitor.added-toggle" onclick="return toggle('Monitor.added');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.Monitor-class.html#added">added</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">container</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Monitor.added-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Monitor.added-expanded"><a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">        Called when monitor is added to container. The container can</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">        be used to hook services to.</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="Monitor.removed"></a><div id="Monitor.removed-def"><a name="L99"></a><tt class="py-lineno"> 99</tt> <a class="py-toggle" href="#" id="Monitor.removed-toggle" onclick="return toggle('Monitor.removed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.Monitor-class.html#removed">removed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">container</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Monitor.removed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Monitor.removed-expanded"><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">        Called when monitor is removed from container. The container can</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">        be used to hook services to.</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div></div><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="PowerMonitor"></a><div id="PowerMonitor-def"><a name="L108"></a><tt class="py-lineno">108</tt> <a class="py-toggle" href="#" id="PowerMonitor-toggle" onclick="return toggle('PowerMonitor');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.monitors.PowerMonitor-class.html">PowerMonitor</a> <tt class="py-op">(</tt><tt class="py-base-class">Monitor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PowerMonitor-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="PowerMonitor-expanded"><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt id="link-42" class="py-name"><a title="sparked.application.Application.title
+sparked.monitors.NetworkMonitor.title
+sparked.monitors.NetworkWebMonitor.title
+sparked.monitors.PowerMonitor.title" class="py-name" href="#" onclick="return doclink('link-42', 'title', 'link-37');">title</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"Computer power"</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="PowerMonitor.added"></a><div id="PowerMonitor.added-def"><a name="L111"></a><tt class="py-lineno">111</tt> <a class="py-toggle" href="#" id="PowerMonitor.added-toggle" onclick="return toggle('PowerMonitor.added');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.PowerMonitor-class.html#added">added</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">container</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PowerMonitor.added-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PowerMonitor.added-expanded"><a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">container</tt> <tt class="py-op">=</tt> <tt class="py-name">container</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">svc</tt> <tt class="py-op">=</tt> <tt id="link-43" class="py-name"><a title="sparked.hardware.power" class="py-name" href="#" onclick="return doclink('link-43', 'power', 'link-5');">power</a></tt><tt class="py-op">.</tt><tt id="link-44" class="py-name" targets="Class sparked.hardware.power.PowerService=sparked.hardware.power.PowerService-class.html"><a title="sparked.hardware.power.PowerService" class="py-name" href="#" onclick="return doclink('link-44', 'PowerService', 'link-44');">PowerService</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">svc</tt><tt class="py-op">.</tt><tt class="py-name">setServiceParent</tt><tt class="py-op">(</tt><tt class="py-name">container</tt><tt class="py-op">)</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt id="link-45" class="py-name"><a title="sparked.hardware.power" class="py-name" href="#" onclick="return doclink('link-45', 'power', 'link-5');">power</a></tt><tt class="py-op">.</tt><tt id="link-46" class="py-name" targets="Variable sparked.hardware.power.powerEvents=sparked.hardware.power-module.html#powerEvents"><a title="sparked.hardware.power.powerEvents" class="py-name" href="#" onclick="return doclink('link-46', 'powerEvents', 'link-46');">powerEvents</a></tt><tt class="py-op">.</tt><tt class="py-name">addObserver</tt><tt class="py-op">(</tt><tt class="py-string">"available"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-47" class="py-name" targets="Method sparked.hardware.power.PowerService.powerEvent()=sparked.hardware.power.PowerService-class.html#powerEvent,Method sparked.monitors.PowerMonitor.powerEvent()=sparked.monitors.PowerMonitor-class.html#powerEvent"><a title="sparked.hardware.power.PowerService.powerEvent
+sparked.monitors.PowerMonitor.powerEvent" class="py-name" href="#" onclick="return doclink('link-47', 'powerEvent', 'link-47');">powerEvent</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"> </tt>
+<a name="PowerMonitor.removed"></a><div id="PowerMonitor.removed-def"><a name="L118"></a><tt class="py-lineno">118</tt> <a class="py-toggle" href="#" id="PowerMonitor.removed-toggle" onclick="return toggle('PowerMonitor.removed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.PowerMonitor-class.html#removed">removed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PowerMonitor.removed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PowerMonitor.removed-expanded"><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">svc</tt><tt class="py-op">.</tt><tt class="py-name">disownServiceParent</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
+<a name="PowerMonitor.powerEvent"></a><div id="PowerMonitor.powerEvent-def"><a name="L122"></a><tt class="py-lineno">122</tt> <a class="py-toggle" href="#" id="PowerMonitor.powerEvent-toggle" onclick="return toggle('PowerMonitor.powerEvent');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.PowerMonitor-class.html#powerEvent">powerEvent</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">available</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PowerMonitor.powerEvent-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PowerMonitor.powerEvent-expanded"><a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">available</tt> <tt class="py-op">!=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-48', 'ok', 'link-35');">ok</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-49', 'ok', 'link-35');">ok</a></tt> <tt class="py-op">=</tt> <tt class="py-name">available</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">container</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name"><a title="sparked.monitors.MonitorContainer.update" class="py-name" href="#" onclick="return doclink('link-50', 'update', 'link-21');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="NetworkMonitor"></a><div id="NetworkMonitor-def"><a name="L129"></a><tt class="py-lineno">129</tt> <a class="py-toggle" href="#" id="NetworkMonitor-toggle" onclick="return toggle('NetworkMonitor');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.monitors.NetworkMonitor-class.html">NetworkMonitor</a><tt class="py-op">(</tt><tt class="py-base-class">Monitor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkMonitor-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="NetworkMonitor-expanded"><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">    <tt id="link-51" class="py-name"><a title="sparked.application.Application.title
+sparked.monitors.NetworkMonitor.title
+sparked.monitors.NetworkWebMonitor.title
+sparked.monitors.PowerMonitor.title" class="py-name" href="#" onclick="return doclink('link-51', 'title', 'link-37');">title</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"Network connection"</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="NetworkMonitor.added"></a><div id="NetworkMonitor.added-def"><a name="L132"></a><tt class="py-lineno">132</tt> <a class="py-toggle" href="#" id="NetworkMonitor.added-toggle" onclick="return toggle('NetworkMonitor.added');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.NetworkMonitor-class.html#added">added</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">container</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkMonitor.added-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NetworkMonitor.added-expanded"><a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">container</tt> <tt class="py-op">=</tt> <tt class="py-name">container</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">svc</tt> <tt class="py-op">=</tt> <tt id="link-52" class="py-name"><a title="sparked.hardware.network" class="py-name" href="#" onclick="return doclink('link-52', 'network', 'link-6');">network</a></tt><tt class="py-op">.</tt><tt id="link-53" class="py-name" targets="Class sparked.hardware.network.NetworkConnectionService=sparked.hardware.network.NetworkConnectionService-class.html"><a title="sparked.hardware.network.NetworkConnectionService" class="py-name" href="#" onclick="return doclink('link-53', 'NetworkConnectionService', 'link-53');">NetworkConnectionService</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">svc</tt><tt class="py-op">.</tt><tt class="py-name">setServiceParent</tt><tt class="py-op">(</tt><tt class="py-name">container</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt id="link-54" class="py-name"><a title="sparked.hardware.network" class="py-name" href="#" onclick="return doclink('link-54', 'network', 'link-6');">network</a></tt><tt class="py-op">.</tt><tt id="link-55" class="py-name" targets="Variable sparked.hardware.network.networkEvents=sparked.hardware.network-module.html#networkEvents"><a title="sparked.hardware.network.networkEvents" class="py-name" href="#" onclick="return doclink('link-55', 'networkEvents', 'link-55');">networkEvents</a></tt><tt class="py-op">.</tt><tt class="py-name">addObserver</tt><tt class="py-op">(</tt><tt class="py-string">"connected"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-56" class="py-name" targets="Method sparked.hardware.network.NetworkWebConnectionService.event()=sparked.hardware.network.NetworkWebConnectionService-class.html#event,Method sparked.monitors.NetworkMonitor.event()=sparked.monitors.NetworkMonitor-class.html#event,Method sparked.monitors.NetworkWebMonitor.event()=sparked.monitors.NetworkWebMonitor-class.html#event"><a title="sparked.hardware.network.NetworkWebConnectionService.event
+sparked.monitors.NetworkMonitor.event
+sparked.monitors.NetworkWebMonitor.event" class="py-name" href="#" onclick="return doclink('link-56', 'event', 'link-56');">event</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"> </tt>
+<a name="NetworkMonitor.removed"></a><div id="NetworkMonitor.removed-def"><a name="L139"></a><tt class="py-lineno">139</tt> <a class="py-toggle" href="#" id="NetworkMonitor.removed-toggle" onclick="return toggle('NetworkMonitor.removed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.NetworkMonitor-class.html#removed">removed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkMonitor.removed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NetworkMonitor.removed-expanded"><a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">svc</tt><tt class="py-op">.</tt><tt class="py-name">disownServiceParent</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"> </tt>
+<a name="NetworkMonitor.event"></a><div id="NetworkMonitor.event-def"><a name="L143"></a><tt class="py-lineno">143</tt> <a class="py-toggle" href="#" id="NetworkMonitor.event-toggle" onclick="return toggle('NetworkMonitor.event');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.NetworkMonitor-class.html#event">event</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">connected</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkMonitor.event-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NetworkMonitor.event-expanded"><a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-57" class="py-name" targets="Variable sparked.hardware.inputevent.InputEventDevice.connected=sparked.hardware.inputevent.InputEventDevice-class.html#connected"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-57', 'connected', 'link-57');">connected</a></tt> <tt class="py-op">!=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-58', 'ok', 'link-35');">ok</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-59', 'ok', 'link-35');">ok</a></tt> <tt class="py-op">=</tt> <tt id="link-60" class="py-name"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-60', 'connected', 'link-57');">connected</a></tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">container</tt><tt class="py-op">.</tt><tt id="link-61" class="py-name"><a title="sparked.monitors.MonitorContainer.update" class="py-name" href="#" onclick="return doclink('link-61', 'update', 'link-21');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"> </tt>
+<a name="NetworkWebMonitor"></a><div id="NetworkWebMonitor-def"><a name="L150"></a><tt class="py-lineno">150</tt> <a class="py-toggle" href="#" id="NetworkWebMonitor-toggle" onclick="return toggle('NetworkWebMonitor');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.monitors.NetworkWebMonitor-class.html">NetworkWebMonitor</a><tt class="py-op">(</tt><tt class="py-base-class">Monitor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkWebMonitor-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="NetworkWebMonitor-expanded"><a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">    <tt id="link-62" class="py-name"><a title="sparked.application.Application.title
+sparked.monitors.NetworkMonitor.title
+sparked.monitors.NetworkWebMonitor.title
+sparked.monitors.PowerMonitor.title" class="py-name" href="#" onclick="return doclink('link-62', 'title', 'link-37');">title</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"Internet connection"</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"> </tt>
+<a name="NetworkWebMonitor.added"></a><div id="NetworkWebMonitor.added-def"><a name="L153"></a><tt class="py-lineno">153</tt> <a class="py-toggle" href="#" id="NetworkWebMonitor.added-toggle" onclick="return toggle('NetworkWebMonitor.added');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.NetworkWebMonitor-class.html#added">added</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">container</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkWebMonitor.added-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NetworkWebMonitor.added-expanded"><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">container</tt> <tt class="py-op">=</tt> <tt class="py-name">container</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">svc</tt> <tt class="py-op">=</tt> <tt id="link-63" class="py-name"><a title="sparked.hardware.network" class="py-name" href="#" onclick="return doclink('link-63', 'network', 'link-6');">network</a></tt><tt class="py-op">.</tt><tt id="link-64" class="py-name" targets="Class sparked.hardware.network.NetworkWebConnectionService=sparked.hardware.network.NetworkWebConnectionService-class.html"><a title="sparked.hardware.network.NetworkWebConnectionService" class="py-name" href="#" onclick="return doclink('link-64', 'NetworkWebConnectionService', 'link-64');">NetworkWebConnectionService</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">svc</tt><tt class="py-op">.</tt><tt class="py-name">setServiceParent</tt><tt class="py-op">(</tt><tt class="py-name">container</tt><tt class="py-op">)</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt id="link-65" class="py-name"><a title="sparked.hardware.network" class="py-name" href="#" onclick="return doclink('link-65', 'network', 'link-6');">network</a></tt><tt class="py-op">.</tt><tt id="link-66" class="py-name"><a title="sparked.hardware.network.networkEvents" class="py-name" href="#" onclick="return doclink('link-66', 'networkEvents', 'link-55');">networkEvents</a></tt><tt class="py-op">.</tt><tt class="py-name">addObserver</tt><tt class="py-op">(</tt><tt class="py-string">"web-connected"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-67" class="py-name"><a title="sparked.hardware.network.NetworkWebConnectionService.event
+sparked.monitors.NetworkMonitor.event
+sparked.monitors.NetworkWebMonitor.event" class="py-name" href="#" onclick="return doclink('link-67', 'event', 'link-56');">event</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"> </tt>
+<a name="NetworkWebMonitor.removed"></a><div id="NetworkWebMonitor.removed-def"><a name="L160"></a><tt class="py-lineno">160</tt> <a class="py-toggle" href="#" id="NetworkWebMonitor.removed-toggle" onclick="return toggle('NetworkWebMonitor.removed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.NetworkWebMonitor-class.html#removed">removed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkWebMonitor.removed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NetworkWebMonitor.removed-expanded"><a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">svc</tt><tt class="py-op">.</tt><tt class="py-name">disownServiceParent</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line"> </tt>
+<a name="NetworkWebMonitor.event"></a><div id="NetworkWebMonitor.event-def"><a name="L164"></a><tt class="py-lineno">164</tt> <a class="py-toggle" href="#" id="NetworkWebMonitor.event-toggle" onclick="return toggle('NetworkWebMonitor.event');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.NetworkWebMonitor-class.html#event">event</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">connected</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkWebMonitor.event-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NetworkWebMonitor.event-expanded"><a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-68" class="py-name"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-68', 'connected', 'link-57');">connected</a></tt> <tt class="py-op">!=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-69" class="py-name"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-69', 'ok', 'link-35');">ok</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-70" class="py-name"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-70', 'ok', 'link-35');">ok</a></tt> <tt class="py-op">=</tt> <tt id="link-71" class="py-name"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-71', 'connected', 'link-57');">connected</a></tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">container</tt><tt class="py-op">.</tt><tt id="link-72" class="py-name"><a title="sparked.monitors.MonitorContainer.update" class="py-name" href="#" onclick="return doclink('link-72', 'update', 'link-21');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line"> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"> </tt>
+<a name="NamedZeroconfMonitor"></a><div id="NamedZeroconfMonitor-def"><a name="L171"></a><tt class="py-lineno">171</tt> <a class="py-toggle" href="#" id="NamedZeroconfMonitor-toggle" onclick="return toggle('NamedZeroconfMonitor');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.monitors.NamedZeroconfMonitor-class.html">NamedZeroconfMonitor</a><tt class="py-op">(</tt><tt class="py-base-class">Monitor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NamedZeroconfMonitor-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="NamedZeroconfMonitor-expanded"><a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line"><tt class="py-docstring">    Monitor which is 'ok' when it has detected a service with given</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line"><tt class="py-docstring">    type and name.</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar type: The service type that needs to be matched. E.g. C{_daap._tcp}.</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar name: The service name that needs to be matched. E.g. C{Arjan's Music}.</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line"> </tt>
+<a name="NamedZeroconfMonitor.__init__"></a><div id="NamedZeroconfMonitor.__init__-def"><a name="L180"></a><tt class="py-lineno">180</tt> <a class="py-toggle" href="#" id="NamedZeroconfMonitor.__init__-toggle" onclick="return toggle('NamedZeroconfMonitor.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.NamedZeroconfMonitor-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">type</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NamedZeroconfMonitor.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NamedZeroconfMonitor.__init__-expanded"><a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">name</tt> <tt class="py-op">=</tt> <tt class="py-name">name</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-73" class="py-name"><a title="sparked.application.Application.title
+sparked.monitors.NetworkMonitor.title
+sparked.monitors.NetworkWebMonitor.title
+sparked.monitors.PowerMonitor.title" class="py-name" href="#" onclick="return doclink('link-73', 'title', 'link-37');">title</a></tt> <tt class="py-op">=</tt> <tt class="py-name">name</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">type</tt> <tt class="py-op">=</tt> <tt class="py-name">type</tt> </tt>
+</div><a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line"> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line"> </tt>
+<a name="NamedZeroconfMonitor.added"></a><div id="NamedZeroconfMonitor.added-def"><a name="L186"></a><tt class="py-lineno">186</tt> <a class="py-toggle" href="#" id="NamedZeroconfMonitor.added-toggle" onclick="return toggle('NamedZeroconfMonitor.added');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.NamedZeroconfMonitor-class.html#added">added</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">container</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NamedZeroconfMonitor.added-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NamedZeroconfMonitor.added-expanded"><a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">container</tt> <tt class="py-op">=</tt> <tt class="py-name">container</tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">        <tt id="link-74" class="py-name"><a title="sparked.internet.zeroconf" class="py-name" href="#" onclick="return doclink('link-74', 'zeroconf', 'link-9');">zeroconf</a></tt><tt class="py-op">.</tt><tt id="link-75" class="py-name" targets="Variable sparked.internet.zeroconf.zeroconfService=sparked.internet.zeroconf-module.html#zeroconfService"><a title="sparked.internet.zeroconf.zeroconfService" class="py-name" href="#" onclick="return doclink('link-75', 'zeroconfService', 'link-75');">zeroconfService</a></tt><tt class="py-op">.</tt><tt id="link-76" class="py-name" targets="Method sparked.internet.zeroconf._ZeroconfService.subscribeTo()=sparked.internet.zeroconf._ZeroconfService-class.html#subscribeTo"><a title="sparked.internet.zeroconf._ZeroconfService.subscribeTo" class="py-name" href="#" onclick="return doclink('link-76', 'subscribeTo', 'link-76');">subscribeTo</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">type</tt><tt class="py-op">)</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">        <tt id="link-77" class="py-name"><a title="sparked.internet.zeroconf" class="py-name" href="#" onclick="return doclink('link-77', 'zeroconf', 'link-9');">zeroconf</a></tt><tt class="py-op">.</tt><tt id="link-78" class="py-name" targets="Variable sparked.internet.zeroconf.zeroconfEvents=sparked.internet.zeroconf-module.html#zeroconfEvents"><a title="sparked.internet.zeroconf.zeroconfEvents" class="py-name" href="#" onclick="return doclink('link-78', 'zeroconfEvents', 'link-78');">zeroconfEvents</a></tt><tt class="py-op">.</tt><tt class="py-name">addObserver</tt><tt class="py-op">(</tt><tt class="py-string">"service-found"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-79" class="py-name" targets="Method sparked.monitors.NamedZeroconfMonitor._found()=sparked.monitors.NamedZeroconfMonitor-class.html#_found"><a title="sparked.monitors.NamedZeroconfMonitor._found" class="py-name" href="#" onclick="return doclink('link-79', '_found', 'link-79');">_found</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">        <tt id="link-80" class="py-name"><a title="sparked.internet.zeroconf" class="py-name" href="#" onclick="return doclink('link-80', 'zeroconf', 'link-9');">zeroconf</a></tt><tt class="py-op">.</tt><tt id="link-81" class="py-name"><a title="sparked.internet.zeroconf.zeroconfEvents" class="py-name" href="#" onclick="return doclink('link-81', 'zeroconfEvents', 'link-78');">zeroconfEvents</a></tt><tt class="py-op">.</tt><tt class="py-name">addObserver</tt><tt class="py-op">(</tt><tt class="py-string">"service-lost"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-82" class="py-name" targets="Method sparked.monitors.NamedZeroconfMonitor._lost()=sparked.monitors.NamedZeroconfMonitor-class.html#_lost"><a title="sparked.monitors.NamedZeroconfMonitor._lost" class="py-name" href="#" onclick="return doclink('link-82', '_lost', 'link-82');">_lost</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line"> </tt>
+<a name="NamedZeroconfMonitor._found"></a><div id="NamedZeroconfMonitor._found-def"><a name="L193"></a><tt class="py-lineno">193</tt> <a class="py-toggle" href="#" id="NamedZeroconfMonitor._found-toggle" onclick="return toggle('NamedZeroconfMonitor._found');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.NamedZeroconfMonitor-class.html#_found">_found</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kw</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NamedZeroconfMonitor._found-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NamedZeroconfMonitor._found-expanded"><a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">kw</tt><tt class="py-op">[</tt><tt class="py-string">'type'</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">type</tt> <tt class="py-keyword">and</tt> <tt class="py-name">name</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">name</tt><tt class="py-op">:</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-83" class="py-name"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-83', 'ok', 'link-35');">ok</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">container</tt><tt class="py-op">.</tt><tt id="link-84" class="py-name"><a title="sparked.monitors.MonitorContainer.update" class="py-name" href="#" onclick="return doclink('link-84', 'update', 'link-21');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line"> </tt>
+<a name="NamedZeroconfMonitor._lost"></a><div id="NamedZeroconfMonitor._lost-def"><a name="L199"></a><tt class="py-lineno">199</tt> <a class="py-toggle" href="#" id="NamedZeroconfMonitor._lost-toggle" onclick="return toggle('NamedZeroconfMonitor._lost');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.monitors.NamedZeroconfMonitor-class.html#_lost">_lost</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kw</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NamedZeroconfMonitor._lost-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NamedZeroconfMonitor._lost-expanded"><a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">kw</tt><tt class="py-op">[</tt><tt class="py-string">'type'</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">type</tt> <tt class="py-keyword">and</tt> <tt class="py-name">name</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">name</tt><tt class="py-op">:</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-85" class="py-name"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-85', 'ok', 'link-35');">ok</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">container</tt><tt class="py-op">.</tt><tt id="link-86" class="py-name"><a title="sparked.monitors.MonitorContainer.update" class="py-name" href="#" onclick="return doclink('link-86', 'update', 'link-21');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Sep 30 15:21:52 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

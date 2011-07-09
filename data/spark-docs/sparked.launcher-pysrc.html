@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>sparked.launcher</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="sparked-module.html">Package&nbsp;sparked</a> ::
+        Module&nbsp;launcher
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="sparked.launcher-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="sparked.launcher-module.html">Module sparked.launcher</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2010 Arjan Scherpenisse</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># See LICENSE for details.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">The Sparked application launcher.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">Sparked applications are launched in a subprocess: so that if the</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">application crashes, it is started again.</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">subprocess</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Variable sparked.hardware.inputevent.InputEvent.time=sparked.hardware.inputevent.InputEvent-class.html#time"><a title="sparked.hardware.inputevent.InputEvent.time" class="py-name" href="#" onclick="return doclink('link-0', 'time', 'link-0');">time</a></tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package sparked.internet=sparked.internet-module.html"><a title="sparked.internet" class="py-name" href="#" onclick="return doclink('link-1', 'internet', 'link-1');">internet</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">reactor</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt class="py-name">python</tt> <tt class="py-keyword">import</tt> <tt class="py-name">usage</tt><tt class="py-op">,</tt> <tt id="link-2" class="py-name" targets="Method sparked.gui.StatusWindow.log()=sparked.gui.StatusWindow-class.html#log"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-2', 'log', 'link-2');">log</a></tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Module sparked.application=sparked.application-module.html"><a title="sparked.application" class="py-name" href="#" onclick="return doclink('link-3', 'application', 'link-3');">application</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">service</tt><tt class="py-op">,</tt> <tt class="py-name">app</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-4" class="py-name" targets="Package sparked=sparked-module.html"><a title="sparked" class="py-name" href="#" onclick="return doclink('link-4', 'sparked', 'link-4');">sparked</a></tt> <tt class="py-keyword">import</tt> <tt id="link-5" class="py-name"><a title="sparked.application" class="py-name" href="#" onclick="return doclink('link-5', 'application', 'link-3');">application</a></tt><tt class="py-op">,</tt> <tt class="py-name">__version__</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="Options"></a><div id="Options-def"><a name="L23"></a><tt class="py-lineno"> 23</tt> <a class="py-toggle" href="#" id="Options-toggle" onclick="return toggle('Options');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.launcher.Options-class.html">Options</a><tt class="py-op">(</tt><tt class="py-base-class">usage</tt><tt class="py-op">.</tt><tt class="py-base-class">Options</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Options-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Options-expanded"><a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">    <tt id="link-6" class="py-name" targets="Variable sparked.launcher.Options.longdesc=sparked.launcher.Options-class.html#longdesc"><a title="sparked.launcher.Options.longdesc" class="py-name" href="#" onclick="return doclink('link-6', 'longdesc', 'link-6');">longdesc</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"""The &lt;application&gt; argument specifies a Python module which is executed as the main sparked class. To see which options hold for an application, start:</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-string"># sparkd &lt;application&gt; --help</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">    <tt id="link-7" class="py-name" targets="Variable sparked.launcher.Options.optFlags=sparked.launcher.Options-class.html#optFlags"><a title="sparked.launcher.Options.optFlags" class="py-name" href="#" onclick="return doclink('link-7', 'optFlags', 'link-7');">optFlags</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">[</tt><tt class="py-string">"debug"</tt><tt class="py-op">,</tt> <tt class="py-string">"d"</tt><tt class="py-op">,</tt> <tt class="py-string">"Debug mode"</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">                <tt class="py-op">[</tt><tt class="py-string">"no-subprocess"</tt><tt class="py-op">,</tt> <tt class="py-string">"N"</tt><tt class="py-op">,</tt> <tt class="py-string">"Do not start a subprocess for crash prevention"</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">                <tt class="py-op">]</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">    <tt id="link-8" class="py-name" targets="Variable sparked.launcher.Options.optParameters=sparked.launcher.Options-class.html#optParameters"><a title="sparked.launcher.Options.optParameters" class="py-name" href="#" onclick="return doclink('link-8', 'optParameters', 'link-8');">optParameters</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-string">'id'</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-string">'Application id (defaults to the sparked module name)'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-string">'pidfile'</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-string">'Pidfile location (defaults to /tmp/&lt;id&gt;/sparkd.pid)'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-string">'logfile'</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-string">'Pidfile location (defaults to /tmp/&lt;id&gt;/sparkd.log)'</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">            <tt class="py-op">]</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="Options.getSynopsis"></a><div id="Options.getSynopsis-def"><a name="L41"></a><tt class="py-lineno"> 41</tt> <a class="py-toggle" href="#" id="Options.getSynopsis-toggle" onclick="return toggle('Options.getSynopsis');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher.Options-class.html#getSynopsis">getSynopsis</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Options.getSynopsis-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Options.getSynopsis-expanded"><a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-string">"sparkd [options] &lt;application&gt; [app_options]"</tt> </tt>
+</div><a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"> </tt>
+<a name="Options.opt_version"></a><div id="Options.opt_version-def"><a name="L44"></a><tt class="py-lineno"> 44</tt> <a class="py-toggle" href="#" id="Options.opt_version-toggle" onclick="return toggle('Options.opt_version');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher.Options-class.html#opt_version">opt_version</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Options.opt_version-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Options.opt_version-expanded"><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">basename</tt><tt class="py-op">(</tt><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">argv</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">__version__</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"> </tt>
+<a name="QuitFlag"></a><div id="QuitFlag-def"><a name="L49"></a><tt class="py-lineno"> 49</tt> <a class="py-toggle" href="#" id="QuitFlag-toggle" onclick="return toggle('QuitFlag');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.launcher.QuitFlag-class.html">QuitFlag</a><tt class="py-op">:</tt> </tt>
+</div><div id="QuitFlag-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="QuitFlag-expanded"><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar file: A C{FilePath} pointing to the quit-flag file.</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="QuitFlag.__init__"></a><div id="QuitFlag.__init__-def"><a name="L53"></a><tt class="py-lineno"> 53</tt> <a class="py-toggle" href="#" id="QuitFlag.__init__-toggle" onclick="return toggle('QuitFlag.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher.QuitFlag-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">file</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="QuitFlag.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="QuitFlag.__init__-expanded"><a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">file</tt> <tt class="py-op">=</tt> <tt class="py-name">file</tt> </tt>
+</div><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"> </tt>
+<a name="QuitFlag.set"></a><div id="QuitFlag.set-def"><a name="L57"></a><tt class="py-lineno"> 57</tt> <a class="py-toggle" href="#" id="QuitFlag.set-toggle" onclick="return toggle('QuitFlag.set');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher.QuitFlag-class.html#set">set</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="QuitFlag.set-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="QuitFlag.set-expanded"><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-name">f</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">file</tt><tt class="py-op">.</tt><tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-string">"w"</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">"quit"</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">close</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="QuitFlag.reset"></a><div id="QuitFlag.reset-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="QuitFlag.reset-toggle" onclick="return toggle('QuitFlag.reset');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher.QuitFlag-class.html#reset">reset</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="QuitFlag.reset-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="QuitFlag.reset-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">file</tt><tt class="py-op">.</tt><tt class="py-name">remove</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">            <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
+<a name="QuitFlag.isSet"></a><div id="QuitFlag.isSet-def"><a name="L70"></a><tt class="py-lineno"> 70</tt> <a class="py-toggle" href="#" id="QuitFlag.isSet-toggle" onclick="return toggle('QuitFlag.isSet');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher.QuitFlag-class.html#isSet">isSet</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="QuitFlag.isSet-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="QuitFlag.isSet-expanded"><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">file</tt><tt class="py-op">.</tt><tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-string">"r"</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">readlines</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-string">"quit"</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+</div></div><a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"> </tt>
+<a name="splitOptions"></a><div id="splitOptions-def"><a name="L79"></a><tt class="py-lineno"> 79</tt> <a class="py-toggle" href="#" id="splitOptions-toggle" onclick="return toggle('splitOptions');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher-module.html#splitOptions">splitOptions</a><tt class="py-op">(</tt><tt class="py-param">args</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="splitOptions-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="splitOptions-expanded"><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-name">app</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">a</tt> <tt class="py-keyword">for</tt> <tt class="py-name">a</tt> <tt class="py-keyword">in</tt> <tt class="py-name">args</tt> <tt class="py-keyword">if</tt> <tt class="py-name">a</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-string">"-"</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">IndexError</tt><tt class="py-op">:</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">args</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-name">i</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">index</tt><tt class="py-op">(</tt><tt class="py-name">app</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">:</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">app</tt><tt class="py-op">,</tt> <tt class="py-name">args</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">+</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
+<a name="run"></a><div id="run-def"><a name="L88"></a><tt class="py-lineno"> 88</tt> <a class="py-toggle" href="#" id="run-toggle" onclick="return toggle('run');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher-module.html#run">run</a><tt class="py-op">(</tt><tt class="py-param">appName</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="run-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="run-expanded"><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">    <tt id="link-9" class="py-name"><a title="sparked.application" class="py-name" href="#" onclick="return doclink('link-9', 'application', 'link-3');">application</a></tt> <tt class="py-op">=</tt> <tt class="py-name">service</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Class sparked.application.Application=sparked.application.Application-class.html"><a title="sparked.application.Application" class="py-name" href="#" onclick="return doclink('link-10', 'Application', 'link-10');">Application</a></tt><tt class="py-op">(</tt><tt id="link-11" class="py-name" targets="Variable sparked.application.Options.appName=sparked.application.Options-class.html#appName"><a title="sparked.application.Options.appName" class="py-name" href="#" onclick="return doclink('link-11', 'appName', 'link-11');">appName</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">     </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">    <tt class="py-keyword">from</tt> <tt id="link-12" class="py-name"><a title="sparked" class="py-name" href="#" onclick="return doclink('link-12', 'sparked', 'link-4');">sparked</a></tt> <tt class="py-keyword">import</tt> <tt id="link-13" class="py-name" targets="Module sparked.tap=sparked.tap-module.html"><a title="sparked.tap" class="py-name" href="#" onclick="return doclink('link-13', 'tap', 'link-13');">tap</a></tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">    <tt class="py-name">config</tt> <tt class="py-op">=</tt> <tt id="link-14" class="py-name"><a title="sparked.tap" class="py-name" href="#" onclick="return doclink('link-14', 'tap', 'link-13');">tap</a></tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Class sparked.application.Options=sparked.application.Options-class.html,Class sparked.launcher.Options=sparked.launcher.Options-class.html,Class sparked.tap.Options=sparked.tap.Options-class.html"><a title="sparked.application.Options
+sparked.launcher.Options
+sparked.tap.Options" class="py-name" href="#" onclick="return doclink('link-15', 'Options', 'link-15');">Options</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">    <tt class="py-name">config</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method sparked.tap.Options.parseOptions()=sparked.tap.Options-class.html#parseOptions"><a title="sparked.tap.Options.parseOptions" class="py-name" href="#" onclick="return doclink('link-16', 'parseOptions', 'link-16');">parseOptions</a></tt><tt class="py-op">(</tt><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">argv</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">    <tt class="py-name">svc</tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name"><a title="sparked.tap" class="py-name" href="#" onclick="return doclink('link-17', 'tap', 'link-13');">tap</a></tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Function sparked.tap.makeService()=sparked.tap-module.html#makeService"><a title="sparked.tap.makeService" class="py-name" href="#" onclick="return doclink('link-18', 'makeService', 'link-18');">makeService</a></tt><tt class="py-op">(</tt><tt class="py-name">config</tt><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">    <tt class="py-name">svc</tt><tt class="py-op">.</tt><tt class="py-name">setServiceParent</tt><tt class="py-op">(</tt><tt id="link-19" class="py-name"><a title="sparked.application" class="py-name" href="#" onclick="return doclink('link-19', 'application', 'link-3');">application</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">         </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">    <tt class="py-name">app</tt><tt class="py-op">.</tt><tt class="py-name">startApplication</tt><tt class="py-op">(</tt><tt id="link-20" class="py-name"><a title="sparked.application" class="py-name" href="#" onclick="return doclink('link-20', 'application', 'link-3');">application</a></tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">    <tt id="link-21" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-21', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">addObserver</tt><tt class="py-op">(</tt><tt id="link-22" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-22', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">FileLogObserver</tt><tt class="py-op">(</tt><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">stdout</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">emit</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">    <tt class="py-name">reactor</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Function sparked.launcher.run()=sparked.launcher-module.html#run"><a title="sparked.launcher.run" class="py-name" href="#" onclick="return doclink('link-23', 'run', 'link-23');">run</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="launch"></a><div id="launch-def"><a name="L103"></a><tt class="py-lineno">103</tt> <a class="py-toggle" href="#" id="launch-toggle" onclick="return toggle('launch');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher-module.html#launch">launch</a><tt class="py-op">(</tt><tt class="py-param">baseOptions</tt><tt class="py-op">,</tt> <tt class="py-param">env</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="launch-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="launch-expanded"><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">    <tt class="py-name">argv</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">    <tt class="py-name">argv</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">"twistd"</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">    <tt class="py-name">argv</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">"--pidfile"</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">    <tt class="py-name">argv</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">baseOptions</tt><tt class="py-op">[</tt><tt class="py-string">'pidfile'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">    <tt class="py-name">argv</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'-r'</tt><tt class="py-op">)</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt class="py-name">argv</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'gtk2'</tt><tt class="py-op">)</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">    <tt class="py-name">argv</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'-n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">    <tt class="py-name">argv</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'sparked'</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">    <tt class="py-name">argv</tt> <tt class="py-op">=</tt> <tt class="py-name">argv</tt> <tt class="py-op">+</tt> <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">argv</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">subprocess</tt><tt class="py-op">.</tt><tt class="py-name">call</tt><tt class="py-op">(</tt><tt class="py-name">argv</tt><tt class="py-op">,</tt> <tt class="py-name">env</tt><tt class="py-op">=</tt><tt class="py-name">env</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"> </tt>
+<a name="launchLoop"></a><div id="launchLoop-def"><a name="L117"></a><tt class="py-lineno">117</tt> <a class="py-toggle" href="#" id="launchLoop-toggle" onclick="return toggle('launchLoop');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher-module.html#launchLoop">launchLoop</a><tt class="py-op">(</tt><tt class="py-param">app</tt><tt class="py-op">,</tt> <tt class="py-param">options</tt><tt class="py-op">,</tt> <tt class="py-param">env</tt><tt class="py-op">,</tt> <tt class="py-param">appPath</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="launchLoop-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="launchLoop-expanded"><a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">    <tt id="link-24" class="py-name" targets="Variable sparked.application.Application.quitFlag=sparked.application.Application-class.html#quitFlag"><a title="sparked.application.Application.quitFlag" class="py-name" href="#" onclick="return doclink('link-24', 'quitFlag', 'link-24');">quitFlag</a></tt> <tt class="py-op">=</tt> <tt id="link-25" class="py-name" targets="Class sparked.launcher.QuitFlag=sparked.launcher.QuitFlag-class.html"><a title="sparked.launcher.QuitFlag" class="py-name" href="#" onclick="return doclink('link-25', 'QuitFlag', 'link-25');">QuitFlag</a></tt><tt class="py-op">(</tt><tt class="py-name">appPath</tt><tt class="py-op">.</tt><tt class="py-name">child</tt><tt class="py-op">(</tt><tt class="py-string">"quitflag"</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">    <tt id="link-26" class="py-name"><a title="sparked.application.Application.quitFlag" class="py-name" href="#" onclick="return doclink('link-26', 'quitFlag', 'link-24');">quitFlag</a></tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Method sparked.launcher.QuitFlag.reset()=sparked.launcher.QuitFlag-class.html#reset"><a title="sparked.launcher.QuitFlag.reset" class="py-name" href="#" onclick="return doclink('link-27', 'reset', 'link-27');">reset</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">    <tt class="py-name">respawned</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">    <tt class="py-keyword">while</tt> <tt class="py-name">True</tt><tt class="py-op">:</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt id="link-28" class="py-name" targets="Method sparked.hardware.serial.SerialProbe.start()=sparked.hardware.serial.SerialProbe-class.html#start"><a title="sparked.hardware.serial.SerialProbe.start" class="py-name" href="#" onclick="return doclink('link-28', 'start', 'link-28');">start</a></tt> <tt class="py-op">=</tt> <tt id="link-29" class="py-name"><a title="sparked.hardware.inputevent.InputEvent.time" class="py-name" href="#" onclick="return doclink('link-29', 'time', 'link-0');">time</a></tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="sparked.hardware.inputevent.InputEvent.time" class="py-name" href="#" onclick="return doclink('link-30', 'time', 'link-0');">time</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">        <tt id="link-31" class="py-name" targets="Function sparked.launcher.launch()=sparked.launcher-module.html#launch"><a title="sparked.launcher.launch" class="py-name" href="#" onclick="return doclink('link-31', 'launch', 'link-31');">launch</a></tt><tt class="py-op">(</tt><tt class="py-name">options</tt><tt class="py-op">,</tt> <tt class="py-name">env</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-32" class="py-name"><a title="sparked.hardware.inputevent.InputEvent.time" class="py-name" href="#" onclick="return doclink('link-32', 'time', 'link-0');">time</a></tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="sparked.hardware.inputevent.InputEvent.time" class="py-name" href="#" onclick="return doclink('link-33', 'time', 'link-0');">time</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt id="link-34" class="py-name"><a title="sparked.hardware.serial.SerialProbe.start" class="py-name" href="#" onclick="return doclink('link-34', 'start', 'link-28');">start</a></tt> <tt class="py-op">&lt;</tt> <tt class="py-number">5</tt><tt class="py-op">:</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">respawned</tt><tt class="py-op">:</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">"*** %s: respawning too fast ***"</tt> <tt class="py-op">%</tt> <tt class="py-name">app</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">            <tt class="py-keyword">break</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-35" class="py-name"><a title="sparked.application.Application.quitFlag" class="py-name" href="#" onclick="return doclink('link-35', 'quitFlag', 'link-24');">quitFlag</a></tt><tt class="py-op">.</tt><tt id="link-36" class="py-name" targets="Method sparked.launcher.QuitFlag.isSet()=sparked.launcher.QuitFlag-class.html#isSet"><a title="sparked.launcher.QuitFlag.isSet" class="py-name" href="#" onclick="return doclink('link-36', 'isSet', 'link-36');">isSet</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">            <tt class="py-keyword">break</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-name">respawned</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">    <tt id="link-37" class="py-name"><a title="sparked.application.Application.quitFlag" class="py-name" href="#" onclick="return doclink('link-37', 'quitFlag', 'link-24');">quitFlag</a></tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="sparked.launcher.QuitFlag.reset" class="py-name" href="#" onclick="return doclink('link-38', 'reset', 'link-27');">reset</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"> </tt>
+<a name="loadModule"></a><div id="loadModule-def"><a name="L136"></a><tt class="py-lineno">136</tt> <a class="py-toggle" href="#" id="loadModule-toggle" onclick="return toggle('loadModule');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher-module.html#loadModule">loadModule</a><tt class="py-op">(</tt><tt class="py-param">app</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="loadModule-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="loadModule-expanded"><a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">    <tt class="py-name">args</tt> <tt class="py-op">=</tt> <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">argv</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">    <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">argv</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">app</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">3</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-string">".py"</tt> <tt class="py-keyword">and</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">exists</tt><tt class="py-op">(</tt><tt class="py-name">app</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">        <tt class="py-name">path</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">dirname</tt><tt class="py-op">(</tt><tt class="py-name">app</tt><tt class="py-op">)</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">path</tt><tt class="py-op">:</tt> <tt class="py-name">path</tt> <tt class="py-op">=</tt> <tt class="py-string">"."</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">insert</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">path</tt><tt class="py-op">)</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">        <tt class="py-name">app</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">basename</tt><tt class="py-op">(</tt><tt class="py-name">app</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">-</tt><tt class="py-number">3</tt><tt class="py-op">]</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-name">mod</tt> <tt class="py-op">=</tt> <tt class="py-name">__import__</tt><tt class="py-op">(</tt><tt class="py-name">app</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-name">app</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"."</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">ImportError</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">        <tt id="link-39" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-39', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">err</tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">usage</tt><tt class="py-op">.</tt><tt class="py-name">UsageError</tt><tt class="py-op">(</tt><tt class="py-string">"Application not found: "</tt> <tt class="py-op">+</tt> <tt class="py-name">app</tt><tt class="py-op">)</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">    <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">argv</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">mod</tt><tt class="py-op">,</tt> <tt class="py-name">app</tt> </tt>
+</div><a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line"> </tt>
+<a name="launchHelp"></a><div id="launchHelp-def"><a name="L154"></a><tt class="py-lineno">154</tt> <a class="py-toggle" href="#" id="launchHelp-toggle" onclick="return toggle('launchHelp');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher-module.html#launchHelp">launchHelp</a><tt class="py-op">(</tt><tt class="py-param">app</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="launchHelp-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="launchHelp-expanded"><a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">"This file is a Sparked application, and is meant to run like this:"</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">" sparkd "</tt> <tt class="py-op">+</tt> <tt class="py-name">app</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">    <tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"> </tt>
+<a name="main"></a><div id="main-def"><a name="L162"></a><tt class="py-lineno">162</tt> <a class="py-toggle" href="#" id="main-toggle" onclick="return toggle('main');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.launcher-module.html#main">main</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="main-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="main-expanded"><a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line"> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">    <tt class="py-name">env</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line"> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">        <tt class="py-name">options</tt> <tt class="py-op">=</tt> <tt id="link-40" class="py-name"><a title="sparked.application.Options
+sparked.launcher.Options
+sparked.tap.Options" class="py-name" href="#" onclick="return doclink('link-40', 'Options', 'link-15');">Options</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt class="py-name">sparkedOpts</tt><tt class="py-op">,</tt> <tt id="link-41" class="py-name"><a title="sparked.application.Options.appName" class="py-name" href="#" onclick="return doclink('link-41', 'appName', 'link-11');">appName</a></tt><tt class="py-op">,</tt> <tt id="link-42" class="py-name" targets="Variable sparked.application.Application.appOpts=sparked.application.Application-class.html#appOpts"><a title="sparked.application.Application.appOpts" class="py-name" href="#" onclick="return doclink('link-42', 'appOpts', 'link-42');">appOpts</a></tt> <tt class="py-op">=</tt> <tt id="link-43" class="py-name" targets="Function sparked.launcher.splitOptions()=sparked.launcher-module.html#splitOptions"><a title="sparked.launcher.splitOptions" class="py-name" href="#" onclick="return doclink('link-43', 'splitOptions', 'link-43');">splitOptions</a></tt><tt class="py-op">(</tt><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">argv</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">        <tt class="py-name">options</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="sparked.tap.Options.parseOptions" class="py-name" href="#" onclick="return doclink('link-44', 'parseOptions', 'link-16');">parseOptions</a></tt><tt class="py-op">(</tt><tt class="py-name">sparkedOpts</tt><tt class="py-op">)</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt id="link-45" class="py-name"><a title="sparked.application.Options.appName" class="py-name" href="#" onclick="return doclink('link-45', 'appName', 'link-11');">appName</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">            <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">opt_help</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line"> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-name">appModule</tt><tt class="py-op">,</tt> <tt id="link-46" class="py-name"><a title="sparked.application.Options.appName" class="py-name" href="#" onclick="return doclink('link-46', 'appName', 'link-11');">appName</a></tt> <tt class="py-op">=</tt> <tt id="link-47" class="py-name" targets="Function sparked.launcher.loadModule()=sparked.launcher-module.html#loadModule"><a title="sparked.launcher.loadModule" class="py-name" href="#" onclick="return doclink('link-47', 'loadModule', 'link-47');">loadModule</a></tt><tt class="py-op">(</tt><tt id="link-48" class="py-name"><a title="sparked.application.Options.appName" class="py-name" href="#" onclick="return doclink('link-48', 'appName', 'link-11');">appName</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line"> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-name">appPath</tt> <tt class="py-op">=</tt> <tt id="link-49" class="py-name"><a title="sparked.application" class="py-name" href="#" onclick="return doclink('link-49', 'application', 'link-3');">application</a></tt><tt class="py-op">.</tt><tt id="link-50" class="py-name" targets="Function sparked.application.getTempPath()=sparked.application-module.html#getTempPath"><a title="sparked.application.getTempPath" class="py-name" href="#" onclick="return doclink('link-50', 'getTempPath', 'link-50');">getTempPath</a></tt><tt class="py-op">(</tt><tt id="link-51" class="py-name"><a title="sparked.application.Options.appName" class="py-name" href="#" onclick="return doclink('link-51', 'appName', 'link-11');">appName</a></tt><tt class="py-op">,</tt> <tt class="py-name">options</tt><tt class="py-op">[</tt><tt class="py-string">'id'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">hasattr</tt><tt class="py-op">(</tt><tt class="py-name">appModule</tt><tt class="py-op">,</tt> <tt class="py-string">'Options'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">            <tt class="py-name">opts</tt> <tt class="py-op">=</tt> <tt class="py-name">appModule</tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="sparked.application.Options
+sparked.launcher.Options
+sparked.tap.Options" class="py-name" href="#" onclick="return doclink('link-52', 'Options', 'link-15');">Options</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">            <tt class="py-name">opts</tt> <tt class="py-op">=</tt> <tt id="link-53" class="py-name"><a title="sparked.application" class="py-name" href="#" onclick="return doclink('link-53', 'application', 'link-3');">application</a></tt><tt class="py-op">.</tt><tt id="link-54" class="py-name"><a title="sparked.application.Options
+sparked.launcher.Options
+sparked.tap.Options" class="py-name" href="#" onclick="return doclink('link-54', 'Options', 'link-15');">Options</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line"> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">        <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="sparked.application.Options.appName" class="py-name" href="#" onclick="return doclink('link-55', 'appName', 'link-11');">appName</a></tt> <tt class="py-op">=</tt> <tt id="link-56" class="py-name"><a title="sparked.application.Options.appName" class="py-name" href="#" onclick="return doclink('link-56', 'appName', 'link-11');">appName</a></tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">hasattr</tt><tt class="py-op">(</tt><tt class="py-name">opts</tt><tt class="py-op">,</tt> <tt class="py-string">'longdesc'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">            <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-57" class="py-name"><a title="sparked.launcher.Options.longdesc" class="py-name" href="#" onclick="return doclink('link-57', 'longdesc', 'link-6');">longdesc</a></tt> <tt class="py-op">=</tt> <tt class="py-name">appModule</tt><tt class="py-op">.</tt><tt class="py-name">__doc__</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">        <tt class="py-name">opts</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="sparked.tap.Options.parseOptions" class="py-name" href="#" onclick="return doclink('link-58', 'parseOptions', 'link-16');">parseOptions</a></tt><tt class="py-op">(</tt><tt id="link-59" class="py-name"><a title="sparked.application.Application.appOpts" class="py-name" href="#" onclick="return doclink('link-59', 'appOpts', 'link-42');">appOpts</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">options</tt><tt class="py-op">[</tt><tt class="py-string">'pidfile'</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">            <tt class="py-name">options</tt><tt class="py-op">[</tt><tt class="py-string">'pidfile'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">appPath</tt><tt class="py-op">.</tt><tt class="py-name">child</tt><tt class="py-op">(</tt><tt class="py-string">"sparkd.pid"</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">path</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line"> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">options</tt><tt class="py-op">[</tt><tt class="py-string">'no-subprocess'</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">            <tt id="link-60" class="py-name"><a title="sparked.launcher.run" class="py-name" href="#" onclick="return doclink('link-60', 'run', 'link-23');">run</a></tt><tt class="py-op">(</tt><tt id="link-61" class="py-name"><a title="sparked.application.Options.appName" class="py-name" href="#" onclick="return doclink('link-61', 'appName', 'link-11');">appName</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">            <tt id="link-62" class="py-name" targets="Function sparked.launcher.launchLoop()=sparked.launcher-module.html#launchLoop"><a title="sparked.launcher.launchLoop" class="py-name" href="#" onclick="return doclink('link-62', 'launchLoop', 'link-62');">launchLoop</a></tt><tt class="py-op">(</tt><tt id="link-63" class="py-name"><a title="sparked.application.Options.appName" class="py-name" href="#" onclick="return doclink('link-63', 'appName', 'link-11');">appName</a></tt><tt class="py-op">,</tt> <tt class="py-name">options</tt><tt class="py-op">,</tt> <tt class="py-name">env</tt><tt class="py-op">,</tt> <tt class="py-name">appPath</tt><tt class="py-op">)</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line"> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">usage</tt><tt class="py-op">.</tt><tt class="py-name">UsageError</tt><tt class="py-op">,</tt> <tt class="py-name">errortext</tt><tt class="py-op">:</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'%s: %s'</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">argv</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">errortext</tt><tt class="py-op">)</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'%s: Try --help for usage details.'</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">argv</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Sep 30 15:21:52 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

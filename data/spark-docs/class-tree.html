@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class Hierarchy</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">&nbsp;</td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="class-tree.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<center><b>
+ [ <a href="module-tree.html">Module Hierarchy</a>
+ | <a href="class-tree.html">Class Hierarchy</a> ]
+</b></center><br />
+<h1 class="epydoc">Class Hierarchy</h1>
+<ul class="nomargin-top">
+    <li> <strong class="uidlink">twisted.internet.protocol.BaseProtocol</strong>:
+      <em class="summary">This is the abstract superclass of all protocols.</em>
+    <ul>
+    <li> <strong class="uidlink">twisted.internet.protocol.Protocol</strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.hardware.inputevent.InputEventProtocol-class.html">sparked.hardware.inputevent.InputEventProtocol</a></strong>:
+      <em class="summary">Receives events from an input device.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.hardware.serial.SerialProbeProtocol-class.html">sparked.hardware.serial.SerialProbeProtocol</a></strong>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">twisted.persisted.styles.Ephemeral</strong>:
+      <em class="summary">This type of object is never persisted; if possible, even 
+        references to it are eliminated.</em>
+    <ul>
+    <li> <strong class="uidlink">twisted.internet.abstract.FileDescriptor</strong>:
+      <em class="summary">An object which can be operated on by select().</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.hardware.inputevent.InputEventDevice-class.html">sparked.hardware.inputevent.InputEventDevice</a></strong>:
+      <em class="summary">A select()able, read-only input device from /dev/input/*</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">twisted.words.xish.utility.EventDispatcher</strong>:
+      <em class="summary">Event dispatching service.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.events.EventDispatcher-class.html">sparked.events.EventDispatcher</a></strong>:
+      <em class="summary">The sparked event dispatcher is simpler than the twisted version: 
+        it does not use XPath arguments and its event prefix is always 
+        empty.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">zope.interface.Interface</strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.hardware.serial.IProtocolProbe-class.html">sparked.hardware.serial.IProtocolProbe</a></strong>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">twisted.python.log.Logger</strong>:
+      <em class="summary">This represents a class which may 'own' a log.</em>
+    <ul>
+    <li> <strong class="uidlink">twisted.internet.abstract.FileDescriptor</strong>:
+      <em class="summary">An object which can be operated on by select().</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.hardware.inputevent.InputEventDevice-class.html">sparked.hardware.inputevent.InputEventDevice</a></strong>:
+      <em class="summary">A select()able, read-only input device from /dev/input/*</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.launcher.QuitFlag-class.html">sparked.launcher.QuitFlag</a></strong>
+    </li>
+    <li> <strong class="uidlink">twisted.application.service.Service</strong>:
+      <em class="summary">Base class for services.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.hardware.hal.HardwareMonitor-class.html">sparked.hardware.hal.HardwareMonitor</a></strong>:
+      <em class="summary">A generic hardware monitor class based on HAL.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.hardware.serial.SerialPortMonitor-class.html">sparked.hardware.serial.SerialPortMonitor</a></strong>:
+      <em class="summary">Serial port device monitor.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.hardware.video.V4LDeviceMonitor-class.html">sparked.hardware.video.V4LDeviceMonitor</a></strong>:
+      <em class="summary">Video device monitor.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">twisted.application.service.MultiService</strong>:
+      <em class="summary">Straightforward Service Container.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.application.Application-class.html">sparked.application.Application</a></strong>:
+      <em class="summary">The sparked base class.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.monitors.MonitorContainer-class.html">sparked.monitors.MonitorContainer</a></strong>:
+      <em class="summary">A container for monitoring services.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.hardware.network.NetworkConnectionService-class.html">sparked.hardware.network.NetworkConnectionService</a></strong>:
+      <em class="summary">Check on network connection existence through NetworkManager.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.hardware.network.NetworkWebConnectionService-class.html">sparked.hardware.network.NetworkWebConnectionService</a></strong>:
+      <em class="summary">Checks if the network connection is up by trying to reach a 
+        website.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.hardware.power.PowerService-class.html">sparked.hardware.power.PowerService</a></strong>:
+      <em class="summary">A service which monitors the power state of the computer.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">object</strong>:
+      <em class="summary">The most base type</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.BaseException</strong>:
+      <em class="summary">Common base class for all exceptions</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.Exception</strong>:
+      <em class="summary">Common base class for all non-exit exceptions.</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.StandardError</strong>:
+      <em class="summary">Base class for all standard Python exceptions that do not represent
+        interpreter exiting.</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.AssertionError</strong>:
+      <em class="summary">Assertion failed.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="twisted.trial.unittest.FailTest-class.html">twisted.trial.unittest.FailTest</a></strong>:
+      <em class="summary">Raised to indicate the current test has failed to pass.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">twisted.internet.abstract.FileDescriptor</strong>:
+      <em class="summary">An object which can be operated on by select().</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.hardware.inputevent.InputEventDevice-class.html">sparked.hardware.inputevent.InputEventDevice</a></strong>:
+      <em class="summary">A select()able, read-only input device from /dev/input/*</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">gobject.GInterface</strong>:
+      <em class="summary">Interface GInterface</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.Buildable</strong>
+    <ul>
+    <li> <strong class="uidlink">gtk.Widget</strong>:
+      <em class="summary">Object GtkWidget</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.Container</strong>:
+      <em class="summary">Object GtkContainer</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.Bin</strong>:
+      <em class="summary">Object GtkBin</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.Window</strong>:
+      <em class="summary">Object GtkWindow</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.gui.StatusWindow-class.html">sparked.gui.StatusWindow</a></strong>:
+      <em class="summary">The status window for the sparked application.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">gtk.Box</strong>:
+      <em class="summary">Object GtkBox</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.VBox</strong>:
+      <em class="summary">Object GtkVBox</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.gui.MonitorWidget-class.html">sparked.gui.MonitorWidget</a></strong>:
+      <em class="summary">A widget which is tied to a <a 
+        href="sparked.monitors.MonitorContainer-class.html" 
+        class="link">monitors.MonitorContainer</a> object; receiving 
+        updates as the monitors in the container change state.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">clutter.Container</strong>
+    <ul>
+    <li> <strong class="uidlink">clutter.Group</strong>:
+      <em class="summary">Object ClutterGroup</em>
+    <ul>
+    <li> <strong class="uidlink">clutter.Stage</strong>:
+      <em class="summary">Object ClutterStage</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.graphics.stage.Stage-class.html">sparked.graphics.stage.Stage</a></strong>:
+      <em class="summary">Stage class.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">atk.ImplementorIface</strong>
+    <ul>
+    <li> <strong class="uidlink">gtk.Widget</strong>:
+      <em class="summary">Object GtkWidget</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.Container</strong>:
+      <em class="summary">Object GtkContainer</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.Bin</strong>:
+      <em class="summary">Object GtkBin</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.Window</strong>:
+      <em class="summary">Object GtkWindow</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.gui.StatusWindow-class.html">sparked.gui.StatusWindow</a></strong>:
+      <em class="summary">The status window for the sparked application.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">gtk.Box</strong>:
+      <em class="summary">Object GtkBox</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.VBox</strong>:
+      <em class="summary">Object GtkVBox</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.gui.MonitorWidget-class.html">sparked.gui.MonitorWidget</a></strong>:
+      <em class="summary">A widget which is tied to a <a 
+        href="sparked.monitors.MonitorContainer-class.html" 
+        class="link">monitors.MonitorContainer</a> object; receiving 
+        updates as the monitors in the container change state.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">gtk.Orientable</strong>
+    <ul>
+    <li> <strong class="uidlink">gtk.Box</strong>:
+      <em class="summary">Object GtkBox</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.VBox</strong>:
+      <em class="summary">Object GtkVBox</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.gui.MonitorWidget-class.html">sparked.gui.MonitorWidget</a></strong>:
+      <em class="summary">A widget which is tied to a <a 
+        href="sparked.monitors.MonitorContainer-class.html" 
+        class="link">monitors.MonitorContainer</a> object; receiving 
+        updates as the monitors in the container change state.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">clutter.Scriptable</strong>
+    <ul>
+    <li> <strong class="uidlink">clutter.Actor</strong>:
+      <em class="summary">Object ClutterActor</em>
+    <ul>
+    <li> <strong class="uidlink">clutter.Group</strong>:
+      <em class="summary">Object ClutterGroup</em>
+    <ul>
+    <li> <strong class="uidlink">clutter.Stage</strong>:
+      <em class="summary">Object ClutterStage</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.graphics.stage.Stage-class.html">sparked.graphics.stage.Stage</a></strong>:
+      <em class="summary">Stage class.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><i>unreachable</i>.GObject</strong>:
+      <em class="summary">Object GObject</em>
+    <ul>
+    <li> <strong class="uidlink">clutter.Actor</strong>:
+      <em class="summary">Object ClutterActor</em>
+    <ul>
+    <li> <strong class="uidlink">clutter.Group</strong>:
+      <em class="summary">Object ClutterGroup</em>
+    <ul>
+    <li> <strong class="uidlink">clutter.Stage</strong>:
+      <em class="summary">Object ClutterStage</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.graphics.stage.Stage-class.html">sparked.graphics.stage.Stage</a></strong>:
+      <em class="summary">Stage class.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">gtk.Object</strong>:
+      <em class="summary">Object GtkObject</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.Widget</strong>:
+      <em class="summary">Object GtkWidget</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.Container</strong>:
+      <em class="summary">Object GtkContainer</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.Bin</strong>:
+      <em class="summary">Object GtkBin</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.Window</strong>:
+      <em class="summary">Object GtkWindow</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.gui.StatusWindow-class.html">sparked.gui.StatusWindow</a></strong>:
+      <em class="summary">The status window for the sparked application.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">gtk.Box</strong>:
+      <em class="summary">Object GtkBox</em>
+    <ul>
+    <li> <strong class="uidlink">gtk.VBox</strong>:
+      <em class="summary">Object GtkVBox</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.gui.MonitorWidget-class.html">sparked.gui.MonitorWidget</a></strong>:
+      <em class="summary">A widget which is tied to a <a 
+        href="sparked.monitors.MonitorContainer-class.html" 
+        class="link">monitors.MonitorContainer</a> object; receiving 
+        updates as the monitors in the container change state.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.hardware.inputevent.InputEvent-class.html">sparked.hardware.inputevent.InputEvent</a></strong>:
+      <em class="summary">A `struct input_event`.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.monitors.Monitor-class.html">sparked.monitors.Monitor</a></strong>:
+      <em class="summary">A generic monitor</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.monitors.NamedZeroconfMonitor-class.html">sparked.monitors.NamedZeroconfMonitor</a></strong>:
+      <em class="summary">Monitor which is 'ok' when it has detected a service with given 
+        type and name.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.monitors.NetworkMonitor-class.html">sparked.monitors.NetworkMonitor</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.monitors.NetworkWebMonitor-class.html">sparked.monitors.NetworkWebMonitor</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.monitors.PowerMonitor-class.html">sparked.monitors.PowerMonitor</a></strong>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.hardware.serial.SerialProbe-class.html">sparked.hardware.serial.SerialProbe</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.hardware.serial.SerialProbeFactory-class.html">sparked.hardware.serial.SerialProbeFactory</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.application.StateMachine-class.html">sparked.application.StateMachine</a></strong>:
+      <em class="summary">A simple state machine.</em>
+    </li>
+    <li> <strong class="uidlink">unittest.TestCase</strong>:
+      <em class="summary">A class whose instances are single test cases.</em>
+    <ul>
+    <li> <strong class="uidlink">twisted.trial.unittest._Assertions</strong>:
+      <em class="summary">Replaces many of the built-in TestCase assertions.</em>
+    <ul>
+    <li> <strong class="uidlink">twisted.trial.unittest.TestCase</strong>:
+      <em class="summary">A unit test.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.test.test_events.TestEventDispatcher-class.html">sparked.test.test_events.TestEventDispatcher</a></strong>:
+      <em class="summary">Test the <a href="sparked.events.EventDispatcher-class.html" 
+        class="link">sparked.events.EventDispatcher</a></em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.test.test_graphics.TestGraphicsUtil-class.html">sparked.test.test_graphics.TestGraphicsUtil</a></strong>:
+      <em class="summary">Test the <a href="sparked.monitors.MonitorContainer-class.html" 
+        class="link">sparked.monitors.MonitorContainer</a></em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.test.test_monitor.TestMonitorContainer-class.html">sparked.test.test_monitor.TestMonitorContainer</a></strong>:
+      <em class="summary">Test the <a href="sparked.monitors.MonitorContainer-class.html" 
+        class="link">sparked.monitors.MonitorContainer</a></em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.test.test_video.TestVideoDevices-class.html">sparked.test.test_video.TestVideoDevices</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.test.test_video.TestVideoUtil-class.html">sparked.test.test_video.TestVideoUtil</a></strong>:
+      <em class="summary">Test the <code class="link">sparked.graphics.video</code></em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.hardware.video.V4LDevice-class.html">sparked.hardware.video.V4LDevice</a></strong>:
+      <em class="summary">Represents a V4L video input device.</em>
+    </li>
+    <li> <strong class="uidlink">twisted.trial.unittest._Assertions</strong>:
+      <em class="summary">Replaces many of the built-in TestCase assertions.</em>
+    <ul>
+    <li> <strong class="uidlink">twisted.trial.unittest.TestCase</strong>:
+      <em class="summary">A unit test.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.test.test_events.TestEventDispatcher-class.html">sparked.test.test_events.TestEventDispatcher</a></strong>:
+      <em class="summary">Test the <a href="sparked.events.EventDispatcher-class.html" 
+        class="link">sparked.events.EventDispatcher</a></em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.test.test_graphics.TestGraphicsUtil-class.html">sparked.test.test_graphics.TestGraphicsUtil</a></strong>:
+      <em class="summary">Test the <a href="sparked.monitors.MonitorContainer-class.html" 
+        class="link">sparked.monitors.MonitorContainer</a></em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.test.test_monitor.TestMonitorContainer-class.html">sparked.test.test_monitor.TestMonitorContainer</a></strong>:
+      <em class="summary">Test the <a href="sparked.monitors.MonitorContainer-class.html" 
+        class="link">sparked.monitors.MonitorContainer</a></em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.test.test_video.TestVideoDevices-class.html">sparked.test.test_video.TestVideoDevices</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.test.test_video.TestVideoUtil-class.html">sparked.test.test_video.TestVideoUtil</a></strong>:
+      <em class="summary">Test the <code class="link">sparked.graphics.video</code></em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.internet.zeroconf._ZeroconfService-class.html" onclick="show_private();">sparked.internet.zeroconf._ZeroconfService</a></strong>:
+      <em class="summary">A globally defined object which interfaces with avahi.</em>
+    </li>
+    <li> <strong class="uidlink">dict</strong>:
+      <em class="summary">dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+    in the keyword argument list.</em>
+    <ul>
+    <li> <strong class="uidlink">twisted.python.usage.Options</strong>:
+      <em class="summary">An option list parser class</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sparked.tap.Options-class.html">sparked.tap.Options</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.application.Options-class.html">sparked.application.Options</a></strong>:
+      <em class="summary">Option parser for sparked applications.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sparked.launcher.Options-class.html">sparked.launcher.Options</a></strong>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+</ul>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Sep 30 15:21:51 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

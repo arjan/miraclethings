@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>sparked.gui</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="sparked-module.html">Package&nbsp;sparked</a> ::
+        Module&nbsp;gui
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="sparked.gui-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="sparked.gui-module.html">Module sparked.gui</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2010 Arjan Scherpenisse</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># See LICENSE for details.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">A status window for the Spark application.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">datetime</tt> <tt class="py-keyword">import</tt> <tt class="py-name">datetime</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">gtk</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt class="py-name">python</tt> <tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Method sparked.gui.StatusWindow.log()=sparked.gui.StatusWindow-class.html#log"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-0', 'log', 'link-0');">log</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package sparked.internet=sparked.internet-module.html"><a title="sparked.internet" class="py-name" href="#" onclick="return doclink('link-1', 'internet', 'link-1');">internet</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">reactor</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name" targets="Package sparked=sparked-module.html"><a title="sparked" class="py-name" href="#" onclick="return doclink('link-2', 'sparked', 'link-2');">sparked</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Module sparked.events=sparked.events-module.html,Variable sparked.hardware.hal.HardwareMonitor.events=sparked.hardware.hal.HardwareMonitor-class.html#events,Variable sparked.monitors.MonitorContainer.events=sparked.monitors.MonitorContainer-class.html#events"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-3', 'events', 'link-3');">events</a></tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"> </tt>
+<a name="StatusWindow"></a><div id="StatusWindow-def"><a name="L16"></a><tt class="py-lineno"> 16</tt> <a class="py-toggle" href="#" id="StatusWindow-toggle" onclick="return toggle('StatusWindow');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.gui.StatusWindow-class.html">StatusWindow</a> <tt class="py-op">(</tt><tt class="py-base-class">gtk</tt><tt class="py-op">.</tt><tt class="py-base-class">Window</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="StatusWindow-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="StatusWindow-expanded"><a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">    The status window for the sparked application.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">    Contains the log area</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">    <tt id="link-4" class="py-name" targets="Variable sparked.gui.StatusWindow.maxLogLines=sparked.gui.StatusWindow-class.html#maxLogLines"><a title="sparked.gui.StatusWindow.maxLogLines" class="py-name" href="#" onclick="return doclink('link-4', 'maxLogLines', 'link-4');">maxLogLines</a></tt> <tt class="py-op">=</tt> <tt class="py-number">2000</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="StatusWindow.__init__"></a><div id="StatusWindow.__init__-def"><a name="L24"></a><tt class="py-lineno"> 24</tt> <a class="py-toggle" href="#" id="StatusWindow.__init__-toggle" onclick="return toggle('StatusWindow.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.gui.StatusWindow-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">app</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="StatusWindow.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="StatusWindow.__init__-expanded"><a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">        <tt class="py-name">gtk</tt><tt class="py-op">.</tt><tt class="py-name">Window</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method sparked.application.Application.__init__()=sparked.application.Application-class.html#__init__,Method sparked.application.StateMachine.__init__()=sparked.application.StateMachine-class.html#__init__,Method sparked.events.EventDispatcher.__init__()=sparked.events.EventDispatcher-class.html#__init__,Method sparked.graphics.stage.Stage.__init__()=sparked.graphics.stage.Stage-class.html#__init__,Method sparked.gui.MonitorWidget.__init__()=sparked.gui.MonitorWidget-class.html#__init__,Method sparked.gui.StatusWindow.__init__()=sparked.gui.StatusWindow-class.html#__init__,Method sparked.hardware.inputevent.InputEvent.__init__()=sparked.hardware.inputevent.InputEvent-class.html#__init__,Method sparked.hardware.inputevent.InputEventDevice.__init__()=sparked.hardware.inputevent.InputEventDevice-class.html#__init__,Method sparked.hardware.power.PowerService.__init__()=sparked.hardware.power.PowerService-class.html#__init__,Method sparked.hardware.serial.SerialPortMonitor.__init__()=sparked.hardware.serial.SerialPortMonitor-class.html#__init__,Method sparked.hardware.serial.SerialProbe.__init__()=sparked.hardware.serial.SerialProbe-class.html#__init__,Method sparked.hardware.serial.SerialProbeProtocol.__init__()=sparked.hardware.serial.SerialProbeProtocol-class.html#__init__,Method sparked.hardware.video.V4LDevice.__init__()=sparked.hardware.video.V4LDevice-class.html#__init__,Method sparked.hardware.video.V4LDeviceMonitor.__init__()=sparked.hardware.video.V4LDeviceMonitor-class.html#__init__,Method sparked.internet.zeroconf._ZeroconfService.__init__()=sparked.internet.zeroconf._ZeroconfService-class.html#__init__,Method sparked.launcher.QuitFlag.__init__()=sparked.launcher.QuitFlag-class.html#__init__,Method sparked.monitors.MonitorContainer.__init__()=sparked.monitors.MonitorContainer-class.html#__init__,Method sparked.monitors.NamedZeroconfMonitor.__init__()=sparked.monitors.NamedZeroconfMonitor-class.html#__init__"><a title="sparked.application.Application.__init__
+sparked.application.StateMachine.__init__
+sparked.events.EventDispatcher.__init__
+sparked.graphics.stage.Stage.__init__
+sparked.gui.MonitorWidget.__init__
+sparked.gui.StatusWindow.__init__
+sparked.hardware.inputevent.InputEvent.__init__
+sparked.hardware.inputevent.InputEventDevice.__init__
+sparked.hardware.power.PowerService.__init__
+sparked.hardware.serial.SerialPortMonitor.__init__
+sparked.hardware.serial.SerialProbe.__init__
+sparked.hardware.serial.SerialProbeProtocol.__init__
+sparked.hardware.video.V4LDevice.__init__
+sparked.hardware.video.V4LDeviceMonitor.__init__
+sparked.internet.zeroconf._ZeroconfService.__init__
+sparked.launcher.QuitFlag.__init__
+sparked.monitors.MonitorContainer.__init__
+sparked.monitors.NamedZeroconfMonitor.__init__" class="py-name" href="#" onclick="return doclink('link-5', '__init__', 'link-5');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">app</tt> <tt class="py-op">=</tt> <tt class="py-name">app</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">set_title</tt><tt class="py-op">(</tt><tt class="py-name">app</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Variable sparked.application.Application.title=sparked.application.Application-class.html#title,Variable sparked.monitors.NetworkMonitor.title=sparked.monitors.NetworkMonitor-class.html#title,Variable sparked.monitors.NetworkWebMonitor.title=sparked.monitors.NetworkWebMonitor-class.html#title,Variable sparked.monitors.PowerMonitor.title=sparked.monitors.PowerMonitor-class.html#title"><a title="sparked.application.Application.title
+sparked.monitors.NetworkMonitor.title
+sparked.monitors.NetworkWebMonitor.title
+sparked.monitors.PowerMonitor.title" class="py-name" href="#" onclick="return doclink('link-6', 'title', 'link-6');">title</a></tt> <tt class="py-op">+</tt> <tt class="py-string">" - Status window"</tt><tt class="py-op">)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">connect</tt><tt class="py-op">(</tt><tt class="py-string">"destroy"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method sparked.gui.StatusWindow.closed()=sparked.gui.StatusWindow-class.html#closed"><a title="sparked.gui.StatusWindow.closed" class="py-name" href="#" onclick="return doclink('link-7', 'closed', 'link-7');">closed</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method sparked.gui.StatusWindow.build()=sparked.gui.StatusWindow-class.html#build"><a title="sparked.gui.StatusWindow.build" class="py-name" href="#" onclick="return doclink('link-8', 'build', 'link-8');">build</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt id="link-9" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-9', 'log', 'link-0');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">addObserver</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-10', 'log', 'link-0');">log</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method sparked.graphics.stage.Stage.created()=sparked.graphics.stage.Stage-class.html#created,Method sparked.gui.StatusWindow.created()=sparked.gui.StatusWindow-class.html#created"><a title="sparked.graphics.stage.Stage.created
+sparked.gui.StatusWindow.created" class="py-name" href="#" onclick="return doclink('link-11', 'created', 'link-11');">created</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"> </tt>
+<a name="StatusWindow.created"></a><div id="StatusWindow.created-def"><a name="L35"></a><tt class="py-lineno"> 35</tt> <a class="py-toggle" href="#" id="StatusWindow.created-toggle" onclick="return toggle('StatusWindow.created');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.gui.StatusWindow-class.html#created">created</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="StatusWindow.created-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="StatusWindow.created-expanded"><a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">        Called when the status window has been created and is showing</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">        on the screen. Override to add custom functionality.</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+</div><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"> </tt>
+<a name="StatusWindow.build"></a><div id="StatusWindow.build-def"><a name="L42"></a><tt class="py-lineno"> 42</tt> <a class="py-toggle" href="#" id="StatusWindow.build-toggle" onclick="return toggle('StatusWindow.build');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.gui.StatusWindow-class.html#build">build</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="StatusWindow.build-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="StatusWindow.build-expanded"><a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">        Create the status window</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">box</tt> <tt class="py-op">=</tt> <tt class="py-name">gtk</tt><tt class="py-op">.</tt><tt class="py-name">HBox</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">log_area</tt> <tt class="py-op">=</tt> <tt class="py-name">gtk</tt><tt class="py-op">.</tt><tt class="py-name">TextView</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-name">w</tt> <tt class="py-op">=</tt> <tt class="py-name">gtk</tt><tt class="py-op">.</tt><tt class="py-name">ScrolledWindow</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-name">w</tt><tt class="py-op">.</tt><tt class="py-name">add</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">log_area</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">box</tt><tt class="py-op">.</tt><tt class="py-name">pack_end</tt><tt class="py-op">(</tt><tt class="py-name">w</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">app</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Variable sparked.application.Application.monitors=sparked.application.Application-class.html#monitors,Module sparked.monitors=sparked.monitors-module.html,Variable sparked.monitors.MonitorContainer.monitors=sparked.monitors.MonitorContainer-class.html#monitors"><a title="sparked.application.Application.monitors
+sparked.monitors
+sparked.monitors.MonitorContainer.monitors" class="py-name" href="#" onclick="return doclink('link-12', 'monitors', 'link-12');">monitors</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">            <tt class="py-comment"># Create the monitor widget and connect</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">            <tt class="py-name">w</tt> <tt class="py-op">=</tt> <tt id="link-13" class="py-name" targets="Class sparked.gui.MonitorWidget=sparked.gui.MonitorWidget-class.html"><a title="sparked.gui.MonitorWidget" class="py-name" href="#" onclick="return doclink('link-13', 'MonitorWidget', 'link-13');">MonitorWidget</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">app</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="sparked.application.Application.monitors
+sparked.monitors
+sparked.monitors.MonitorContainer.monitors" class="py-name" href="#" onclick="return doclink('link-14', 'monitors', 'link-12');">monitors</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">box</tt><tt class="py-op">.</tt><tt class="py-name">pack_start</tt><tt class="py-op">(</tt><tt class="py-name">w</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">add</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">box</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">set_size_request</tt><tt class="py-op">(</tt><tt class="py-number">720</tt><tt class="py-op">,</tt> <tt class="py-number">300</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">show_all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="StatusWindow.closed"></a><div id="StatusWindow.closed-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="StatusWindow.closed-toggle" onclick="return toggle('StatusWindow.closed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.gui.StatusWindow-class.html#closed">closed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">window</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="StatusWindow.closed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="StatusWindow.closed-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt id="link-15" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-15', 'log', 'link-0');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">removeObserver</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="sparked.gui.StatusWindow.log" class="py-name" href="#" onclick="return doclink('link-16', 'log', 'link-0');">log</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt id="link-17" class="py-name" targets="Variable sparked.gui.guiEvents=sparked.gui-module.html#guiEvents"><a title="sparked.gui.guiEvents" class="py-name" href="#" onclick="return doclink('link-17', 'guiEvents', 'link-17');">guiEvents</a></tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Method sparked.events.EventDispatcher.dispatch()=sparked.events.EventDispatcher-class.html#dispatch"><a title="sparked.events.EventDispatcher.dispatch" class="py-name" href="#" onclick="return doclink('link-18', 'dispatch', 'link-18');">dispatch</a></tt><tt class="py-op">(</tt><tt class="py-string">"statuswindow-closed"</tt><tt class="py-op">,</tt> <tt class="py-name">window</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-name">reactor</tt><tt class="py-op">.</tt><tt class="py-name">stop</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="StatusWindow.log"></a><div id="StatusWindow.log-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="StatusWindow.log-toggle" onclick="return toggle('StatusWindow.log');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.gui.StatusWindow-class.html#log">log</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">dict</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="StatusWindow.log-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="StatusWindow.log-expanded"><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">        Log observer that writes into the log scroller area of the UI.</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">        This method implements C{twisted.python.log.ILogObserver}.</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">b</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">log_area</tt><tt class="py-op">.</tt><tt class="py-name">get_buffer</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-name">end</tt> <tt class="py-op">=</tt> <tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">get_end_iter</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">place_cursor</tt><tt class="py-op">(</tt><tt class="py-name">end</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">m</tt> <tt class="py-keyword">in</tt> <tt class="py-name">dict</tt><tt class="py-op">[</tt><tt class="py-string">'message'</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">            <tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">insert_at_cursor</tt><tt class="py-op">(</tt><tt class="py-string">"%s | %s\n"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">now</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">'%Y-%m-%d %H:%M:%S'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">m</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">get_line_count</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="sparked.gui.StatusWindow.maxLogLines" class="py-name" href="#" onclick="return doclink('link-19', 'maxLogLines', 'link-4');">maxLogLines</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">            <tt class="py-name">frm</tt> <tt class="py-op">=</tt> <tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">get_start_iter</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">            <tt class="py-name">to</tt>  <tt class="py-op">=</tt> <tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">get_iter_at_line</tt><tt class="py-op">(</tt><tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">get_line_count</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_max_log_lines</tt><tt class="py-op">)</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">            <tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">delete</tt><tt class="py-op">(</tt><tt class="py-name">frm</tt><tt class="py-op">,</tt> <tt class="py-name">to</tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">log_area</tt><tt class="py-op">.</tt><tt class="py-name">scroll_to_iter</tt><tt class="py-op">(</tt><tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">get_end_iter</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">0.0</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"> </tt>
+<a name="MonitorWidget"></a><div id="MonitorWidget-def"><a name="L91"></a><tt class="py-lineno"> 91</tt> <a class="py-toggle" href="#" id="MonitorWidget-toggle" onclick="return toggle('MonitorWidget');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.gui.MonitorWidget-class.html">MonitorWidget</a><tt class="py-op">(</tt><tt class="py-base-class">gtk</tt><tt class="py-op">.</tt><tt class="py-base-class">VBox</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MonitorWidget-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MonitorWidget-expanded"><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">    A widget which is tied to a L{monitors.MonitorContainer} object;</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">    receiving updates as the monitors in the container change state.</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">    It shows a list with the titles  and the state of each monitor.</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">    <tt id="link-20" class="py-name" targets="Variable sparked.gui.MonitorWidget.stock_map=sparked.gui.MonitorWidget-class.html#stock_map"><a title="sparked.gui.MonitorWidget.stock_map" class="py-name" href="#" onclick="return doclink('link-20', 'stock_map', 'link-20');">stock_map</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt> <tt class="py-name">True</tt><tt class="py-op">:</tt> <tt class="py-string">"gtk-apply"</tt><tt class="py-op">,</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">                  <tt class="py-name">False</tt><tt class="py-op">:</tt> <tt class="py-string">"gtk-stop"</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">                  <tt class="py-op">}</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="MonitorWidget.__init__"></a><div id="MonitorWidget.__init__-def"><a name="L103"></a><tt class="py-lineno">103</tt> <a class="py-toggle" href="#" id="MonitorWidget.__init__-toggle" onclick="return toggle('MonitorWidget.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.gui.MonitorWidget-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">container</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MonitorWidget.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MonitorWidget.__init__-expanded"><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-name">gtk</tt><tt class="py-op">.</tt><tt class="py-name">VBox</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="sparked.application.Application.__init__
+sparked.application.StateMachine.__init__
+sparked.events.EventDispatcher.__init__
+sparked.graphics.stage.Stage.__init__
+sparked.gui.MonitorWidget.__init__
+sparked.gui.StatusWindow.__init__
+sparked.hardware.inputevent.InputEvent.__init__
+sparked.hardware.inputevent.InputEventDevice.__init__
+sparked.hardware.power.PowerService.__init__
+sparked.hardware.serial.SerialPortMonitor.__init__
+sparked.hardware.serial.SerialProbe.__init__
+sparked.hardware.serial.SerialProbeProtocol.__init__
+sparked.hardware.video.V4LDevice.__init__
+sparked.hardware.video.V4LDeviceMonitor.__init__
+sparked.internet.zeroconf._ZeroconfService.__init__
+sparked.launcher.QuitFlag.__init__
+sparked.monitors.MonitorContainer.__init__
+sparked.monitors.NamedZeroconfMonitor.__init__" class="py-name" href="#" onclick="return doclink('link-21', '__init__', 'link-5');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">set_property</tt><tt class="py-op">(</tt><tt class="py-string">"width_request"</tt><tt class="py-op">,</tt> <tt class="py-number">240</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt class="py-name">container</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-22', 'events', 'link-3');">events</a></tt><tt class="py-op">.</tt><tt class="py-name">addObserver</tt><tt class="py-op">(</tt><tt class="py-string">"updated"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method sparked.gui.MonitorWidget.refresh()=sparked.gui.MonitorWidget-class.html#refresh"><a title="sparked.gui.MonitorWidget.refresh" class="py-name" href="#" onclick="return doclink('link-23', 'refresh', 'link-23');">refresh</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"> </tt>
+<a name="MonitorWidget.refresh"></a><div id="MonitorWidget.refresh-def"><a name="L109"></a><tt class="py-lineno">109</tt> <a class="py-toggle" href="#" id="MonitorWidget.refresh-toggle" onclick="return toggle('MonitorWidget.refresh');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.gui.MonitorWidget-class.html#refresh">refresh</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">container</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MonitorWidget.refresh-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MonitorWidget.refresh-expanded"><a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"><tt class="py-docstring">        Refresh the state when an "updated" event from the linked monitor container comes in.</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">c</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">get_children</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">remove</tt><tt class="py-op">(</tt><tt class="py-name">c</tt><tt class="py-op">)</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">c</tt> <tt class="py-keyword">in</tt> <tt class="py-name">container</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="sparked.application.Application.monitors
+sparked.monitors
+sparked.monitors.MonitorContainer.monitors" class="py-name" href="#" onclick="return doclink('link-24', 'monitors', 'link-12');">monitors</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">            <tt class="py-name">v</tt> <tt class="py-op">=</tt> <tt class="py-name">gtk</tt><tt class="py-op">.</tt><tt class="py-name">HBox</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">            <tt class="py-name">l</tt> <tt class="py-op">=</tt> <tt class="py-name">gtk</tt><tt class="py-op">.</tt><tt class="py-name">Label</tt><tt class="py-op">(</tt><tt class="py-name">c</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="sparked.application.Application.title
+sparked.monitors.NetworkMonitor.title
+sparked.monitors.NetworkWebMonitor.title
+sparked.monitors.PowerMonitor.title" class="py-name" href="#" onclick="return doclink('link-25', 'title', 'link-6');">title</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">            <tt class="py-name">l</tt><tt class="py-op">.</tt><tt class="py-name">set_property</tt><tt class="py-op">(</tt><tt class="py-string">"xalign"</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">            <tt class="py-name">v</tt><tt class="py-op">.</tt><tt class="py-name">pack_start</tt><tt class="py-op">(</tt><tt class="py-name">l</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-number">10</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">            <tt class="py-name">im</tt> <tt class="py-op">=</tt> <tt class="py-name">gtk</tt><tt class="py-op">.</tt><tt class="py-name">Image</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">            <tt class="py-name">im</tt><tt class="py-op">.</tt><tt class="py-name">set_from_stock</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="sparked.gui.MonitorWidget.stock_map" class="py-name" href="#" onclick="return doclink('link-26', 'stock_map', 'link-20');">stock_map</a></tt><tt class="py-op">[</tt><tt class="py-name">c</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Variable sparked.monitors.Monitor.ok=sparked.monitors.Monitor-class.html#ok,Method sparked.monitors.MonitorContainer.ok()=sparked.monitors.MonitorContainer-class.html#ok"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-27', 'ok', 'link-27');">ok</a></tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">gtk</tt><tt class="py-op">.</tt><tt class="py-name">ICON_SIZE_MENU</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">            <tt class="py-name">v</tt><tt class="py-op">.</tt><tt class="py-name">pack_start</tt><tt class="py-op">(</tt><tt class="py-name">im</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-number">10</tt><tt class="py-op">)</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pack_start</tt><tt class="py-op">(</tt><tt class="py-name">v</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-number">10</tt><tt class="py-op">)</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pack_start</tt><tt class="py-op">(</tt><tt class="py-name">gtk</tt><tt class="py-op">.</tt><tt class="py-name">HSeparator</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">show_all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt id="link-28" class="py-name"><a title="sparked.gui.guiEvents" class="py-name" href="#" onclick="return doclink('link-28', 'guiEvents', 'link-17');">guiEvents</a></tt> <tt class="py-op">=</tt> <tt id="link-29" class="py-name"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-29', 'events', 'link-3');">events</a></tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Class sparked.events.EventDispatcher=sparked.events.EventDispatcher-class.html"><a title="sparked.events.EventDispatcher" class="py-name" href="#" onclick="return doclink('link-30', 'EventDispatcher', 'link-30');">EventDispatcher</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Sep 30 15:21:52 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

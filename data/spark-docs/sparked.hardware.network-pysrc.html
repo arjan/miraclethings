@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>sparked.hardware.network</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="sparked-module.html">Package&nbsp;sparked</a> ::
+        <a href="sparked.hardware-module.html">Package&nbsp;hardware</a> ::
+        Module&nbsp;network
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="sparked.hardware.network-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="sparked.hardware.network-module.html">Module sparked.hardware.network</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2010 Arjan Scherpenisse</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"># See LICENSE for details.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-docstring">Network monitoring class: check if the internet is reachable.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">dbus</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Module sparked.application=sparked.application-module.html"><a title="sparked.application" class="py-name" href="#" onclick="return doclink('link-0', 'application', 'link-0');">application</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">service</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt class="py-name">web</tt> <tt class="py-keyword">import</tt> <tt class="py-name">client</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">twisted</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package sparked.internet=sparked.internet-module.html"><a title="sparked.internet" class="py-name" href="#" onclick="return doclink('link-1', 'internet', 'link-1');">internet</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">reactor</tt><tt class="py-op">,</tt> <tt class="py-name">defer</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name" targets="Package sparked=sparked-module.html"><a title="sparked" class="py-name" href="#" onclick="return doclink('link-2', 'sparked', 'link-2');">sparked</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Module sparked.events=sparked.events-module.html,Variable sparked.hardware.hal.HardwareMonitor.events=sparked.hardware.hal.HardwareMonitor-class.html#events,Variable sparked.monitors.MonitorContainer.events=sparked.monitors.MonitorContainer-class.html#events"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-3', 'events', 'link-3');">events</a></tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"> </tt>
+<a name="NetworkConnectionService"></a><div id="NetworkConnectionService-def"><a name="L17"></a><tt class="py-lineno">17</tt> <a class="py-toggle" href="#" id="NetworkConnectionService-toggle" onclick="return toggle('NetworkConnectionService');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.hardware.network.NetworkConnectionService-class.html">NetworkConnectionService</a><tt class="py-op">(</tt><tt class="py-base-class">service</tt><tt class="py-op">.</tt><tt class="py-base-class">Service</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkConnectionService-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="NetworkConnectionService-expanded"><a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-docstring">    Check on network connection existence through NetworkManager.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"> </tt>
+<a name="NetworkConnectionService.startService"></a><div id="NetworkConnectionService.startService-def"><a name="L22"></a><tt class="py-lineno">22</tt> <a class="py-toggle" href="#" id="NetworkConnectionService.startService-toggle" onclick="return toggle('NetworkConnectionService.startService');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.hardware.network.NetworkConnectionService-class.html#startService">startService</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkConnectionService.startService-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="NetworkConnectionService.startService-expanded"><a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">        <tt class="py-name">bus</tt> <tt class="py-op">=</tt> <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">SystemBus</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">        <tt class="py-name">interface</tt> <tt class="py-op">=</tt> <tt class="py-string">'org.freedesktop.NetworkManager'</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">        <tt class="py-name">udi</tt> <tt class="py-op">=</tt> <tt class="py-string">'/org/freedesktop/NetworkManager'</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">        <tt class="py-name">managerObj</tt> <tt class="py-op">=</tt> <tt class="py-name">bus</tt><tt class="py-op">.</tt><tt class="py-name">get_object</tt><tt class="py-op">(</tt><tt class="py-name">interface</tt><tt class="py-op">,</tt> <tt class="py-name">udi</tt><tt class="py-op">)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">        <tt class="py-name">bus</tt><tt class="py-op">.</tt><tt class="py-name">add_signal_receiver</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method sparked.hardware.network.NetworkConnectionService.stateChanged()=sparked.hardware.network.NetworkConnectionService-class.html#stateChanged"><a title="sparked.hardware.network.NetworkConnectionService.stateChanged" class="py-name" href="#" onclick="return doclink('link-4', 'stateChanged', 'link-4');">stateChanged</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">                                <tt class="py-name">dbus_interface</tt><tt class="py-op">=</tt><tt class="py-name">interface</tt><tt class="py-op">,</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">                                <tt class="py-name">signal_name</tt><tt class="py-op">=</tt><tt class="py-string">'PropertiesChanged'</tt><tt class="py-op">)</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">properties</tt> <tt class="py-op">=</tt> <tt class="py-name">dbus</tt><tt class="py-op">.</tt><tt class="py-name">Interface</tt><tt class="py-op">(</tt><tt class="py-name">managerObj</tt><tt class="py-op">,</tt> <tt class="py-string">'org.freedesktop.DBus.Properties'</tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="sparked.hardware.network.NetworkConnectionService.stateChanged" class="py-name" href="#" onclick="return doclink('link-5', 'stateChanged', 'link-4');">stateChanged</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"> </tt>
+<a name="NetworkConnectionService.stateChanged"></a><div id="NetworkConnectionService.stateChanged-def"><a name="L35"></a><tt class="py-lineno">35</tt> <a class="py-toggle" href="#" id="NetworkConnectionService.stateChanged-toggle" onclick="return toggle('NetworkConnectionService.stateChanged');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.hardware.network.NetworkConnectionService-class.html#stateChanged">stateChanged</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">a</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkConnectionService.stateChanged-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="NetworkConnectionService.stateChanged-expanded"><a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">        <tt class="py-name">interface</tt> <tt class="py-op">=</tt> <tt class="py-string">'org.freedesktop.NetworkManager'</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">        <tt id="link-6" class="py-name" targets="Variable sparked.application.Application.state=sparked.application.Application-class.html#state"><a title="sparked.application.Application.state" class="py-name" href="#" onclick="return doclink('link-6', 'state', 'link-6');">state</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">properties</tt><tt class="py-op">.</tt><tt class="py-name">Get</tt><tt class="py-op">(</tt><tt class="py-name">interface</tt><tt class="py-op">,</tt> <tt class="py-string">"ActiveConnections"</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Variable sparked.hardware.inputevent.InputEventDevice.connected=sparked.hardware.inputevent.InputEventDevice-class.html#connected"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-7', 'connected', 'link-7');">connected</a></tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt id="link-8" class="py-name"><a title="sparked.application.Application.state" class="py-name" href="#" onclick="return doclink('link-8', 'state', 'link-6');">state</a></tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">        <tt id="link-9" class="py-name" targets="Variable sparked.hardware.network.networkEvents=sparked.hardware.network-module.html#networkEvents"><a title="sparked.hardware.network.networkEvents" class="py-name" href="#" onclick="return doclink('link-9', 'networkEvents', 'link-9');">networkEvents</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method sparked.events.EventDispatcher.dispatch()=sparked.events.EventDispatcher-class.html#dispatch"><a title="sparked.events.EventDispatcher.dispatch" class="py-name" href="#" onclick="return doclink('link-10', 'dispatch', 'link-10');">dispatch</a></tt><tt class="py-op">(</tt><tt class="py-string">"connected"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-11', 'connected', 'link-7');">connected</a></tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"> </tt>
+<a name="NetworkWebConnectionService"></a><div id="NetworkWebConnectionService-def"><a name="L43"></a><tt class="py-lineno">43</tt> <a class="py-toggle" href="#" id="NetworkWebConnectionService-toggle" onclick="return toggle('NetworkWebConnectionService');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sparked.hardware.network.NetworkWebConnectionService-class.html">NetworkWebConnectionService</a><tt class="py-op">(</tt><tt class="py-base-class">service</tt><tt class="py-op">.</tt><tt class="py-base-class">Service</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkWebConnectionService-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="NetworkWebConnectionService-expanded"><a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"><tt class="py-docstring">    Checks if the network connection is up by trying to reach a website.</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">    <tt id="link-12" class="py-name" targets="Variable sparked.hardware.network.NetworkWebConnectionService.url=sparked.hardware.network.NetworkWebConnectionService-class.html#url"><a title="sparked.hardware.network.NetworkWebConnectionService.url" class="py-name" href="#" onclick="return doclink('link-12', 'url', 'link-12');">url</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"http://www.google.com/"</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">    <tt id="link-13" class="py-name" targets="Variable sparked.hardware.network.NetworkWebConnectionService.delay=sparked.hardware.network.NetworkWebConnectionService-class.html#delay"><a title="sparked.hardware.network.NetworkWebConnectionService.delay" class="py-name" href="#" onclick="return doclink('link-13', 'delay', 'link-13');">delay</a></tt> <tt class="py-op">=</tt> <tt class="py-number">30</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"> </tt>
+<a name="NetworkWebConnectionService.startService"></a><div id="NetworkWebConnectionService.startService-def"><a name="L51"></a><tt class="py-lineno">51</tt> <a class="py-toggle" href="#" id="NetworkWebConnectionService.startService-toggle" onclick="return toggle('NetworkWebConnectionService.startService');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.hardware.network.NetworkWebConnectionService-class.html#startService">startService</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkWebConnectionService.startService-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="NetworkWebConnectionService.startService-expanded"><a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-14', 'connected', 'link-7');">connected</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method sparked.hardware.network.NetworkWebConnectionService.loop()=sparked.hardware.network.NetworkWebConnectionService-class.html#loop"><a title="sparked.hardware.network.NetworkWebConnectionService.loop" class="py-name" href="#" onclick="return doclink('link-15', 'loop', 'link-15');">loop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">        <tt class="py-comment"># Listen to events from NetworkManager</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">        <tt id="link-16" class="py-name"><a title="sparked.hardware.network.networkEvents" class="py-name" href="#" onclick="return doclink('link-16', 'networkEvents', 'link-9');">networkEvents</a></tt><tt class="py-op">.</tt><tt class="py-name">addObserver</tt><tt class="py-op">(</tt><tt class="py-string">"connected"</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method sparked.hardware.network.NetworkWebConnectionService.event()=sparked.hardware.network.NetworkWebConnectionService-class.html#event,Method sparked.monitors.NetworkMonitor.event()=sparked.monitors.NetworkMonitor-class.html#event,Method sparked.monitors.NetworkWebMonitor.event()=sparked.monitors.NetworkWebMonitor-class.html#event"><a title="sparked.hardware.network.NetworkWebConnectionService.event
+sparked.monitors.NetworkMonitor.event
+sparked.monitors.NetworkWebMonitor.event" class="py-name" href="#" onclick="return doclink('link-17', 'event', 'link-17');">event</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line"> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line"> </tt>
+<a name="NetworkWebConnectionService.loop"></a><div id="NetworkWebConnectionService.loop-def"><a name="L58"></a><tt class="py-lineno">58</tt> <a class="py-toggle" href="#" id="NetworkWebConnectionService.loop-toggle" onclick="return toggle('NetworkWebConnectionService.loop');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.hardware.network.NetworkWebConnectionService-class.html#loop">loop</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkWebConnectionService.loop-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="NetworkWebConnectionService.loop-expanded"><a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">        <tt class="py-name">d</tt> <tt class="py-op">=</tt> <tt class="py-name">client</tt><tt class="py-op">.</tt><tt class="py-name">getPage</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="sparked.hardware.network.NetworkWebConnectionService.url" class="py-name" href="#" onclick="return doclink('link-18', 'url', 'link-12');">url</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">        <tt class="py-keyword">def</tt> <tt class="py-def-name">ok</tt><tt class="py-op">(</tt><tt class="py-param">_</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-19', 'connected', 'link-7');">connected</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">                <tt id="link-20" class="py-name"><a title="sparked.hardware.network.networkEvents" class="py-name" href="#" onclick="return doclink('link-20', 'networkEvents', 'link-9');">networkEvents</a></tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="sparked.events.EventDispatcher.dispatch" class="py-name" href="#" onclick="return doclink('link-21', 'dispatch', 'link-10');">dispatch</a></tt><tt class="py-op">(</tt><tt class="py-string">"web-connected"</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-22', 'connected', 'link-7');">connected</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">        <tt class="py-name">d</tt><tt class="py-op">.</tt><tt class="py-name">addCallback</tt><tt class="py-op">(</tt><tt id="link-23" class="py-name" targets="Variable sparked.monitors.Monitor.ok=sparked.monitors.Monitor-class.html#ok,Method sparked.monitors.MonitorContainer.ok()=sparked.monitors.MonitorContainer-class.html#ok"><a title="sparked.monitors.Monitor.ok
+sparked.monitors.MonitorContainer.ok" class="py-name" href="#" onclick="return doclink('link-23', 'ok', 'link-23');">ok</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line"> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-keyword">def</tt> <tt class="py-def-name">error</tt><tt class="py-op">(</tt><tt class="py-param">f</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">            <tt class="py-keyword">print</tt> <tt class="py-name">f</tt> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-24', 'connected', 'link-7');">connected</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">                <tt id="link-25" class="py-name"><a title="sparked.hardware.network.networkEvents" class="py-name" href="#" onclick="return doclink('link-25', 'networkEvents', 'link-9');">networkEvents</a></tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="sparked.events.EventDispatcher.dispatch" class="py-name" href="#" onclick="return doclink('link-26', 'dispatch', 'link-10');">dispatch</a></tt><tt class="py-op">(</tt><tt class="py-string">"web-connected"</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-27', 'connected', 'link-7');">connected</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+</div><a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line">        <tt class="py-name">d</tt><tt class="py-op">.</tt><tt class="py-name">addErrback</tt><tt class="py-op">(</tt><tt class="py-name">error</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line"> </tt>
+<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">        <tt class="py-name">d</tt> <tt class="py-op">=</tt> <tt class="py-name">defer</tt><tt class="py-op">.</tt><tt class="py-name">Deferred</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_dc</tt> <tt class="py-op">=</tt> <tt class="py-name">reactor</tt><tt class="py-op">.</tt><tt class="py-name">callLater</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="sparked.hardware.network.NetworkWebConnectionService.delay" class="py-name" href="#" onclick="return doclink('link-28', 'delay', 'link-13');">delay</a></tt><tt class="py-op">,</tt> <tt class="py-keyword">lambda</tt> <tt class="py-op">:</tt> <tt class="py-name">d</tt><tt class="py-op">.</tt><tt class="py-name">callback</tt><tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line">        <tt class="py-name">d</tt><tt class="py-op">.</tt><tt class="py-name">addCallback</tt><tt class="py-op">(</tt><tt class="py-keyword">lambda</tt> <tt class="py-name">_</tt><tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="sparked.hardware.network.NetworkWebConnectionService.loop" class="py-name" href="#" onclick="return doclink('link-29', 'loop', 'link-15');">loop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">d</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line"> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line"> </tt>
+<a name="NetworkWebConnectionService.event"></a><div id="NetworkWebConnectionService.event-def"><a name="L79"></a><tt class="py-lineno">79</tt> <a class="py-toggle" href="#" id="NetworkWebConnectionService.event-toggle" onclick="return toggle('NetworkWebConnectionService.event');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sparked.hardware.network.NetworkWebConnectionService-class.html#event">event</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">connected</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NetworkWebConnectionService.event-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="NetworkWebConnectionService.event-expanded"><a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line"><tt class="py-docstring">        Event from networkmanager came in. If network connection is</tt> </tt>
+<a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line"><tt class="py-docstring">        down, do not try to fetch webpages.</tt> </tt>
+<a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L84"></a><tt class="py-lineno">84</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_dc</tt> <tt class="py-keyword">and</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_dc</tt><tt class="py-op">.</tt><tt class="py-name">active</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L85"></a><tt class="py-lineno">85</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_dc</tt><tt class="py-op">.</tt><tt class="py-name">cancel</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L86"></a><tt class="py-lineno">86</tt>  <tt class="py-line"> </tt>
+<a name="L87"></a><tt class="py-lineno">87</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-30', 'connected', 'link-7');">connected</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L88"></a><tt class="py-lineno">88</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-31" class="py-name"><a title="sparked.hardware.inputevent.InputEventDevice.connected" class="py-name" href="#" onclick="return doclink('link-31', 'connected', 'link-7');">connected</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L89"></a><tt class="py-lineno">89</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="sparked.hardware.network.NetworkWebConnectionService.loop" class="py-name" href="#" onclick="return doclink('link-32', 'loop', 'link-15');">loop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L90"></a><tt class="py-lineno">90</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L91"></a><tt class="py-lineno">91</tt>  <tt class="py-line">            <tt id="link-33" class="py-name"><a title="sparked.hardware.network.networkEvents" class="py-name" href="#" onclick="return doclink('link-33', 'networkEvents', 'link-9');">networkEvents</a></tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="sparked.events.EventDispatcher.dispatch" class="py-name" href="#" onclick="return doclink('link-34', 'dispatch', 'link-10');">dispatch</a></tt><tt class="py-op">(</tt><tt class="py-string">"web-connected"</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L92"></a><tt class="py-lineno">92</tt>  <tt class="py-line"> </tt>
+<a name="L93"></a><tt class="py-lineno">93</tt>  <tt class="py-line"> </tt>
+<a name="L94"></a><tt class="py-lineno">94</tt>  <tt class="py-line"><tt id="link-35" class="py-name"><a title="sparked.hardware.network.networkEvents" class="py-name" href="#" onclick="return doclink('link-35', 'networkEvents', 'link-9');">networkEvents</a></tt> <tt class="py-op">=</tt> <tt id="link-36" class="py-name"><a title="sparked.events
+sparked.hardware.hal.HardwareMonitor.events
+sparked.monitors.MonitorContainer.events" class="py-name" href="#" onclick="return doclink('link-36', 'events', 'link-3');">events</a></tt><tt class="py-op">.</tt><tt id="link-37" class="py-name" targets="Class sparked.events.EventDispatcher=sparked.events.EventDispatcher-class.html"><a title="sparked.events.EventDispatcher" class="py-name" href="#" onclick="return doclink('link-37', 'EventDispatcher', 'link-37');">EventDispatcher</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno">95</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sparked-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Sep 30 15:21:52 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

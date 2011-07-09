@@ -3,5 +3,8 @@
 [
  {home,      [],						resource_page,  	[ {template, {cat, "page.tpl"}}, {id, page_home} ]},
  {article,    ["blog", id, slug],		resource_page,  	[ {template, {cat, "page.tpl"}} ]},
- {project,    ["project", id, slug],	resource_page,  	[ {template, {cat, "page.tpl"}} ]}
+ {project,    ["project", id, slug],	resource_page,  	[ {template, {cat, "page.tpl"}} ]},
+
+ {data,         	["data", '*'],                      resource_static_pages,	[ {root, "data"} ]},
+ {spark,         	["spark"],                          resource_redirect,	[ {url, "/sparked"}, {is_permanent, true} ]}
 ].
