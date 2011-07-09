@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{% block title %}{% endblock %}{{ m.config.site.title.value }} &#x2B51;</title>
+        <title>{% block title %}{% endblock %}{{ m.config.site.title.value }} *</title>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
         <meta name="author" content="Arjan Scherpenisse <arjan@scherpenisse.net> &copy; 2011" />
 
