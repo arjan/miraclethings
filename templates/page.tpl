@@ -1,6 +1,7 @@
 {% extends "base.tpl" %}
 
-{% block title %}{{ m.rsc[id].title }} &mdash; {% endblock %}
+{% block title %}{{ m.rsc[id].title }}{% endblock %}
+{% block titlesep %} &mdash; {% endblock %}
 
 {% block content %}
 

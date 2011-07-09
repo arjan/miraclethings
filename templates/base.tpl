@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:og="http://ogp.me/ns#"
+      >
     <head>
-        <title>{% block title %}{% endblock %}{{ m.config.site.title.value }} *</title>
+        <title>{% block title %}{% endblock %}{% block titlesep %}{% endblock %}{{ m.config.site.title.value }} *</title>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
         <meta name="author" content="Arjan Scherpenisse <arjan@scherpenisse.net> &copy; 2011" />
+
+        <meta property="og:title" content="{% block title %}{% endblock %}"/>
+        {% with m.rsc[id].media|first as first_media %}{% if first_media %}
+        <meta property="og:image" content="http://{{ m.site.hostname }}{% image_url first_media width=500 %}"/>
+        {% endif %}{% endwith %}
+        <meta property="og:site_name" content="{{ m.site.title }}"/>
+        {% if id and m.rsc[id].summary %}<meta property="og:description" content="{{ m.rsc[id].summary|escape }}"/>{% endif %}
 
         {% include "_js_include_jquery.tpl" %}
 
