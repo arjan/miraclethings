@@ -384,3 +384,12 @@ div.home-blocks {
     color: red;
     font-weight: bold;
 }
+
+
+.detailpaging .prev {
+    float: left;
+}
+
+.detailpaging .next {
+    float: right;
+}
