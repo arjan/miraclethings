@@ -34,3 +34,9 @@
     {% include "inc/info-meta-edges.tpl" predicate='has_collaborator' alpha omega %}
 
 {% endblock %}
+
+
+{% block comment_area %}
+{% include "_prevnext.tpl" cat='project' id=id %}
+{% include "_comments.tpl" %}
+{% endblock %}

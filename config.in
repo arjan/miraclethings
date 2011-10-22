@@ -4,7 +4,7 @@
     {enabled, true},
 
     % Atomic hostname, MUST be equal to the directory name of this site.
-    {host, newsite},
+    {host, miraclethings},
 
     % Hostname on which this site runs
     {hostname, "newsite:8000"},
@@ -27,5 +27,5 @@
     % What skeleton site this site is based on; for installing the initial data.
     {skeleton, empty},
 
-    {title, "Magical Man"}
+    {title, "MiracleThings"}
 ].
