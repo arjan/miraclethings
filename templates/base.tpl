@@ -62,7 +62,11 @@
         <div class="container_12 footer">
             &copy; 2011 {{ m.config.site.title.value }}
             &mdash;
-            <a href="mailto:contact@miraclethings.nl">contact@miraclethings.nl</a>
+            <a href="mailto:arjan@miraclethings.nl">arjan@miraclethings.nl</a>
+            {% if m.rsc.terms_conditions.id %}
+            &mdash;
+            <a href="{% url media_attachment star=m.rsc.terms_conditions.medium.filename %}">{{ m.rsc.terms_conditions.title }}</a>
+            {% endif %}
         </div>
 
         {% lib
