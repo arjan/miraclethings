@@ -393,3 +393,7 @@ div.home-blocks {
 .detailpaging .next {
     float: right;
 }
+
+p.meta {
+    color: #999;
+}

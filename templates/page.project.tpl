@@ -37,6 +37,7 @@
 
 
 {% block comment_area %}
+{% include "_socialmedia.tpl" id=id %}
 {% include "_prevnext.tpl" cat='project' id=id %}
 {% include "_comments.tpl" %}
 {% endblock %}

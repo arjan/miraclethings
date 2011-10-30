@@ -6,6 +6,7 @@
 
 
 {% block comment_area %}
+{% include "_socialmedia.tpl" id=id %}
 {% include "_prevnext.tpl" cat='article' id=id %}
 {% include "_comments.tpl" %}
 {% endblock %}
