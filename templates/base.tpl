@@ -60,7 +60,7 @@
         </div>
 
         <div class="container_12 footer">
-            &copy; 2011 {{ m.config.site.title.value }}
+            &copy; 2011, 2012 {{ m.config.site.title.value }}
             &mdash;
             <a href="mailto:arjan@miraclethings.nl">arjan@miraclethings.nl</a>
             {% if m.rsc.terms_conditions.id %}
