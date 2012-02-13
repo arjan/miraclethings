@@ -1,3 +1,5 @@
+<div class="body-media-block clearfix">
+<div class="location">
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <div id="map_canvas" class="map-wrapper map-size-{{ sizename }}"></div>
 <script>
@@ -22,3 +24,5 @@ $(document).ready(function() {
 });
 </script>
 
+</div>
+</div>

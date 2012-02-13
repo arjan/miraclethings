@@ -30,8 +30,7 @@
 %%====================================================================
 
 -export([
-         datamodel/0,
-         observe_media_viewer/2
+         datamodel/0
         ]).
 
 
@@ -144,16 +143,3 @@ datamodel() ->
             }
            ]
           }.
-
-
-%% @doc Return the media viewer for the embedded video (that is, when it is an embedded media).
-%% @spec media_viewer(Notification, Context) -> undefined | {ok, Html}
-observe_media_viewer({media_viewer, Id, _Props, _Filename, Options}, Context) ->
-    case hd(lists:reverse(m_rsc:is_a(Id, Context))) of
-        gallery ->
-            {ok, z_template:render("_gallery.tpl", [{id,Id}|Options], Context)};
-        location ->
-            {ok, z_template:render("_location_media.tpl", [{id,Id}|Options], Context)};
-        _ ->
-            undefined
-    end.
