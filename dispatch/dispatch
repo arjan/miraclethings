@@ -6,5 +6,6 @@
  {project,    ["project", id, slug],	resource_page,  	[ {template, {cat, "page.tpl"}} ]},
 
  {data,         	["data", '*'],                      resource_static_pages,	[ {root, "data"} ]},
+ {hku,          	["hku", '*'],                       resource_static_pages,	[ {root, "hku"} ]},
  {spark,         	["spark"],                          resource_redirect,	[ {url, "/sparked"}, {is_permanent, true} ]}
 ].
