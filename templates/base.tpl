@@ -66,6 +66,9 @@
             {% if m.rsc.terms_conditions.id %}
             &mdash;
             <a href="{% url media_attachment star=m.rsc.terms_conditions.medium.filename %}">{{ m.rsc.terms_conditions.title }}</a>
+            {% if m.rsc.terms_conditions_en.id %}
+            <a href="{% url media_attachment star=m.rsc.terms_conditions_en.medium.filename %}">(en)</a>
+            {% endif %}
             {% endif %}
         </div>
 
