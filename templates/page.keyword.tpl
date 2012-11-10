@@ -1,6 +1,9 @@
 {% extends "page.collection.tpl" %}
 
 {% block content_body %}
+<div class="body clearfix">
+    {{ m.rsc[id].body|show_media }}
+</div>
 
 {% cache 7200 vary=id %}
 
