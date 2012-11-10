@@ -7,7 +7,7 @@
 	{% else %}
 
 	{% if m.rsc[id].category.name == "image" %}
-    <a href="{% image_url id width=680 upscale %}" class="do_inlineLightbox image" data-inlineLightbox="parent: '.body-media-block'" id="bodyimg{{ id }}">
+    <a href="{% image_url id width=680 height=680 %}" class="do_inlineLightbox image" data-inlineLightbox="parent: '.body-media-block'" id="bodyimg{{ id }}">
         {% media id width=size.width|default:width height=size.height|default:height crop=crop class=align link=link  title=m.rsc[id].title %}
         {% if m.rsc[id].summary %}<span class="caption">{{ m.rsc[id].summary }}</p>{% endif %}
     </a>
