@@ -1,11 +1,18 @@
 %% Put your dispatch rules here.
 
 [
- {home,      [],						resource_page,  	[ {template, {cat, "page.tpl"}}, {id, page_home} ]},
- {article,    ["blog", id, slug],		resource_page,  	[ {template, {cat, "page.tpl"}} ]},
- {project,    ["project", id, slug],	resource_page,  	[ {template, {cat, "page.tpl"}} ]},
+{rulename, ["foo", "bar"], controller_template, [{template, "foo.tpl"}]},
+{rulename, ["foo", var], controller_template, [{template, "foo.tpl"}]},
 
- {data,         	["data", '*'],                      resource_static_pages,	[ {root, "data"} ]},
- {hku,          	["hku", '*'],                       resource_static_pages,	[ {root, "hku"} ]},
- {spark,         	["spark"],                          resource_redirect,	[ {url, "/sparked"}, {is_permanent, true} ]}
+{example_url, ["example"], controller_example, []},
+ {home,      [],						controller_page,  	[ {template, {cat, "page.tpl"}}, {id, page_home} ]},
+ {article,    ["blog", id, slug],		controller_page,  	[ {template, {cat, "page.tpl"}} ]},
+ {project,    ["project", id, slug],	controller_page,  	[ {template, {cat, "page.tpl"}} ]},
+
+ {page,      ["page", id],	controller_page,  	[ {template, {cat, "page.tpl"}} ]},
+ {page,      ["page", id, slug],	controller_page,  	[ {template, {cat, "page.tpl"}} ]},
+ 
+ {data,         	["data", '*'],                      controller_static_pages,	[ {root, "data"} ]},
+ {hku,          	["hku", '*'],                       controller_static_pages,	[ {root, "hku"} ]},
+ {spark,         	["spark"],                          controller_redirect,	[ {url, "/sparked"}, {is_permanent, true} ]}
 ].
