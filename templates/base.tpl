@@ -17,7 +17,7 @@
         {% include "_js_include_jquery.tpl" %}
 
         {% all include "_html_head.tpl" %}
-        {% lib "css/960.css" "css/normalize.css" "css/base.css" "css/menu.css" %}
+        {% lib "css/960.css" "css/normalize.css" "css/base.css" "css/menu.css" "shadowbox/shadowbox.css" %}
         {% block html_head_extra %}{% endblock %}
         <link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 
@@ -75,7 +75,7 @@
         {% lib
         "js/apps/zotonic-1.0.js"
         "js/apps/z.widgetmanager.js"
-        "js/z.inlineLightbox.js"
+        "shadowbox/shadowbox.js"
         "js/z.imageSwap.js"
 
         "js/modules/livevalidation-1.3.js"
@@ -86,7 +86,10 @@
         {% block _js_include_extra %}{% endblock %}
 
         <script type="text/javascript">
-            $(function() { $.widgetManager(); });
+            $(function() {
+                $.widgetManager();
+                Shadowbox.init({animateFade: false});
+            });
         </script>
 
         {% stream %}
