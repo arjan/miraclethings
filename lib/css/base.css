@@ -306,13 +306,19 @@ div.inlineLightbox-curtain {
     margin-bottom: 10px;
 }
 
-ul.pager { margin: 0; padding: 0; }
-ul.pager li {
+
+div.pagination ul { margin: 0; padding: 0; }
+div.pagination ul li {
     list-style: none;
     float: left;
     padding-right: 10px;
 }
-
+div.pagination ul li.active a {
+    color: black;
+}
+div.pagination ul li.disabled {
+    display: none;
+}
 
 /* map */
 
