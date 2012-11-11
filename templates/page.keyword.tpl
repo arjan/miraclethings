@@ -7,7 +7,12 @@
 
 {% cache 7200 vary=id %}
 
-{% for group in m.search[{query hasobject=[id, 'subject']}]|chunk:3 %}
+{% with m.search[{query hasobject=[id, 'subject']}] as r %}
+
+{% if r %}
+<h3>Projects and articles related to {{ id.title }}:</h3>
+
+{% for group in r|chunk:3 %}
 <div class="grid_9 alpha omega">
 
     {% for id in group %}
@@ -16,6 +21,9 @@
 
 </div>
 {% endfor %}
+
+{% endif %}
+{% endwith %}
 
 {% endcache %}
 
