@@ -114,6 +114,13 @@ pre {
     box-shadow:inset 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
+.gist pre {
+    box-shadow: none;
+    border-radius: 0;
+    line-height: inherit;
+    font-size: inherit;
+}
+
 
 div.body-media-block {
     display: block;
