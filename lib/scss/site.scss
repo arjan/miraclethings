@@ -1,0 +1,40 @@
+@import "../../bower_components/bourbon/app/assets/stylesheets/bourbon";
+
+body {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+}
+
+@mixin heading {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+}
+
+@mixin headingSmall {
+    @include heading;
+    font-size: 18px;
+}
+
+
+h1,h2,h3,h4,h5 {
+    @include heading;
+}
+
+.listitem {
+    background-color: black;
+    margin-bottom: 10px;
+    padding: 2px;
+
+    > div.image {
+        height: 0;
+        padding-bottom: 56%;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+
+    h3 {
+        @include headingSmall;
+        margin: 0; padding: 4px;
+        a { color: white; }
+    }
+}

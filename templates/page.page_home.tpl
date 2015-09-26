@@ -1,6 +1,6 @@
 {% extends "base.tpl" %}
 
-{% block content %}
+{% block content_area %}
 
 <h1>{{ m.config.site.title.value }} <span class="star-big"></span></h1>
 
@@ -11,12 +11,27 @@
 
 <div class="home-blocks">
     <!-- 3 blocks -->
-    {% catinclude "inc/listitem.tpl" 'page_projects' alpha %}
-    {% catinclude "inc/listitem.tpl" 'page_blog' %}
-    {% catinclude "inc/listitem.tpl" 'page_favorites' omega %}
-
-    {% catinclude "inc/listitem.tpl" 'page_contact' alpha %}
-    {% catinclude "inc/listitem.tpl" 'page_about' omega %}
+    <div class="row">
+        <div class="col-sm-4">
+            {% catinclude "inc/listitem.tpl" 'page_projects' %}
+        </div>
+        <div class="col-sm-4">
+            {% catinclude "inc/listitem.tpl" 'page_blog' %}
+        </div>
+        <div class="col-sm-4">
+            {% catinclude "inc/listitem.tpl" 'page_favorites' %}
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-4">
+            {% catinclude "inc/listitem.tpl" 'page_contact' alpha %}
+        </div>
+        <div class="col-sm-4">
+            {% catinclude "inc/listitem.tpl" 'page_about' omega %}
+        </div>
+    </div>
+    
 </div>
 
 {% endblock %}

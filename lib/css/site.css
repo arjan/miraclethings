@@ -1,0 +1,25 @@
+body {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300; }
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700; }
+
+.listitem {
+  background-color: black;
+  margin-bottom: 10px;
+  padding: 2px; }
+  .listitem > div.image {
+    height: 0;
+    padding-bottom: 56%;
+    background-size: 100% auto;
+    background-repeat: no-repeat; }
+  .listitem h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 0;
+    padding: 4px; }
+    .listitem h3 a {
+      color: white; }
