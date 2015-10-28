@@ -3,6 +3,9 @@
     xmlns:og="http://ogp.me/ns#"
 >
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+
         <title>{% block title %}{% endblock %}{% block titlesep %}{% endblock %}{{ m.config.site.title.value }} &#9733;</title>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
         <meta name="author" content="Arjan Scherpenisse <arjan@scherpenisse.net> &copy; 2011" />
