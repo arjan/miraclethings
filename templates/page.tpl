@@ -10,7 +10,7 @@
             {# Media #}
             {% with m.rsc[id].media|without_embedded_media:id|first as media_id %} 
                 {% if media_id %}
-                    {% include "_body_media.tpl" id=media_id align="block" width=440 %}
+                    {% include "_body_media.tpl" id=media_id align="block" width=860 %}
                 {% endif %}
             {% endwith %}
         {% endblock %}
