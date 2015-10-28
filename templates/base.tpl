@@ -3,7 +3,7 @@
     xmlns:og="http://ogp.me/ns#"
 >
     <head>
-        <title>{% block title %}{% endblock %}{% block titlesep %}{% endblock %}{{ m.config.site.title.value }} *</title>
+        <title>{% block title %}{% endblock %}{% block titlesep %}{% endblock %}{{ m.config.site.title.value }} &#9733;</title>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
         <meta name="author" content="Arjan Scherpenisse <arjan@scherpenisse.net> &copy; 2011" />
 
@@ -14,12 +14,16 @@
         <meta property="og:site_name" content="{{ m.site.title }}"/>
         {% if id and m.rsc[id].summary %}<meta property="og:description" content="{{ m.rsc[id].summary|escape }}"/>{% endif %}
 
-        <link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css' />
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css' />
         
         {% include "_js_include_jquery.tpl" %}
 
         {% all include "_html_head.tpl" %}
-        {% lib "css/vendor.css" "css/site.css" %}
+        {% lib
+            "font-awesome/css/font-awesome.min.css"
+            "css/vendor.css"
+            "css/site.css"
+        %}
         
         {% block html_head_extra %}{% endblock %}
         <link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" />
@@ -27,6 +31,7 @@
     </head>
 
     <body class="{% block page_class %}page{% endblock %}">
+        {% include "_navbar.tpl" %}
         <div class="container">
 			{% block content_area %}
                 <div class="row">
@@ -36,11 +41,13 @@
                     </div>
 
                     <div class="col-md-3 sidebar">
-                        {% block sidebar_menu %}
-                            <h2><a href="/">{{ m.config.site.title.value }} <span class="star-small"></span></a></h2>
-                            {% menu id=id|highlightmenu %}
-                        {% endblock %}
-
+                        <div class="sidebar-menu hidden-sm hidden-xs">
+                            {% block sidebar_menu %}
+                                <h2><a href="/">{{ m.config.site.title.value }} <span class="star-small"></span></a></h2>
+                                {% menu id=id|highlightmenu %}
+                            {% endblock %}
+                        </div>
+                        
                         {% block sidebar %}
                         {% endblock %}
 
@@ -68,28 +75,17 @@
                 </div>
             {% endblock %}{# content_area #}
             
-            <div class="row">
-                <div class="col-sm-12">
-                    &copy; 2011-2015 {{ m.config.site.title.value }}
-                    &mdash;
-                    <a href="mailto:arjan@miraclethings.nl">arjan@miraclethings.nl</a>
-                    {% if m.rsc.terms_conditions.id %}
-                        &mdash;
-                        <a href="{% url media_attachment star=m.rsc.terms_conditions.medium.filename %}">{{ m.rsc.terms_conditions.title }}</a>
-                        {% if m.rsc.terms_conditions_en.id %}
-                            <a href="{% url media_attachment star=m.rsc.terms_conditions_en.medium.filename %}">(en)</a>
-                        {% endif %}
-                    {% endif %}
-                </div>
-            </div>
+            {% include "_footer.tpl" %}
         </div>
         
         {% lib
+            "js/modules/ubf.js"
             "js/apps/zotonic-1.0.js"
             "js/apps/z.widgetmanager.js"
             "shadowbox/shadowbox.js"
             "js/z.imageSwap.js"
 
+            "bootstrap/js/bootstrap.min.js"
             "js/modules/livevalidation-1.3.js"
             "js/modules/z.inputoverlay.js"
             "js/modules/jquery.loadmask.js"

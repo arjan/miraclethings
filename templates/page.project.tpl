@@ -1,26 +1,18 @@
 {% extends "page.tpl" %}
 
-
-{% block chapeau %}
-<p class="chapeau">
-    Project, {{ m.rsc[id].publication_start|date:"F Y" }}
-    {% if m.rsc[id].date_end %} &mdash; {{ m.rsc[id].date_end|date:"F Y" }}{% endif %}
-</p>
-{% endblock %}
-
 {% block sidebar %}
-<h2>{{ m.rsc[id].title }}</h2>
-    <div class="project-info grid_3 alpha omega">
+    <h2>{{ m.rsc[id].title }}</h2>
+    <div class="project-info">
         {% if m.rsc[id].date_end %}
-        <h4>{_ Project duration _}</h4>
-        <ul>
-            <li>{{ m.rsc[id].publication_start|date:"F Y" }} &mdash; {{ m.rsc[id].date_end|date:"F Y" }}</li>
-        </ul>
+            <h4>{_ Project duration _}</h4>
+            <ul class="list-unstyled">
+                <li>{{ m.rsc[id].publication_start|date:"F Y" }} &mdash; {{ m.rsc[id].date_end|date:"F Y" }}</li>
+            </ul>
         {% else %}
-        <h4>{_ Realized in _}</h4>
-        <ul>
-            <li>{{ m.rsc[id].publication_start|date:"F Y" }}</li>
-        </ul>
+            <h4>{_ Realized in _}</h4>
+            <ul class="list-unstyled">
+                <li>{{ m.rsc[id].publication_start|date:"F Y" }}</li>
+            </ul>
         {% endif %}
     </div>
 
@@ -37,7 +29,7 @@
 
 
 {% block comment_area %}
-{% include "_socialmedia.tpl" id=id %}
-{% include "_prevnext.tpl" cat='project' id=id %}
-{% include "_comments.tpl" %}
+    {% include "_socialmedia.tpl" id=id %}
+    {% include "_prevnext.tpl" cat='project' id=id %}
+    {% include "_comments.tpl" %}
 {% endblock %}

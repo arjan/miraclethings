@@ -5,14 +5,14 @@
 
 {% block content_body %}
 
-{% for group in m.rsc[id].o.haspart|chunk:3 %}
-<div class="grid_9 alpha omega">
+    <div class="row">
+        {% for id in m.rsc[id].o.haspart %}
+            
+            <div class="col-md-4 col-sm-6">
+                {% catinclude "inc/listitem.tpl" id alpha=forloop.first omega=forloop.last %}
+            </div>
 
-    {% for id in group %}
-    {% catinclude "inc/listitem.tpl" id alpha=forloop.first omega=forloop.last %}
-    {% endfor %}
-
-</div>
-{% endfor %}
+        {% endfor %}
+    </div>
 
 {% endblock %}
