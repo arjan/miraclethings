@@ -1,6 +1,6 @@
 {% extends "page.tpl" %}
 
-{% block topimage %}
+{% block summary %}
 <p class="summary">
     Follow me, <a href="http://twitter.com/acscherp" rel="me">@acscherp</a> on Twitter or
     connect to me on <a href="http://www.linkedin.com/in/scherpenisse" rel="me">LinkedIn</a>.

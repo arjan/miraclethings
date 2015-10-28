@@ -5,6 +5,7 @@
 
 {% block content %}
     <div class="pagecontent">
+        
         {% block topimage %}
             {# Media #}
             {% with m.rsc[id].media|without_embedded_media:id|first as media_id %} 
