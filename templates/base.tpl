@@ -8,7 +8,7 @@
 
         <title>{% block title %}{% endblock %}{% block titlesep %}{% endblock %}{{ m.config.site.title.value }} &#9733;</title>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-        <meta name="author" content="Arjan Scherpenisse <arjan@scherpenisse.net> &copy; 2011" />
+        <meta name="author" content="Arjan Scherpenisse <arjan@scherpenisse.net> &copy; 2017" />
 
         <meta property="og:title" content="{% block title %}{{ m.site.title }}{% endblock %}"/>
         {% with m.rsc[id].media|first as first_media %}{% if first_media %}
@@ -18,7 +18,7 @@
         {% if id and m.rsc[id].summary %}<meta property="og:description" content="{{ m.rsc[id].summary|escape }}"/>{% endif %}
 
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css' />
-        
+
         {% include "_js_include_jquery.tpl" %}
 
         {% all include "_html_head.tpl" %}
@@ -27,7 +27,7 @@
             "css/vendor.css"
             "css/site.css"
         %}
-        
+
         {% block html_head_extra %}{% endblock %}
         <link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 
@@ -50,7 +50,7 @@
                                 {% menu id=id|highlightmenu %}
                             {% endblock %}
                         </div>
-                        
+
                         {% block sidebar %}
                         {% endblock %}
 
@@ -72,15 +72,15 @@
                                 {% endif %}
                             {% endwith %}
                         {% endblock %}
-                        
+
                         {% include "_edit_button.tpl" %}
                     </div>
                 </div>
             {% endblock %}{# content_area #}
-            
+
             {% include "_footer.tpl" %}
         </div>
-        
+
         {% lib
             "js/modules/ubf.js"
             "js/apps/zotonic-1.0.js"

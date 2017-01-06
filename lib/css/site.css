@@ -98,16 +98,22 @@ div.home-blocks {
   .footer .right {
     text-align: right; }
 
-div.pagecontent {
-  padding-right: 32px; }
-  div.pagecontent p.chapeau {
-    margin: 0;
-    float: right;
-    color: #aaaaaa;
-    font-size: 12px; }
-  div.pagecontent div.body-media-block img {
-    width: 100%;
-    height: auto; }
+div.pagecontent a {
+  color: white;
+  font-weight: 400; }
+@media (min-width: 992px) {
+  div.pagecontent {
+    padding-right: 32px; } }
+div.pagecontent p.chapeau {
+  margin: 0;
+  float: right;
+  color: #aaaaaa;
+  font-size: 12px; }
+div.pagecontent p.summary {
+  margin: 16px 0 32px 0; }
+div.pagecontent div.body-media-block img {
+  width: 100%;
+  height: auto; }
 
 div.sidebar {
   color: #aaaaaa; }
@@ -161,6 +167,8 @@ body.with-menu > nav.navbar {
   background: #333333; }
   .navbar a {
     color: #aaaaaa; }
+    .navbar a:hover {
+      background-color: black !important; }
   .navbar .navbar-toggle .icon-bar {
     background-color: #888;
     display: block;

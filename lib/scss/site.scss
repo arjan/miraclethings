@@ -136,12 +136,23 @@ div.home-blocks {
 }
 
 div.pagecontent {
-    padding-right: 2*$pad;
+    a {
+        color: white;
+        font-weight: 400;
+    }
+    
+    @media (min-width: $tablet+1px) {
+        padding-right: 2*$pad;
+    }
 
     p.chapeau {
         margin: 0; float: right;
         color: $textgrey;
         font-size: $small;
+    }
+
+    p.summary {
+        margin: $pad 0 2*$pad 0;
     }
 
     div.body-media-block {
@@ -220,6 +231,10 @@ body.with-menu > nav.navbar {
 .navbar {
     a {
         color: $textgrey;
+
+        &:hover {
+            background-color: black!important;
+        }
     }
     background: #333333;
     

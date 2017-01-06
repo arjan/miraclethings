@@ -46,9 +46,9 @@
             {% if rest %}
                 <h3>{_ More images _}</h3>
                 <div class="body-media-block clearfix">
-                    <div class="gallery">
+                    <div class="row">
                         {% for group in rest|chunk:3 %} 
-                            <div class="gallery-group {% if forloop.last %}gallery-group-last{% endif %}">
+                            <div class="col-md-4">
                                 {% for id in group %}
                                     {% catinclude "inc/listitem.tpl" id alpha=forloop.first omega=forloop.last %}
                                 {% endfor %}

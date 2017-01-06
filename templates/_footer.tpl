@@ -1,6 +1,6 @@
 <div class="row footer">
     <div class="col-sm-4">
-        &copy; 2011-2015 {{ m.config.site.title.value }}
+        &copy; 2011-2017 {{ m.config.site.title.value }}
     </div>
     <div class="col-sm-4">
         <i class="icon-phone"></i> <a href="tel:+31641322599">06 41 322 599</a><br />
