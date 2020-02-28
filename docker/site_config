@@ -1,0 +1,36 @@
+%% Zotonic site configuration for hansaarsman.
+[
+ %% This site is enabled or not.
+ {enabled, true},
+
+ %% Hostname on which this site runs
+% {hostname, "localhost:8001"},
+ {hostname, "miraclethings.nl"},
+
+ %% Aliases which should redirect to the primary hostname
+ {hostalias, ["www.miraclethings.nl", "miraclethings.apps.miraclethings.nl"]},
+ {redirect, false},
+
+ %% PostgreSQL database connection
+ {dbhost, {env, "DB_HOST", "localhost"}},
+ {dbport, {env_int, "DB_PORT", "5432"}},
+ {dbuser, {env, "DB_USER", "zotonic"}},
+ {dbpassword, {env, "DB_PASS", "zotonic"}},
+ {dbdatabase, {env, "DB_DATABASE", "miraclethings"}},
+ {dbschema, "public"},
+
+ %% Depcache settings. The maximum size in Mbs
+ {depcache_memory_max, 100},
+
+ %% Password for the 'admin' user.
+ {admin_password, "ce8be8339d082153ed60"},
+
+ %% What skeleton site this site is based on; for installing the initial data.
+ {
+   skeleton, empty
+ }
+
+ %% Uncomment to override skeleton defaults
+ %%,{install_menu, []}
+ %%,{install_modules, []}
+].
