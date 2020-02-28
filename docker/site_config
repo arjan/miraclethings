@@ -5,7 +5,7 @@
 
  %% Hostname on which this site runs
 % {hostname, "localhost:8001"},
- {hostname, "miraclethings.nl"},
+ {hostname, "miraclethings.apps.miraclethings.nl"},
 
  %% Aliases which should redirect to the primary hostname
  {hostalias, ["www.miraclethings.nl", "miraclethings.apps.miraclethings.nl"]},
